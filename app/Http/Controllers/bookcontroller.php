@@ -66,7 +66,7 @@ class bookcontroller extends Controller
         $No_Pages = $request->input('No_Pages');
         $No_Stock = $request->input('No_Stock');
 
-        DB::table('books')->where('Book_id', $Book_id)->update(['Title' => $Title ,'Author' => $Author,'Copyright' => $Copyright,'No_pages' => $No_Pages,'Stock' => $No_Stock]);
+        DB::table('books')->where('Book_id', $Book_id)->update(['Title' => $Title ,'Author' => $Author,'Copyright' => $Copyright,'No_pages' => $No_Pages,'Stock' => $No_Stock,'updated_at' => \Carbon\Carbon::now()]);
         $books = DB::table('books')->select('*')->get();
 
         return view('books',['name' => $name,'books' => $books]);
@@ -78,6 +78,7 @@ class bookcontroller extends Controller
     }
 
     public function delete($Book_id) {
+
         $name = session('uniname');
 
     if(!$name == null){
@@ -102,6 +103,7 @@ class bookcontroller extends Controller
     }
 
     public function editdisplay($Book_id) {
+
         $name = session('uniname');
 
         if(!$name == null){

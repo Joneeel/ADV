@@ -15,7 +15,7 @@ class borrowcontroller extends Controller
     }
 
     public function delete() {
-        
+
     }
 
     public function createdisplay() {

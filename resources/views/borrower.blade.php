@@ -25,9 +25,13 @@
     </ul>
 </nav>
 </center>
+<center>
 <body style='background-color: #56f0ba'>  
-  <center>
+  <div style="display: inline-flex;">
     <h1 class="mainname"> BORROWERS </h1>
+      <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
+    </form>
+  </div>
 <table>
   <tr>
     <th>Borrower_id</th>
@@ -36,6 +40,8 @@
     <th>Address</th>
     <th>Created_at</th>
     <th>Updated_at</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   @foreach($borrowers as $key => $data)
   <tr>
@@ -45,14 +51,94 @@
     <td>{{ $data->address }}</td>
     <td>{{ $data->created_at }}</td>
     <td>{{ $data->updated_at }}</td>
+    <td class="editbutton">
+      <form action="{{ route('borroweredit', $data->Borrower_id) }}" method="post" class="form-hidden">
+        <button>Edit</button>
+        @csrf
+      </form>
+    </td>
+    <td class="deletebutton">
+      <form action="{{ route('borrowerdelete', $data->Borrower_id) }}" method="post" class="form-hidden">
+        <button >Delete</button>
+        @csrf
+      </form>
+    </td>
   </tr>
   @endforeach
 </table>
-</center>
 </body>
+</center>
 </html>
 
 <style>
+
+.addnewbook{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  margin-left: 37%;
+  background-color: green; 
+  border: none;
+  color: white;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+  margin-top:15px;
+}
+
+.addnewbook:hover{
+  background-color: white; 
+  color: green;
+}
+
+.deletebutton > form > button {
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+  margin-top:3px;
+}
+
+.deletebutton > form > button:hover {
+  background-color: white; 
+  color: red;
+}
+
+.editbutton > form > button {
+  background-color: green; 
+  border: none;
+  color: white;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+  margin-top:3px;
+}
+
+.editbutton > form > button:hover {
+  background-color: white; 
+  color: green;
+}
 
 .mainname{
   font-family: 'Arial';

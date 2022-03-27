@@ -42,5 +42,12 @@ Route::post('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('b
 Route::post('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
 Route::post('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
 
+// Books CRUD
+Route::get('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
+Route::post('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
+Route::post('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
+Route::post('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
+Route::post('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
+
 
 
