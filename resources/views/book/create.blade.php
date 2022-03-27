@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKS</title>
+</head>
+<center>
+<nav class="navbar navbar-inverse">
+
+    <div class="header">   
+      <a style="margin-right: 25%;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+      <h3 class="logged"> Account Logged: {{ $name }} </h3>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
+      <a class='nav' href="{{ route('books')}}">BOOKS</a>
+      <a class='nav' href="{{ route('borrower')}}">BORROWERS</a>
+      <a class='nav' href="{{ route('notreturnedbooks')}}">NOT RETURNED BOOKS</a>
+      <a class='nav' href="{{ route('borrow')}}">ISSUE BOOK BORROW</a>
+      <a class='nav' href="{{ route('transactionhistory')}}">TRANSACTION HISTORY</a>
+      <a class='nav' href="{{ route('logout')}}">LOGOUT</a>
+    </ul>
+</nav>
+</center>
+  <center>
+<body style='background-color: #56f0ba'>  
+<div id="admin-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="mainname">Create Book</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <form class="yourform" action="{{ route('bookcreateprocess')}}" method="post" autocomplete="off">
+                    @csrf
+                    <div>
+                        <label>Title: </label>
+                        <input type="text" class="inputs" name="Title" value="" required>
+                    </div>
+                    <div>
+                        <label>Author: </label>
+                        <input type="text" class="inputs" name="Author" value="" required>
+                    </div>
+                    <div>
+                        <label>Copyright: </label>
+                        <input type="text" class="inputs" name="Copyright" value="" required>
+                    </div>
+                    <div>
+                        <label>No_Pages: </label>
+                        <input type="number" class="inputs" name="No_Pages" value="" required>
+                    </div>
+                    <div>
+                        <label>No_Stock: </label>
+                        <input type="number" class="inputs" name="No_Stock" value="" required>
+                    </div>
+                    <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create" required>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</center>
+</html>
+
+<style>
+
+.mainname{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+
+label{
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button {
+  margin: 20px;
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: white; 
+  border: none;
+  color: #4CAF50;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.header{
+  display: flex; 
+  justify-content: center; 
+  padding-top: 30px;
+}
+
+
+.inputs {
+  width: 20%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+a.nav{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  transition: 0.3s;
+  border-radius:5px;
+}
+
+a.nav:hover{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: white;
+  background-color:black;
+  transition: 0.3s;
+}
+
+ul.nav{
+  background-color: #70f72d;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+a.navbar-brand{
+  font-size:35px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+
+div.navbar-header{
+  flex-direction: row;
+}
+
+.logged{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+</style>
+
