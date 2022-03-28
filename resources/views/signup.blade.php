@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="shortcut icon" href="{{ asset('Image/libraryicon.ico') }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,11 @@
     <title>Sign Up</title>
 </head>
 <center>
-<body style="background-color:#56f0ba">
+<body style="background-color:#0cbcb4">
         <form class="" action="{{ route('signupvalidation') }}" method="get"> 
+        <img  style="width:150px;height:150px;margin-top: 20px;" src="{{ asset('Image/library.gif') }}" alt="">
             @csrf 
-            <h1 class="title" style="margin-top: 60px"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
+            <h1 class="title" style="margin-top: 20px"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
 
             <div>
                 <label> NAME: </label>
