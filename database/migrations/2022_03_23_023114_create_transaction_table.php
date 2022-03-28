@@ -22,6 +22,7 @@ class CreateTransactionTable extends Migration
             $table->string('DateBorrowed');
             $table->string('DueDateReturned');
             $table->string('Fullname');
+            $table->string('BookTitle');
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@
 
             <div>
                 <label> NAME: </label>
-                <input class="inputs" style="margin-top: 20px;" type="text" name="name" class="form-control" value="{{ old('username')}}" placeholder="Your Fullname.." required>
+                <input class="inputs" style="margin-top: 20px;" type="text" name="name" class="form-control" value="" placeholder="Your Fullname.." required>
             </div>
             <div>
                 <label> USERNAME: </label>
-                <input class="inputs" style="margin-top: 20px;" type="text" name="username" class="form-control" value="{{ old('username')}}" placeholder="Your Username.." required>
+                <input class="inputs" style="margin-top: 20px;" type="text" name="username" class="form-control" value="" placeholder="Your Username.." required>
             </div>
             <div>
                 <label> PASSWORD: </label>
@@ -26,19 +26,24 @@
             </div>
             <div>
                 <label> CONFIRM PASSWORD: </label>
-                <input class="inputs" style="margin-top: 20px;" type="password" name="password" class="form-control" value=""  placeholder="Confirm Your Password.." required>
+                <input class="inputs" style="margin-top: 20px;" type="password" name="password_confirmation" class="form-control" value=""  placeholder="Confirm Your Password.." required>
             </div>
             <input class="button" style="margin-top: 20px" type="submit" name="signup" class="btn btn-danger" value="Sign Up"/>
         </form>
         <h1> </h1>
         <a> Already have an Account <a href="{{ route('login')}}"> Login Already! </a></a>
         <h1> </h1>
-        <div> {{ $message }}</div>
+        <div class="message"> {{ $message }}</div>
 </body>
 </center>
 </html>
 
 <style>
+
+.message{
+    font-family: 'Arial';
+  font-weight: bold;
+}
 
 .title{
   font-size:40px;

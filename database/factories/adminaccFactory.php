@@ -17,6 +17,7 @@ class adminaccFactory extends Factory
             'name' => $this->faker->name,
             'username' => $this->faker->username,
             'password' => $this->faker->password,
+            'status' => 'Y',
         ];
     }
 }

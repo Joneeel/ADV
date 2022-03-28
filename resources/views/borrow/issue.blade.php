@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTER BORROWER'S INFORMATION</title>
+    <title>ISSUE NEW BOOK</title>
 </head>
 <center>
 <nav class="navbar navbar-inverse">
@@ -31,26 +31,36 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="mainname">Edit Borrower's Information</h2>
+                <h2 class="mainname">New Issued Book</h2>
             </div>
         </div>
         <div class="row">
             <div class="offset-md-3 col-md-6">
-                <form class="yourform" action="{{ route('borrowercreateprocess')}}" method="post" autocomplete="off">
+                <form class="yourform" action="{{ route('issue') }}" method="post" autocomplete="off">
                     @csrf
                     <div>
-                        <label>Fullname: </label>
-                        <input type="text" class="inputs" name="fullname" required>
+                        <label>Borrower's Name: </label>
+                        <select class="inputs" name="borrower_id" required>
+                                <option value="">Select Name</option>
+                                @foreach ($borrower as $borrowers)
+                                    <option value='{{ $borrowers->Borrower_id }}'>{{ $borrowers->fullname }}</option>
+                                @endforeach
+                        </select>
                     </div>
                     <div>
-                        <label>Gender: </label>
-                        <input type="text" class="inputs" name="gender"  required>
+                        <label>Book's Name: </label>
+                        <select class="inputs" name="book_id" required>
+                                <option value="">Select Book</option>
+                                @foreach ($books as $book)
+                                    <option value='{{ $book->Book_id }}'>{{ $book->Title }}</option>
+                                @endforeach
+                        </select>
                     </div>
                     <div>
-                        <label>Address: </label>
-                        <input type="text" class="inputs" name="address"  required>
+                        <label>Due Date: </label>
+                        <input type="number" class="inputs" name="days" value="7" required>
                     </div>
-                    <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create" required>
+                   <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create Issue" required>
                 </form>
             </div>
         </div>

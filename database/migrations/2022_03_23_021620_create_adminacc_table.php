@@ -18,6 +18,7 @@ class CreateAdminaccTable extends Migration
             $table->string('name')->unique();
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('status');
             $table->timestamps();
         });
     }

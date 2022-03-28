@@ -25,7 +25,7 @@
     </ul>
 </nav>
 </center>
-<body style='background-color: #56f0ba'>  
+<body style='background-color: #56f0ba' class="body">  
   <center>
     <h1 class="mainname"> DASHBOARD </h1>
 
@@ -40,13 +40,13 @@
         </div>
         <div class="card">
         <h1> No. of Borrower Acc </h1>
-        <h1> {{ $bookcount }} </h1>
+        <h1> {{ $borrowercount }} </h1>
         </div>
       </div> 
       
       <div class="flex-container">
         <div class="card">
-        <h1> No. of Transactions </h1>
+        <h1> No. of All Transactions </h1>
         <h1> {{ $historycount }} </h1>
         </div>
         <div class="card">
@@ -55,16 +55,45 @@
         </div>
         <div class="card">
         <h1> No. of Not Returned Books </h1>
-        <h1> {{ $transactioncount }} </h1>
+        <h1> {{ $notreturnedcount }} </h1>
         </div>
-      </div>  
-
-
+      </div>
+<footer>
+  <p>Created By: John Henly A. Montera<br>
+  <a href="https://henly09.github.io/MyPortfolio/">Montera™ 2022</a></p>
+</footer>  
 </center>
 </body>
 </html>
 
 <style>
+
+footer{
+  margin-top:10%;
+  width: 100%;
+  background-color: #348c4c;
+  padding: 15px 0px 15px 0px;
+  border-radius: 5px;
+}
+
+center{
+  margin-top: 5px;
+}
+
+footer > p{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  padding-bottom:5px;
+}
+
+footer > a{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  padding-top:5px;
+}
+
 
 .mainname{
   font-family: 'Arial';

@@ -18,6 +18,7 @@ class CreateBorrowerTable extends Migration
             $table->string('fullname')->unique();
             $table->string('gender');
             $table->string('address');
+            $table->integer('vio_count')->default('0');
             $table->timestamps();
         });
     }

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class borrowercontroller extends Controller
 {
     public function create(Request $request) {
+        try {
         $name = session('uniname');
-
         if(!$name == null){
             $this->validate($request, [
                 'fullname' => 'required',
@@ -19,8 +19,7 @@ class borrowercontroller extends Controller
             $fullname = $request->input('fullname');
             $gender = $request->input('gender');
             $address = $request->input('address');
-
-
+            
             $data=array(
                 'fullname'=>$fullname,
                 "gender"=>$gender,
@@ -32,15 +31,20 @@ class borrowercontroller extends Controller
             
             $borrowers = DB::table('borrowers')->select('*')->get();
     
-            return view('borrower',['name' => $name,'borrowers' => $borrowers]);
+            return view('borrower',['message' => 'Successfully Created!','name' => $name,'borrowers' => $borrowers]);
             }
             else {
                 return view('login',['message' => 'Error!']);
             } 
+        } catch (\Exception $e) {
+            $name = session('uniname');
+            $borrowers = DB::table('borrowers')->select('*')->get();
+            return view('borrower',['message' => 'Error Occured.','name' => $name,'borrowers' => $borrowers]);
+        }
     }
 
     public function edit(Request $request) {
-
+        try {
         $name = session('uniname');
 
         if(!$name == null){
@@ -58,23 +62,39 @@ class borrowercontroller extends Controller
             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['fullname' => $fullname ,'gender' => $gender,'address' => $address,'updated_at' => \Carbon\Carbon::now()]);
             $borrowers = DB::table('borrowers')->select('*')->get();
     
-            return view('borrower',['name' => $name,'borrowers' => $borrowers]);
+            return view('borrower',['message' => 'Successfully Edited!','name' => $name,'borrowers' => $borrowers]);
         }
         else {
             return view('login',['message' => 'Error!']);
         } 
+    } catch (\Exception $e) {
+        $name = session('uniname');
+        $borrowers = DB::table('borrowers')->select('*')->get();
+        return view('borrower',['message' => 'Error Occured.','name' => $name,'borrowers' => $borrowers]);
+    }
     }
 
     public function delete($Borrower_id) {
+        try {
         $name = session('uniname');
 
         if(!$name == null){
+            DB::table('transactions')->where('Borrower_id', $Borrower_id)->delete();
+            DB::table('historys')->where('Borrower_id', $Borrower_id)->delete();
             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->delete();
-            return redirect()->route('borrower');
+            $name = session('uniname');
+            $borrowers = DB::table('borrowers')->select('*')->get();
+            return view('borrower',['message' => 'Successfully Deleted.','name' => $name,'borrowers' => $borrowers]);
         }
         else {
             return view('login',['message' => 'Error!']);
         } 
+    } catch (\Exception $e) {
+        $name = session('uniname');
+        $borrowers = DB::table('borrowers')->select('*')->get();
+        return view('borrower',['message' => 'Error Occured.','name' => $name,'borrowers' => $borrowers]);
+    }
+
     }
 
     public function createdisplay() {

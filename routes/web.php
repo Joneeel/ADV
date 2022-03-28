@@ -6,7 +6,7 @@ use App\Http\Controllers\bookcontroller;
 use App\Http\Controllers\borrowcontroller;
 use App\Http\Controllers\borrowercontroller;
 use App\Http\Controllers\notreturnedbookscontroller;
-use App\Http\Controllers\transactionhistorycontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +48,14 @@ Route::post('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdis
 Route::post('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
 Route::post('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
 Route::post('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
+
+// ISSUE CRUD
+Route::post('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue
+Route::post('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
+Route::get('/borrowissueprocess', [borrowcontroller::class, 'issuedisplay'])->name('issuedisplay'); // issuedisplay
+
+// NOT RETURNED
+Route::post('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
 
 
 

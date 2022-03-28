@@ -15,19 +15,23 @@
     </div>
 
     <ul class="nav navbar-nav">
-      <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
-      <a class='nav' href="{{ route('books')}}">BOOKS</a>
-      <a class='nav' href="{{ route('borrower')}}">BORROWERS</a>
-      <a class='nav' href="{{ route('notreturnedbooks')}}">NOT RETURNED BOOKS</a>
-      <a class='nav' href="{{ route('borrow')}}">ISSUE BOOK BORROW</a>
-      <a class='nav' href="{{ route('transactionhistory')}}">TRANSACTION HISTORY</a>
-      <a class='nav' href="{{ route('logout')}}">LOGOUT</a>
+      <a class='navi' href="{{ route('dashboard')}}">DASHBOARD</a>
+      <a class='navi' href="{{ route('books')}}">BOOKS</a>
+      <a class='navi' href="{{ route('borrower')}}">BORROWERS</a>
+      <a class='navi' href="{{ route('notreturnedbooks')}}">NOT RETURNED BOOKS</a>
+      <a class='navi' href="{{ route('borrow')}}">ISSUE BOOK BORROW</a>
+      <a class='navi' href="{{ route('transactionhistory')}}">TRANSACTION HISTORY</a>
+      <a class='navi' href="{{ route('logout')}}">LOGOUT</a>
     </ul>
 </nav>
 </center>
 <body style='background-color: #56f0ba'>  
   <center>
+  <div style="display: inline-flex;">
     <h1 class="mainname"> NOT RETURNED BOOKS </h1>
+    <h2 class='logged2'> {{ $message }} </h2> 
+    </form>
+</div>
 <table>
   <tr>
     <th>Transac_id</th>
@@ -36,36 +40,84 @@
     <th>DateBorrowed</th>
     <th>DueDateReturned</th>
     <th>Fullname</th>
+    <th>Book Title</th>
     <th>Created_at</th>
     <th>Updated_at</th>
+    <th>Returned</th>
   </tr>
   @foreach($notreturned as $key => $data)
   <tr>
     <td>{{ $data->Transac_id }}</td>
     <td>{{ $data->Book_id }}</td>
-    <td>{{ $data->Borrower }}</td>
+    <td>{{ $data->Borrower_id }}</td>
     <td>{{ $data->DateBorrowed }}</td>
     <td>{{ $data->DueDateReturned }}</td>
     <td>{{ $data->Fullname }}</td>
+    <td>{{ $data->BookTitle }}</td>
     <td>{{ $data->created_at }}</td>
     <td>{{ $data->updated_at }}</td>
+    <td class="deletebutton">
+      <form action="{{ route('returned', $data->Transac_id) }}" method="post" class="form-hidden">
+        <button >Returned</button>
+        @csrf
+      </form>
+    </td>
   </tr>
   @endforeach
 </table>
+<footer>
+  <p>Author: John Henly A. Montera<br>
+  <a href="https://henly09.github.io/MyPortfolio/">Montera™ 2022</a></p>
+</footer> 
 </center>
 </body>
 </html>
 
 <style>
-  .mainname{
+
+footer{
+  position: absolute;
+  margin-top:30%;
+  width: 99%;
+  background-color: #348c4c;
+  padding: 15px 0px 15px 0px;
+  border-radius: 5px;
+}
+
+footer > p{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  padding-bottom:5px;
+}
+
+footer > a{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  padding-top:5px;
+}
+
+.logged2 {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  right: 65%;
+  margin-top: 20px;
+  padding: 12px 12px;
+}
+
+.mainname {
   font-family: 'Arial';
   font-weight: bold;
   color: black;
 }
     table, th, td {
-  border: 2px solid black;
+  border: 1px solid black;
   text-align:center;
-  padding:10px;
+  padding:5px;
   font-size:15px;
   font-family: 'Arial';
   font-weight: bold;
@@ -76,7 +128,7 @@
   padding-top: 30px;
 }
 
-a.nav{
+.navi{
   padding:10px;
   font-size:18px;
   font-family: 'Arial';
@@ -84,6 +136,16 @@ a.nav{
   color: black;
   transition: 0.3s;
   border-radius:5px;
+}
+
+.navi:hover{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: white;
+  background-color:black;
+  transition: 0.3s;
 }
 
 a.nav:hover{

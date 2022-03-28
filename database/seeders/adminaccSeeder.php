@@ -24,6 +24,7 @@ class adminaccSeeder extends Seeder
             'name' => 'henz',
             'username' => 'awtsgege',
             'password' => '123123',
+            'status' => 'Y',
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
         ]);

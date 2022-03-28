@@ -8,7 +8,7 @@ use DB;
 class bookcontroller extends Controller
 {
     public function create(Request $request) {
-
+        try {
         $name = session('uniname');
 
         if(!$name == null){
@@ -39,14 +39,21 @@ class bookcontroller extends Controller
             
             $books = DB::table('books')->select('*')->get();
     
-            return view('books',['name' => $name,'books' => $books]);
+            return view('books',['message' => 'Successfully Created','name' => $name,'books' => $books]);
             }
             else {
                 return view('login',['message' => 'Error!']);
             } 
+
+        } catch (\Exception $e) {
+            $name = session('uniname');
+            $books = DB::table('books')->select('*')->get();
+            return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books]);
+        }
     }
 
     public function edit(Request $request) {
+        try {
 
     $name = session('uniname');
 
@@ -69,25 +76,41 @@ class bookcontroller extends Controller
         DB::table('books')->where('Book_id', $Book_id)->update(['Title' => $Title ,'Author' => $Author,'Copyright' => $Copyright,'No_pages' => $No_Pages,'Stock' => $No_Stock,'updated_at' => \Carbon\Carbon::now()]);
         $books = DB::table('books')->select('*')->get();
 
-        return view('books',['name' => $name,'books' => $books]);
+        return view('books',['message' => 'Successfully Edited','name' => $name,'books' => $books]);
     }
     else {
         return view('login',['message' => 'Error!']);
     } 
+    
+} catch (\Exception $e) {
+    $name = session('uniname');
+    $books = DB::table('books')->select('*')->get();
+    return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books]);
+}
 
     }
 
     public function delete($Book_id) {
-
+        try {
         $name = session('uniname');
 
     if(!$name == null){
+        DB::table('transactions')->where('Book_id', $Book_id)->delete();
+        DB::table('historys')->where('Book_id', $Book_id)->delete();
         DB::table('books')->where('Book_id', $Book_id)->delete();
-        return redirect()->route('books');
+        $name = session('uniname');
+        $books = DB::table('books')->select('*')->get();
+        return view('books',['message' => 'Successfully Deleted.','name' => $name,'books' => $books]);
     }
     else {
         return view('login',['message' => 'Error!']);
     } 
+
+} catch (\Exception $e) {
+    $name = session('uniname');
+    $books = DB::table('books')->select('*')->get();
+    return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books]);
+}
 
     }
 
