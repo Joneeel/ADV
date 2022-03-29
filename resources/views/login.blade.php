@@ -8,7 +8,7 @@
     <title>Login</title>
 </head>
 <center>
-<body style="background-color: rgba(25, 184, 176, 1)">
+<body class="bg">
 <div style="display: inline-flex; margin-top: 60px;">
     <svg width="100" height="100" class="eyeleft">  
         <circle cx="50" cy="50" r="50" fill="white" class="eyeball_left" />
@@ -19,10 +19,9 @@
       <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_right" />
     </svg>
 </div>
-        <form class="" action="{{ route('loginvalidation') }}" method="get">
-        <img  style="width:135px;height:135px;" src="{{ asset('Image/library.gif') }}" alt="">
+        <form action="{{ route('loginvalidation') }}" method="get">
             @csrf 
-            <h1 class="title" style="margin-top: -10px;" > LIBRARY MANAGEMENT SYSTEM </h1>
+            <h1 class="title"> <img class="logo" src="{{ asset('Image/logo.png') }}"/> LIBRARY MANAGEMENT SYSTEM </h1>
             <div>
                 <label> USERNAME: </label>
                 <input class="inputs" type="text" name="username" class="form-control" value="{{ old('username')}}" placeholder="Your Username.." required>
@@ -34,9 +33,7 @@
             </div>
             <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Login"/>
         </form>
-        <h1> </h1>
         <a> Don't Have an Account? <a href="{{ route('signup')}}"> Sign Up </a></a>
-        <h1> </h1>
         <div class="message" > {{ $message }} </div>
 </body>
 </center>
@@ -83,6 +80,22 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.logo{
+  height: 85px;
+  width: 85px;
+  margin-bottom: -22px;
+  padding-right: 10px;
+}
+
+form{
+  margin-bottom: 20px;
+}
+
+.bg{
+  background-color: rgba(25, 184, 176, 1);
+}
+
 .eyeright{
   padding-left: 5px;
 }
@@ -105,7 +118,16 @@ body{
   font-family: 'Arial';
   font-weight: bold;
   padding-bottom: 5px;
-  text-shadow: 3px 3px gray;
+  text-shadow: 3px 3px white;
+}
+
+.title2{
+  font-size:20px;
+  font-family: 'Arial';
+  font-weight: bold;
+  padding-bottom: 5px;
+  text-shadow: 3px 3px white;
+
 }
 
 label{
@@ -121,6 +143,7 @@ a{
 .message{
     font-family: 'Arial';
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .button {

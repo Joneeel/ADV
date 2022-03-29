@@ -10,8 +10,9 @@
 <center>
 <nav class="navbar navbar-inverse">
 
-    <div class="header">   
-      <a class="navbar-brand" style="margin-right: 25%;" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+    <div class="header">
+     <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
+      <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <h3 class="logged"> Account Logged: {{ $name }} </h3>
     </div>
 
@@ -71,12 +72,22 @@
 </center>
 </body>
 </html>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
+
+.logo{
+  height: 5%;
+  width: 5%;
+  margin-right: 15px;
+  margin-top: -20px;
+}
+
+.logged{
+   background-color: #70f72d;
+   padding: 10px;
+   margin-top: -7px;
+   border-radius: 10px;
+   border: 2px solid black;
+}
 
 .logged2 {
   font-family: 'Arial';
@@ -93,6 +104,7 @@
   font-family: 'Arial';
   font-weight: bold;
   color: black;
+  font-size: 40px;
 }
 
 .searcholder{

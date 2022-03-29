@@ -20,10 +20,12 @@
     </svg>
 </div>
         <form class="" action="{{ route('loginvalidation') }}" method="get">
-        <img  style="width:135px;height:135px;" src="{{ asset('Image/library.gif') }}" alt="">
-            @csrf 
-            <h1 class="title" style="margin-top: -10px;"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
 
+            @csrf 
+            <div style="display: inline-flex; margin-left: -5%; ">
+            <img class="logo" src="{{ asset('Image/logo.png') }}"/>
+            <h1 class="title"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
+            </div>
             <div>
                 <label> NAME: </label>
                 <input class="inputs" style="margin-top: 20px;" type="text" name="name" class="form-control" value="" placeholder="Your Fullname.." required>
@@ -91,6 +93,13 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.logo{
+  height: 120px;
+  width: 120px;
+  padding-right: 20px;
+  margin-top: 15px;
+}
 
 .eyeright{
   padding-left: 5px;

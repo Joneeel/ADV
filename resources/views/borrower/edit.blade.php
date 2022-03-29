@@ -10,10 +10,13 @@
 <center>
 <nav class="navbar navbar-inverse">
 
-    <div class="header">   
-      <a style="margin-right: 25%;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+
+<div class="header">
+     <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
+      <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <h3 class="logged"> Account Logged: {{ $name }} </h3>
     </div>
+
 
     <ul class="nav navbar-nav">
       <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
@@ -32,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="mainname">Edit Borrower's Information</h2>
+                <h2 class="mainname">EDIT BORROWER'S INFORMATION</h2>
             </div>
         </div>
         <div class="row">
@@ -67,10 +70,26 @@
 
 <style>
 
+.logo{
+  height: 5%;
+  width: 5%;
+  margin-right: 15px;
+  margin-top: -20px;
+}
+
+.logged{
+   background-color: #70f72d;
+   padding: 10px;
+   margin-top: -7px;
+   border-radius: 10px;
+   border: 2px solid black;
+}
+
 .mainname{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
+  font-size: 40px;
 }
 
 label{
