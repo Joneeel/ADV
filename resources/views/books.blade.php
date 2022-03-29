@@ -27,7 +27,7 @@
 </nav>
 </center>
   <center>
-  <body style='background-color: #56f0ba'> 
+  <body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'> 
   <div style="display: inline-flex;">
     <h1 class="mainname"> BOOKS </h1>
       <a href="{{ route('bookcreate') }}" class="addnewbook"> CREATE NEW BOOK </a>
@@ -83,7 +83,11 @@
 </center>
 </body>
 </html>
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
 
 .searcholder{

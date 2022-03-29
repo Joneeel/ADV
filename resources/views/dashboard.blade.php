@@ -27,11 +27,11 @@
     </ul>
 </nav>
 </center>
-<body style='background-color: #56f0ba' class="body">  
+<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba' class="body">  
   <center>
     <h1 class="mainname"> DASHBOARD </h1>
 
-      <div data-aos="fade-down" data-aos-delay="300" class="flex-container">
+      <div class="flex-container">
         <div class="card">
         <h1> No. of <br> Admin Accounts </h1>
         <h1> {{ $acccount }} </h1>
@@ -46,7 +46,7 @@
         </div>
       </div> 
       
-      <div data-aos="fade-up" data-aos-delay="300" class="flex-container">
+      <div class="flex-container">
         <div class="card">
         <h1> No. of <br> All Transactions </h1>
         <h1> {{ $historycount }} </h1>
