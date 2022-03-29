@@ -48,6 +48,7 @@
         <a> Already have an Account <a href="{{ route('login')}}"> Login Already! </a></a>
         <h1> </h1>
         <div class="message"> {{ $message }}</div>
+        <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
 </html>
@@ -93,6 +94,12 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.smile{
+  margin-top: -40px;
+  height: 150px;
+  width: 25%;
+}
 
 .logo{
   height: 120px;

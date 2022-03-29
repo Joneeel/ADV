@@ -35,6 +35,7 @@
         </form>
         <a> Don't Have an Account? <a href="{{ route('signup')}}"> Sign Up </a></a>
         <div class="message" > {{ $message }} </div>
+        <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
 </html>
@@ -80,6 +81,12 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.smile{
+  margin-top:20px;
+  height: 150px;
+  width: 25%;
+}
 
 .logo{
   height: 85px;
