@@ -31,7 +31,7 @@
   <center>
 <div style="display: inline-flex;">
     <h1 class="mainname"> NOT RETURNED BOOKS </h1>
-    <h2 class='logged2'> {{ $message }} </h2> 
+    <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
     </form>
 </div>
 <form action="{{ route('searchnotreturned') }}" method="post">
@@ -83,6 +83,27 @@
 </body>
 </html>
 <style>
+
+.deletebutton > form > button {
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+  margin-top:3px;
+}
+
+.deletebutton > form > button:hover {
+  background-color: white; 
+  color: red;
+}
 
 .logo{
   height: 5%;
@@ -174,9 +195,12 @@ footer > a{
   color: black;
   position: absolute;
   font-size: 16px;
-  right: 65%;
-  margin-top: 20px;
-  padding: 12px 12px;
+  right: 75%;
+  top: 35%;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: #70f72d;
 }
 
 .mainname {

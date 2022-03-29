@@ -19,8 +19,8 @@ class CreateTransactionTable extends Migration
             $table->foreign('Book_id')->references('Book_id')->on('books')->onDelete('NO ACTION')->onUpdate('NO ACTION');
             $table->unsignedInteger('Borrower_id');
             $table->foreign('Borrower_id')->references('Borrower_id')->on('borrowers')->onDelete('NO ACTION')->onUpdate('NO ACTION');
-            $table->string('DateBorrowed');
-            $table->string('DueDateReturned');
+            $table->timestamp('DateBorrowed')->useCurrent();
+            $table->timestamp('DueDateReturned')->useCurrent();
             $table->string('Fullname');
             $table->string('BookTitle');
             $table->timestamps();

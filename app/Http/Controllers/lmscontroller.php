@@ -52,10 +52,10 @@ class lmscontroller extends Controller
      $history = DB::table('historys')->select('*')->get();
      $historycount = $history->count();
 
-     $transactions = DB::table('transactions')->select('*')->get();
+     $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
      $transactionscount = $transactions->count();
 
-     $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+     $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
      $notreturnedcount = $notreturned->count();
 
         if(!$name == null){
@@ -97,7 +97,7 @@ class lmscontroller extends Controller
     public function notreturnedbooks(){
         try {
         $name = session('uniname');
-        $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+        $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
         if(!$name == null){
             return view('notreturnedbooks',['message' => '','name' => $name, 'notreturned' => $notreturned]);
         }
@@ -113,7 +113,7 @@ class lmscontroller extends Controller
     public function borrow(){
         try {
         $name = session('uniname');
-        $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<=', 'CURRENT_DATE()')->get();
+        $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
         if(!$name == null){
             return view('borrow',['message' => '','name' => $name, 'issuebookborrow' => $transactions]);
         }
@@ -185,11 +185,11 @@ class lmscontroller extends Controller
      $historycount = $history->count();
      $request->session()->put('unihistorycount', $historycount);
 
-     $transactions = DB::table('transactions')->select('*')->get();
+     $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
      $transactionscount = $transactions->count();
      $request->session()->put('unitransactionscount', $transactionscount);
 
-     $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+     $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
      $notreturnedcount = $notreturned->count();
      $request->session()->put('uninotreturnedcount', $notreturnedcount);
 
@@ -221,9 +221,10 @@ class lmscontroller extends Controller
     }
 
     public function signupvalidation(Request $request){
-        
+
         try
             {   
+                
             $this->validate($request, [
                 'name' => 'required',
                 'username' => 'required',
@@ -238,11 +239,12 @@ class lmscontroller extends Controller
             DB::table('adminaccs')->insert($data);
 
             return view('login',['message' => 'Registered Successfully!']);
-        }
-        catch(\Exception $e)
-        {
-            return view('signup',['message' => 'Your password and password confirmation are not the same!']);
-        }       
+    }
+    catch (\Exception $e){
+        return view('signup',['message' => 'Username or Name is already taken!']);
+    }
+            
+               
           
 
     }

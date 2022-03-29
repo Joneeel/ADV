@@ -32,7 +32,7 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> ISSUE BOOK BORROW </h1>
       <a href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
-      <h2 class='logged2'> {{ $message }} </h2> 
+      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
     </form>
   </div>
   <form action="{{ route('searchissue') }}" method="post">
@@ -92,12 +92,30 @@
   margin-top: -20px;
 }
 
+.logged2{
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  right: 75%;
+  top: 35%;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: #70f72d;
+  
+}
+
 .logged{
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
    border-radius: 10px;
    border: 2px solid black;
+   font-family: 'Arial';
+   font-weight: bold;
+   color: black;
 }
 
 .searcholder{
@@ -167,17 +185,6 @@ footer > a{
   font-weight: bold;
   color: black;
   padding-top:5px;
-}
-
-.logged2{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-  position: absolute;
-  font-size: 16px;
-  right: 65%;
-  margin-top: 20px;
-  padding: 12px 12px;
 }
 
 .issuenewbook{
@@ -330,10 +337,5 @@ div.navbar-header{
   flex-direction: row;
 }
 
-.logged{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-}
 </style>
 

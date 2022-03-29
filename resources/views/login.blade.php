@@ -34,7 +34,7 @@
             <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Login"/>
         </form>
         <a> Don't Have an Account? <a href="{{ route('signup')}}"> Sign Up </a></a>
-        <div class="message" > {{ $message }} </div>
+        <div class="message" > Message: <br> {{ $message }} </div>
         <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
@@ -148,9 +148,16 @@ a{
 }
 
 .message{
-    font-family: 'Arial';
+  font-family: 'Arial';
   font-weight: bold;
-  margin-top: 20px;
+  color: black;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  font-size: 16px;
+  width: 20%;
+  margin-top: 2%;
+  padding: 5px;
+  border: 2px solid black;
 }
 
 .button {

@@ -33,7 +33,7 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> BORROWERS </h1>
       <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
-      <h2 class='logged2'> {{ $message }} </h2> 
+      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
     </form>
   </div>
   <form action="{{ route('searchborrower') }}" method="post">
@@ -178,9 +178,12 @@ footer > a{
   color: black;
   position: absolute;
   font-size: 16px;
-  right: 65%;
-  margin-top: 20px;
-  padding: 12px 12px;
+  right: 75%;
+  top: 35%;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: #70f72d;
 }
 
 .addnewbook{

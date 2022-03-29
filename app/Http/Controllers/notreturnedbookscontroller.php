@@ -40,7 +40,7 @@ class notreturnedbookscontroller extends Controller
         
                 DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
         
-                $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+                $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
         
                 return view('notreturnedbooks',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $notreturned]);
             }
@@ -51,7 +51,7 @@ class notreturnedbookscontroller extends Controller
         
         } catch (\Exception $e) {
             $name = session('uniname');
-            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
             return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
         }
         
@@ -76,7 +76,7 @@ class notreturnedbookscontroller extends Controller
             }
         } catch (\Exception $e) {
             $name = session('uniname');
-            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
             return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
         }
     }

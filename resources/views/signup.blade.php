@@ -19,7 +19,7 @@
       <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_right" />
     </svg>
 </div>
-        <form class="" action="{{ route('loginvalidation') }}" method="get">
+        <form class="" action="{{ route('signupvalidation') }}" method="get">
 
             @csrf 
             <div style="display: inline-flex; margin-left: -5%; ">
@@ -47,7 +47,7 @@
         <h1> </h1>
         <a> Already have an Account <a href="{{ route('login')}}"> Login Already! </a></a>
         <h1> </h1>
-        <div class="message"> {{ $message }}</div>
+        <div class="message"> Message: <br>  {{ $message }}</div>
         <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
@@ -96,7 +96,7 @@ document.addEventListener("mousemove", (e)=>{
 <style>
 
 .smile{
-  margin-top: -40px;
+  margin-top:30px;
   height: 150px;
   width: 25%;
 }
@@ -126,9 +126,16 @@ body{
 }
 
 .message{
-  margin-top:5%;
   font-family: 'Arial';
   font-weight: bold;
+  color: black;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  font-size: 16px;
+  width: 20%;
+  margin-top: 2%;
+  padding: 5px;
+  border: 2px solid black;
 }
 
 .title{
@@ -144,11 +151,6 @@ label{
 }
 
 a{ 
-  font-family: 'Arial';
-  font-weight: bold;
-}
-
-.message{
   font-family: 'Arial';
   font-weight: bold;
 }
