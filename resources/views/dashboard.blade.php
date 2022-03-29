@@ -23,7 +23,7 @@
       <a class='nav' href="{{ route('notreturnedbooks')}}">NOT RETURNED BOOKS</a>
       <a class='nav' href="{{ route('borrow')}}">ISSUE BOOK BORROW</a>
       <a class='nav' href="{{ route('transactionhistory')}}">TRANSACTION HISTORY</a>
-      <a class='nav' href="{{ route('logout')}}">LOGOUT</a>
+      <a class='navlogout' href="{{ route('logout')}}">LOGOUT</a>
     </ul>
 </nav>
 </center>
@@ -133,6 +133,7 @@ a.nav{
   color: black;
   transition: 0.3s;
   border-radius:5px;
+  text-decoration: none;
 }
 
 a.nav:hover{
@@ -142,6 +143,27 @@ a.nav:hover{
   font-weight: bold;
   color: white;
   background-color:black;
+  transition: 0.3s;
+}
+
+a.navlogout{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  transition: 0.3s;
+  border-radius:5px;
+  text-decoration: none;
+}
+
+a.navlogout:hover{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: white;
+  background-color:red;
   transition: 0.3s;
 }
 

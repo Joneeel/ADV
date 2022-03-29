@@ -23,7 +23,7 @@
       <a class='navi' href="{{ route('notreturnedbooks')}}">NOT RETURNED BOOKS</a>
       <a class='navi' href="{{ route('borrow')}}">ISSUE BOOK BORROW</a>
       <a class='navi' href="{{ route('transactionhistory')}}">TRANSACTION HISTORY</a>
-      <a class='navi' href="{{ route('logout')}}">LOGOUT</a>
+      <a class='navilogout' href="{{ route('logout')}}">LOGOUT</a>
     </ul>
 </nav>
 </center>
@@ -278,6 +278,7 @@ footer > a{
   color: black;
   transition: 0.3s;
   border-radius:5px;
+  text-decoration: none;
 }
 
 .navi:hover{
@@ -287,6 +288,27 @@ footer > a{
   font-weight: bold;
   color: white;
   background-color:black;
+  transition: 0.3s;
+}
+
+.navilogout{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  transition: 0.3s;
+  border-radius:5px;
+  text-decoration: none;
+}
+
+.navilogout:hover{
+  padding:10px;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: white;
+  background-color:red;
   transition: 0.3s;
 }
 
