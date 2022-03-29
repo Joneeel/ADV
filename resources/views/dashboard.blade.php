@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('Image/libraryicon.ico') }}">
 <head>
     <meta charset="UTF-8">
@@ -30,32 +31,32 @@
   <center>
     <h1 class="mainname"> DASHBOARD </h1>
 
-      <div class="flex-container">
+      <div data-aos="fade-down" data-aos-delay="300" class="flex-container">
         <div class="card">
-        <h1> No. of Accounts </h1>
+        <h1> No. of <br> Admin Accounts </h1>
         <h1> {{ $acccount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Available Books </h1>
+        <h1> No. of <br> Available Books </h1>
         <h1> {{ $bookcount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Borrower Acc </h1>
+        <h1> No. of <br> Borrower Accounts </h1>
         <h1> {{ $borrowercount }} </h1>
         </div>
       </div> 
       
-      <div class="flex-container">
+      <div data-aos="fade-up" data-aos-delay="300" class="flex-container">
         <div class="card">
-        <h1> No. of All Transactions </h1>
+        <h1> No. of <br> All Transactions </h1>
         <h1> {{ $historycount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Borrowed Books </h1>
+        <h1> No. of <br> Borrowed Books </h1>
         <h1> {{ $transactioncount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Not Returned Books </h1>
+        <h1> No. of Not <br> Returned Books </h1>
         <h1> {{ $notreturnedcount }} </h1>
         </div>
       </div>
@@ -66,6 +67,11 @@
 </center>
 </body>
 </html>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 <style>
 
@@ -100,6 +106,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
+  margin-top: 50px;
 }
 
 .header{
@@ -160,7 +167,7 @@ div.navbar-header{
   background-color:#328f49;
   margin: 10px;
   padding: 20px;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 10px;
   border: 2px solid black;
 }

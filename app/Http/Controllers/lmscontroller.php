@@ -222,11 +222,13 @@ class lmscontroller extends Controller
 
     public function signupvalidation(Request $request){
         
+        try
+            {   
             $this->validate($request, [
                 'name' => 'required',
                 'username' => 'required',
-                'password' => 'required',
-                'password_confirmation' => 'required|same:password'
+                'password' => 'required|same:password_confirmation|required_with:password_confirmation',
+                'password_confirmation' => 'required'
             ]);
 
             $name = $request->input('name');
@@ -236,9 +238,12 @@ class lmscontroller extends Controller
             DB::table('adminaccs')->insert($data);
 
             return view('login',['message' => 'Registered Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return view('signup',['message' => 'Your password and password confirmation are not the same!']);
+        }       
           
-
-
 
     }
 

@@ -8,11 +8,21 @@
     <title>Sign Up</title>
 </head>
 <center>
-<body style="background-color:#0cbcb4">
-        <form class="" action="{{ route('signupvalidation') }}" method="get"> 
-        <img  style="width:150px;height:150px;margin-top: 20px;" src="{{ asset('Image/library.gif') }}" alt="">
+<body style="background-color: rgba(25, 184, 176, 1)">
+<div style="display: inline-flex; margin-top: 60px;">
+    <svg width="100" height="100" class="eyeleft">  
+        <circle cx="50" cy="50" r="50" fill="white" class="eyeball_left" />
+        <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_left" />
+    </svg>
+    <svg width="100" height="100" class="eyeright">
+      <circle cx="50" cy="50" r="50" fill="white" class="eyeball_right" />
+      <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_right" />
+    </svg>
+</div>
+        <form class="" action="{{ route('loginvalidation') }}" method="get">
+        <img  style="width:135px;height:135px;" src="{{ asset('Image/library.gif') }}" alt="">
             @csrf 
-            <h1 class="title" style="margin-top: 20px"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
+            <h1 class="title" style="margin-top: -10px;"> REGISTRATION FOR ADMIN IN <br> LIBRARY MANAGEMENT SYSTEM </h1>
 
             <div>
                 <label> NAME: </label>
@@ -40,10 +50,68 @@
 </center>
 </html>
 
+<script>
+    let eyeball_left = document.querySelector(".eyeball_left"),
+    pupil_left = document.querySelector(".pupil_left"),
+    eyeArea_left = eyeball_left.getBoundingClientRect(),
+    pupil_leftArea = pupil_left.getBoundingClientRect(),
+    R_left = eyeArea_left.width/2,
+    r_left = pupil_leftArea.width/2,
+    centerX_left = eyeArea_left.left + R_left,
+    centerY_left = eyeArea_left.top + R_left;
+
+    let eyeball_right = document.querySelector(".eyeball_right"),
+    pupil_right = document.querySelector(".pupil_right"),
+    eyeArea_right = eyeball_right.getBoundingClientRect(),
+    pupil_rightArea = pupil_right.getBoundingClientRect(),
+    R_right = eyeArea_right.width/2,
+    r_right = pupil_rightArea.width/2,
+    centerX_right = eyeArea_right.left + R_right,
+    centerY_right = eyeArea_right.top + R_right;
+
+document.addEventListener("mousemove", (e)=>{
+  let x_left = e.clientX - centerX_left,
+      y_left = e.clientY - centerY_left,
+      theta_left = Math.atan2(y_left,x_left),
+      angle_left = theta_left*180/Math.PI + 360;
+
+  let x_right = e.clientX - centerX_right,
+      y_right = e.clientY - centerY_right,
+      theta_right = Math.atan2(y_right,x_right),
+      angle_right = theta_right*180/Math.PI + 360;
+
+
+  pupil_left.style.transform = `translateX(${R_left - r_left +"px"}) rotate(${angle_left + "deg"})`;
+  pupil_left.style.transformOrigin = `${r_left +"px"} center`;
+
+  pupil_right.style.transform = `translateX(${R_right - r_right +"px"}) rotate(${angle_right + "deg"})`;
+  pupil_right.style.transformOrigin = `${r_right +"px"} center`;
+
+});
+</script>
+
 <style>
 
+.eyeright{
+  padding-left: 5px;
+}
+.eyeleft{
+  padding-right: 5px;
+}
+.pupil_left{
+    position:relative;
+  }
+.pupil_right{
+    position:relative;
+}
+
+body{
+  margin-bottom: 15%;
+}
+
 .message{
-    font-family: 'Arial';
+  margin-top:5%;
+  font-family: 'Arial';
   font-weight: bold;
 }
 
@@ -51,6 +119,7 @@
   font-size:40px;
   font-family: 'Arial';
   font-weight: bold;
+  text-shadow: 3px 3px gray;
 }
 
 label{
