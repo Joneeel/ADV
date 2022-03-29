@@ -29,7 +29,19 @@
 
 <body style='background-color: #56f0ba'>  
   <center>
+  <div style="display: inline-flex;">
     <h1 class="mainname"> TRANSACTION HISTORY </h1>
+    <h2 class='logged2'> {{ $message }} </h2> 
+    </form>
+</div>
+    <form action="{{ route('searchhistory') }}" method="post">
+    @csrf 
+      <div class="searcholder">
+        <label class='search'> Search: </label>
+        <input class="inputs" type="text" name="searchhistory" class="form-control" value="" placeholder="Search for the book ID.." required>
+        <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
+       </div>
+  </form>
 <table>
   <tr>
     <th>History_id</th>
@@ -61,6 +73,68 @@
 </html>
 
 <style>
+
+.logged2 {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  font-size: 16px;
+  right: 65%;
+  margin-top: 20px;
+  padding: 12px 12px;
+}
+
+.mainname {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+
+.searcholder{
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+
+.search {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+
+.button {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: white; 
+  border: none;
+  color: #4CAF50;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.inputs {
+  width: 20%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
 
 footer{
   position: absolute;

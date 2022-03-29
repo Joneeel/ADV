@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 
 class notreturnedbookscontroller extends Controller
 {
 
-    public function returned($Transac_id) {
+    public function notreturnedbook($Transac_id) {
 
         try {
+
             $name = session('uniname');
         
             if(!$name == null){
@@ -35,24 +36,49 @@ class notreturnedbookscontroller extends Controller
                  'updated_at' => \Carbon\Carbon::now(),
              );
         
-             DB::table('historys')->insert($data);
+                DB::table('historys')->insert($data);
         
                 DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
         
-                $transactions = DB::table('transactions')->select('*')->get();
+                $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
         
-                return view('borrow',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $transactions]);
+                return view('notreturnedbooks',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $notreturned]);
             }
             else {
-                return view('login',['message' => 'Error!']);
+                $request->session()->flush();
+                return view('login',['message' => 'Error, Please try again later!']);
             } 
         
         } catch (\Exception $e) {
             $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->get();
-            return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
+            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
         }
         
+    }
+
+    public function searchnotreturned(Request $request){
+        try {
+
+            $this->validate($request, [
+                'searchnotreturned' => 'required',
+            ]);
+    
+            $searchnotreturned = $request->input('searchnotreturned');
+    
+            $name = session('uniname');
+            $searchnotreturned = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchnotreturned.'%')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            if(!$name == null){
+                return view('notreturnedbooks',['message' => 'Searched Successfully!','name' => $name, 'notreturned' => $searchnotreturned]);
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            $name = session('uniname');
+            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
+        }
     }
 
 

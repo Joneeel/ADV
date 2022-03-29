@@ -28,11 +28,19 @@
 </center>
 <body style='background-color: #56f0ba'>  
   <center>
-  <div style="display: inline-flex;">
+<div style="display: inline-flex;">
     <h1 class="mainname"> NOT RETURNED BOOKS </h1>
     <h2 class='logged2'> {{ $message }} </h2> 
     </form>
 </div>
+<form action="{{ route('searchnotreturned') }}" method="post">
+    @csrf 
+      <div class="searcholder">
+        <label class='search'> Search: </label>
+        <input class="inputs" type="text" name="searchnotreturned" class="form-control" value="" placeholder="Search for the name of borrower.." required>
+        <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
+       </div>
+  </form>
 <table>
   <tr>
     <th>Transac_id</th>
@@ -58,7 +66,7 @@
     <td>{{ $data->created_at }}</td>
     <td>{{ $data->updated_at }}</td>
     <td class="deletebutton">
-      <form action="{{ route('returned', $data->Transac_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('notreturnedbook', $data->Transac_id) }}" method="post" class="form-hidden">
         <button >Returned</button>
         @csrf
       </form>
@@ -75,6 +83,52 @@
 </html>
 
 <style>
+
+.searcholder{
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+
+.search {
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+}
+
+.button {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: white; 
+  border: none;
+  color: #4CAF50;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.inputs {
+  width: 25%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
 
 footer{
   position: absolute;

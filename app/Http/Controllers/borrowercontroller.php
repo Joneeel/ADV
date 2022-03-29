@@ -34,6 +34,7 @@ class borrowercontroller extends Controller
             return view('borrower',['message' => 'Successfully Created!','name' => $name,'borrowers' => $borrowers]);
             }
             else {
+                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
         } catch (\Exception $e) {
@@ -65,6 +66,7 @@ class borrowercontroller extends Controller
             return view('borrower',['message' => 'Successfully Edited!','name' => $name,'borrowers' => $borrowers]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
@@ -87,6 +89,7 @@ class borrowercontroller extends Controller
             return view('borrower',['message' => 'Successfully Deleted.','name' => $name,'borrowers' => $borrowers]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
@@ -103,6 +106,7 @@ class borrowercontroller extends Controller
             return view('borrower.create',['name' => $name]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     }
@@ -122,8 +126,34 @@ class borrowercontroller extends Controller
         }
 
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
+    }
+
+    public function searchborrower(Request $request){
+        try {
+
+            $this->validate($request, [
+                'searchborrower' => 'required',
+            ]);
+    
+            $searchborrower = $request->input('searchborrower');
+    
+            $name = session('uniname');
+            $searchborrower = DB::table('borrowers')->select('*')->where('fullname','like', '%'.$searchborrower.'%')->get();
+            if(!$name == null){
+                return view('borrower',['message' => 'Searched Successfully!','name' => $name, 'borrowers' => $searchborrower]);
+            }
+            else {
+                $request->session()->flush();
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            $name = session('uniname');
+            $borrower = DB::table('borrowers')->select('*')->get();
+            return view('login',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'borrowers' => $borrower]);
+        }
     }
 
 }

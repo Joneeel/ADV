@@ -6,6 +6,7 @@ use App\Http\Controllers\bookcontroller;
 use App\Http\Controllers\borrowcontroller;
 use App\Http\Controllers\borrowercontroller;
 use App\Http\Controllers\notreturnedbookscontroller;
+use App\Http\Controllers\transactionhistorycontroller;
 
 
 /*
@@ -41,21 +42,28 @@ Route::post('/book/edit/{Book_id}', [bookcontroller::class, 'editdisplay'])->nam
 Route::post('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('bookdelete'); // bookdelete
 Route::post('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
 Route::post('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
+Route::post('/searchbook', [bookcontroller::class, 'searchbook'])->name('searchbook'); // searchbook
 
-// Books CRUD
+// Borrower CRUD
 Route::get('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
 Route::post('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
 Route::post('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
 Route::post('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
 Route::post('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
+Route::post('/searchborrower', [borrowercontroller::class, 'searchborrower'])->name('searchborrower'); // searchborrower
 
 // ISSUE CRUD
 Route::post('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue
 Route::post('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
 Route::get('/borrowissueprocess', [borrowcontroller::class, 'issuedisplay'])->name('issuedisplay'); // issuedisplay
+Route::post('/searchissue', [borrowcontroller::class, 'searchissue'])->name('searchissue'); // searchissue
 
-// NOT RETURNED
-Route::post('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
+// NOT RETURNED DELETE AND SEARCH
+Route::post('/notreturnedbook/{Transac_id}', [notreturnedbookscontroller::class, 'notreturnedbook'])->name('notreturnedbook'); // returned
+Route::post('/searchnotreturned', [notreturnedbookscontroller::class, 'searchnotreturned'])->name('searchnotreturned'); // searchnotreturned
+
+// TRANSACTION SEARCH
+Route::post('/searchhistory', [transactionhistorycontroller::class, 'searchhistory'])->name('searchhistory'); // searchhistory
 
 
 

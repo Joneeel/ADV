@@ -42,6 +42,7 @@ class bookcontroller extends Controller
             return view('books',['message' => 'Successfully Created','name' => $name,'books' => $books]);
             }
             else {
+                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
 
@@ -79,6 +80,7 @@ class bookcontroller extends Controller
         return view('books',['message' => 'Successfully Edited','name' => $name,'books' => $books]);
     }
     else {
+        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
     
@@ -103,6 +105,7 @@ class bookcontroller extends Controller
         return view('books',['message' => 'Successfully Deleted.','name' => $name,'books' => $books]);
     }
     else {
+        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
 
@@ -121,6 +124,7 @@ class bookcontroller extends Controller
         return view('book.create',['name' => $name]);
     }
     else {
+        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
     }
@@ -142,8 +146,36 @@ class bookcontroller extends Controller
         }
 
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
+
+   }
+
+   public function searchbook(Request $request){
+
+    try {
+
+        $this->validate($request, [
+            'searchtitle' => 'required',
+        ]);
+
+        $searchtitle = $request->input('searchtitle');
+
+        $name = session('uniname');
+        $books = DB::table('books')->select('*')->where('Title','like', '%'.$searchtitle.'%')->get();
+        if(!$name == null){
+            return view('books',['message' => 'Searched Successfully!','name' => $name, 'books' => $books]);
+        }
+        else {
+            $request->session()->flush();
+            return view('books',['message' => 'Error!']);
+        }
+    } catch (\Exception $e) {
+        $name = session('uniname');
+        $books = DB::table('books')->select('*')->get();
+        return view('books',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'books' => $books]);
+    }
 
    }
 

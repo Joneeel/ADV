@@ -19,6 +19,7 @@ class lmscontroller extends Controller
             return view('books',['message' => '','name' => $name, 'books' => $books]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -68,6 +69,7 @@ class lmscontroller extends Controller
             'name' => $name]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -84,6 +86,7 @@ class lmscontroller extends Controller
             return view('borrower',['message' => '','borrowers' => $borrower,'name' => $name]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -99,6 +102,7 @@ class lmscontroller extends Controller
             return view('notreturnedbooks',['message' => '','name' => $name, 'notreturned' => $notreturned]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -114,6 +118,7 @@ class lmscontroller extends Controller
             return view('borrow',['message' => '','name' => $name, 'issuebookborrow' => $transactions]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -126,9 +131,10 @@ class lmscontroller extends Controller
         $name = session('uniname');
         $historys = DB::table('historys')->select('*')->get();
         if(!$name == null){
-            return view('transactionhistory',['name' => $name , 'historys' => $historys]);
+            return view('transactionhistory',['message' => '','name' => $name , 'historys' => $historys]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -204,11 +210,11 @@ class lmscontroller extends Controller
             'name' => $name]);
         }
         else {
+            $request->session()->flush();
             return view('login', ['message' => 'Invalid Credentials! or Your account is currently not set active!']);
         }
 
     } catch (\Exception $e) {
-        
             return view('login',['message' => 'Error Occured! Please Try Again Later...']);
         }
 
@@ -216,7 +222,6 @@ class lmscontroller extends Controller
 
     public function signupvalidation(Request $request){
         
-  
             $this->validate($request, [
                 'name' => 'required',
                 'username' => 'required',
@@ -229,7 +234,7 @@ class lmscontroller extends Controller
             $password = $request->input('password');
             $data=array('name'=>$name,"username"=>$username,"password"=>$password, "status" => "N","created_at" =>  \Carbon\Carbon::now(),"updated_at" => \Carbon\Carbon::now());
             DB::table('adminaccs')->insert($data);
-    
+
             return view('login',['message' => 'Registered Successfully!']);
           
 

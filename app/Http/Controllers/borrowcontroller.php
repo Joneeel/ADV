@@ -31,43 +31,50 @@ class borrowcontroller extends Controller
 
             if ($transacount == 0){
 
-            $data=array(
-                'Book_id'=> $Book_id,
-                "Borrower_id"=> $Borrower_id,
-                "DateBorrowed"=> \Carbon\Carbon::now(),
-                "DueDateReturned"=> \Carbon\Carbon::now()->addDays($days),
-                "Fullname"=>$Fullname,
-                "BookTitle"=>$BookTitle,
-                "created_at" =>  \Carbon\Carbon::now(),
-                "updated_at" => \Carbon\Carbon::now());
-
-            DB::table('transactions')->insert($data);
-            
-            $transactions = DB::table('transactions')->select('*')->get();
-
             $Stock = DB::table('books')->where('Book_id', $Book_id)->value('Stock');
-            $newstock = $Stock - 1;
-            DB::table('books')->where('Book_id', $Book_id)->update(['Stock' => $newstock]);
+            
+            if (!$Stock == 0){
+                $data=array(
+                    'Book_id'=> $Book_id,
+                    "Borrower_id"=> $Borrower_id,
+                    "DateBorrowed"=> \Carbon\Carbon::now(),
+                    "DueDateReturned"=> \Carbon\Carbon::now()->addDays($days),
+                    "Fullname"=>$Fullname,
+                    "BookTitle"=>$BookTitle,
+                    "created_at" =>  \Carbon\Carbon::now(),
+                    "updated_at" => \Carbon\Carbon::now());
     
-            return view('borrow',['message' => 'Successfully Issued.','name' => $name,'issuebookborrow' => $transactions]);
+                DB::table('transactions')->insert($data);
+                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
+                $newstock = $Stock - 1;
+                DB::table('books')->where('Book_id', $Book_id)->update(['Stock' => $newstock]);
+                return view('borrow',['message' => 'Successfully Issued.','name' => $name,'issuebookborrow' => $transactions]);
+            }
+            else {
+                $name = session('uniname');
+                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
+                return view('borrow',['message' => 'This book is out of stock','name' => $name,'issuebookborrow' => $transactions]);
+            }
 
             }
 
             else{
                 $name = session('uniname');
-                $transactions = DB::table('transactions')->select('*')->get();
+                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
                 return view('borrow',['message' => 'This user had already the book','name' => $name,'issuebookborrow' => $transactions]);
             } 
 
             }
 
             else {
+                
+                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
 
         } catch (\Exception $e) {
             $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->get();
+            $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
             return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
         }
 
@@ -100,17 +107,18 @@ class borrowcontroller extends Controller
 
         DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
 
-        $transactions = DB::table('transactions')->select('*')->get();
+        $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
 
         return view('borrow',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $transactions]);
     }
     else {
+        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
 
 } catch (\Exception $e) {
     $name = session('uniname');
-    $transactions = DB::table('transactions')->select('*')->get();
+    $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
     return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
 }
 
@@ -126,8 +134,35 @@ class borrowcontroller extends Controller
             return view('borrow.issue',['name' => $name, 'borrower' => $borrower, 'books' => $books]);
         }
         else {
+            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
+    }
+
+    public function searchissue(Request $request){
+        
+        try {
+
+            $this->validate($request, [
+                'searchissue' => 'required',
+            ]);
+    
+            $searchissue = $request->input('searchissue');
+    
+            $name = session('uniname');
+            $searchissue = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchissue.'%')->where('DueDateReturned','<=', 'CURRENT_DATE()')->get();
+            if(!$name == null){
+                return view('borrow',['message' => 'Searched Successfully!','name' => $name, 'issuebookborrow' => $searchissue]);
+            }
+            else {
+                $request->session()->flush();
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            $name = session('uniname');
+            $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
+            return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
+        }
     }
 
 
