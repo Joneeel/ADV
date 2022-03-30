@@ -45,14 +45,14 @@ class borrowcontroller extends Controller
                     "updated_at" => \Carbon\Carbon::now());
     
                 DB::table('transactions')->insert($data);
-                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
                 $newstock = $Stock - 1;
                 DB::table('books')->where('Book_id', $Book_id)->update(['Stock' => $newstock]);
                 return view('borrow',['message' => 'Successfully Issued.','name' => $name,'issuebookborrow' => $transactions]);
             }
             else {
                 $name = session('uniname');
-                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
                 return view('borrow',['message' => 'This book is out of stock','name' => $name,'issuebookborrow' => $transactions]);
             }
 
@@ -60,7 +60,7 @@ class borrowcontroller extends Controller
 
             else{
                 $name = session('uniname');
-                $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
                 return view('borrow',['message' => 'This user had already the book','name' => $name,'issuebookborrow' => $transactions]);
             } 
 
@@ -74,7 +74,7 @@ class borrowcontroller extends Controller
 
         } catch (\Exception $e) {
             $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+            $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
             return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
         }
 
@@ -107,7 +107,7 @@ class borrowcontroller extends Controller
 
         DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
 
-        $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+        $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
 
         return view('borrow',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $transactions]);
     }
@@ -118,7 +118,7 @@ class borrowcontroller extends Controller
 
 } catch (\Exception $e) {
     $name = session('uniname');
-    $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+    $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
     return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
 }
 
@@ -150,7 +150,7 @@ class borrowcontroller extends Controller
             $searchissue = $request->input('searchissue');
     
             $name = session('uniname');
-            $searchissue = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchissue.'%')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+            $searchissue = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchissue.'%')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
             if(!$name == null){
                 return view('borrow',['message' => 'Searched Successfully!','name' => $name, 'issuebookborrow' => $searchissue]);
             }
@@ -160,7 +160,7 @@ class borrowcontroller extends Controller
             }
         } catch (\Exception $e) {
             $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->where('DueDateReturned','>=', 'CURRENT_DATE()')->get();
+            $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
             return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
         }
     }

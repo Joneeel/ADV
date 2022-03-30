@@ -32,7 +32,9 @@
   <center>
   <div style="display: inline-flex;">
     <h1 class="mainname"> TRANSACTION HISTORY </h1>
-    <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+    @if(!empty($message))
+      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @endif
     </form>
 </div>
     <form action="{{ route('searchhistory') }}" method="post">

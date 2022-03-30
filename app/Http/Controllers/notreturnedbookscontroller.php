@@ -9,8 +9,6 @@ class notreturnedbookscontroller extends Controller
 
     public function notreturnedbook($Transac_id) {
 
-        try {
-
             $name = session('uniname');
         
             if(!$name == null){
@@ -21,7 +19,7 @@ class notreturnedbookscontroller extends Controller
              
              $viocount = DB::table('borrowers')->where('Borrower_id', $Borrower_id)->value('vio_count');
              $newviocount = $viocount + 1;
-             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['vio_count' => $fullname ,'updated_at' => \Carbon\Carbon::now()]);
+             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['vio_count' => $newviocount ,'updated_at' => \Carbon\Carbon::now()]);
              
              $Stock = DB::table('books')->where('Book_id', $Book_id)->value('Stock');
              $newstock = $Stock + 1;
@@ -40,20 +38,15 @@ class notreturnedbookscontroller extends Controller
         
                 DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
         
-                $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
+                $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
         
-                return view('notreturnedbooks',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $notreturned]);
+                return view('notreturnedbooks',['message' => 'Book Successfully Returned','name' => $name,'notreturned' => $notreturned]);
             }
             else {
                 $request->session()->flush();
                 return view('login',['message' => 'Error, Please try again later!']);
             } 
-        
-        } catch (\Exception $e) {
-            $name = session('uniname');
-            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
-            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
-        }
+
         
     }
 
@@ -76,8 +69,8 @@ class notreturnedbookscontroller extends Controller
             }
         } catch (\Exception $e) {
             $name = session('uniname');
-            $notreturned = DB::table('transactions')->select('*')->where('DueDateReturned','<', 'CURRENT_DATE()')->get();
-            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $notreturned]);
+            $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
+            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'notreturned' => $notreturned]);
         }
     }
 

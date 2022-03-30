@@ -34,7 +34,9 @@
             <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Login"/>
         </form>
         <a> Don't Have an Account? <a href="{{ route('signup')}}"> Sign Up </a></a>
+        @if(!empty($message))
         <div class="message" > Message: <br> {{ $message }} </div>
+        @endif
         <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
@@ -83,9 +85,11 @@ document.addEventListener("mousemove", (e)=>{
 <style>
 
 .smile{
-  margin-top:20px;
   height: 150px;
   width: 25%;
+  margin-top: 2%;
+  left: 38%;
+  position: absolute;
 }
 
 .logo{

@@ -33,7 +33,9 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> BORROWERS </h1>
       <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
+      @if(!empty($message))
       <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @endif
     </form>
   </div>
   <form action="{{ route('searchborrower') }}" method="post">

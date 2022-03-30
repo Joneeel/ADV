@@ -32,7 +32,9 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> ISSUE BOOK BORROW </h1>
       <a href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
+      @if(!empty($message))
       <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @endif
     </form>
   </div>
   <form action="{{ route('searchissue') }}" method="post">
