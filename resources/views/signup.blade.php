@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>SIGN UP  (LMS) </title>
 </head>
 <center>
 <body style="background-color: rgba(25, 184, 176, 1)">
@@ -50,7 +50,6 @@
         @if(!empty($message))
         <div class="message"> Message: <br>  {{ $message }}</div>
         @endif
-        <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
 </html>
@@ -97,12 +96,6 @@ document.addEventListener("mousemove", (e)=>{
 
 <style>
 
-.smile{
-  margin-top:20px;
-  height: 150px;
-  width: 25%;
-}
-
 .logo{
   height: 120px;
   width: 120px;
@@ -144,7 +137,7 @@ body{
   font-size:40px;
   font-family: 'Arial';
   font-weight: bold;
-  text-shadow: 3px 3px gray;
+  text-shadow: 3px 3px white;
 }
 
 label{

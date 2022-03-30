@@ -159,6 +159,10 @@ class lmscontroller extends Controller
         try {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
         $request->session()->flush();
+
+        $now = \Carbon\Carbon::now();
+
+        DB::table('borrowers')->where('resetmonth', '!=' ,$now->month)->update(['vio_count' => 0, 'resetmonth' => $now->month]);
         
         $this->validate($request, [
             'username' => 'required',

@@ -20,6 +20,7 @@ class CreateBorrowerTable extends Migration
             $table->string('address');
             $table->integer('vio_count')->default('0');
             $table->timestamps();
+            $table->string('resetmonth');
         });
     }
 

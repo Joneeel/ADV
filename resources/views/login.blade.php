@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>LOGIN  (LMS) </title>
 </head>
 <center>
 <body class="bg">
@@ -37,7 +37,6 @@
         @if(!empty($message))
         <div class="message" > Message: <br> {{ $message }} </div>
         @endif
-        <img class="smile" src="{{ asset('Image/smile.png') }}"/>
 </body>
 </center>
 </html>
@@ -83,14 +82,6 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
-
-.smile{
-  height: 150px;
-  width: 25%;
-  margin-top: 2%;
-  left: 38%;
-  position: absolute;
-}
 
 .logo{
   height: 85px;
