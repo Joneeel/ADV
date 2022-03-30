@@ -60,7 +60,7 @@ class notreturnedbookscontroller extends Controller
             $searchnotreturned = $request->input('searchnotreturned');
     
             $name = session('uniname');
-            $searchnotreturned = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchnotreturned.'%')->where('DueDateReturned','>', 'CURRENT_DATE()')->get();
+            $searchnotreturned = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchnotreturned.'%')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
             if(!$name == null){
                 return view('notreturnedbooks',['message' => 'Searched Successfully!','name' => $name, 'notreturned' => $searchnotreturned]);
             }
