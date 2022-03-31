@@ -118,7 +118,7 @@ class bookcontroller extends Controller
     }
 
     public function createdisplay() {
-
+        try {
         $name = session('uniname');
     if(!$name == null){
         return view('book.create',['name' => $name]);
@@ -127,6 +127,11 @@ class bookcontroller extends Controller
         $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
+} catch (\Exception $e) {
+    $name = session('uniname');
+    $books = DB::table('books')->select('*')->get();
+    return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books]);
+}
     }
 
     public function editdisplay($Book_id) {

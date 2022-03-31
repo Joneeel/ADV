@@ -13,7 +13,12 @@
 <div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
-      <h3 class="logged"> Account Logged: {{ $name }} </h3>
+      <div class="dropdown">
+      <button class="dropbtn">Account Logged: {{ $name }}</button>
+      <div class="dropdown-content">
+      <a href="{{ route('displaychangepass') }}">Change Password</a>
+      </div>
+      </div>
     </div>
 
     <ul class="nav navbar-nav">
@@ -74,19 +79,74 @@
 
 <style>
 
-.logo{
-  height: 5%;
-  width: 5%;
-  margin-right: 15px;
-  margin-top: -20px;
-}
-
-.logged{
+/* Style The Dropdown Button */
+.dropbtn {
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
    border-radius: 10px;
    border: 2px solid black;
+   font-family: 'Arial';
+   font-weight: bold;
+   color: black;
+   font-size: 20px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #70f72d;
+  min-width: 235px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-family: 'Arial';
+   font-weight: bold;
+   color: black;
+   font-size: 16px;
+   border-radius: 0px 0px 10px 10px;
+   border: 2px solid black;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: red;
+  border-radius: 0px 0px 10px 10px;
+  color:white;
+  transition: 0.3s;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  transition: 0.3s;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+  transition: 0.3s;
+}
+
+.logo{
+  height: 5%;
+  width: 5%;
+  margin-right: 15px;
+  margin-top: -20px;
 }
 
 .mainname{

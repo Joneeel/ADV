@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD (LMS) </title>
+    <title>ACCOUNT'S CHANGE PASSWORD (LMS) </title>
 </head>
 <center>
 <nav class="navbar navbar-inverse">
 
-    <div class="header">
+
+<div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
@@ -20,6 +21,7 @@
       </div>
       </div>
     </div>
+
 
     <ul class="nav navbar-nav">
       <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
@@ -32,51 +34,44 @@
     </ul>
 </nav>
 </center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba' class="body">  
   <center>
-    <h1 class="mainname"> DASHBOARD </h1>
-    @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
-      @endif
-      <div class="flex-container">
-        <div class="card">
-        <h1> No. of <br> Admin Accounts </h1>
-        <h1> {{ $acccount }} </h1>
+<body style='background-color: #56f0ba'>  
+<div id="admin-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="mainname">ACCOUNT'S CHANGE PASSWORD</h2>
+            </div>
         </div>
-        <div class="card">
-        <h1> No. of <br> Available Books </h1>
-        <h1> {{ $bookcount }} </h1>
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <form class="yourform" action="{{ route('changepassadmin')}}" method="post" autocomplete="off">
+                    @csrf
+                    <div>
+                        <label>Current Password: </label>
+                        <input type="password" class="inputs" name="currentpassword" required>
+                    </div>
+                    <div>
+                        <label>New Password: </label>
+                        <input type="password" class="inputs" name="newpassword"  required>
+                    </div>
+                    <div>
+                        <label>Confirm New Password: </label>
+                        <input type="password" class="inputs" name="confirmnewpassword"  required>
+                    </div>
+                    <input class="button" type="submit" name="submit" class="btn btn-danger" value="Change Password" required>
+                </form>
+            </div>
         </div>
-        <div class="card">
-        <h1> No. of <br> Borrower Accounts </h1>
-        <h1> {{ $borrowercount }} </h1>
-        </div>
-      </div> 
-      
-      <div class="flex-container">
-        <div class="card">
-        <h1> No. of <br> All Transactions </h1>
-        <h1> {{ $historycount }} </h1>
-        </div>
-        <div class="card">
-        <h1> No. of <br> Borrowed Books </h1>
-        <h1> {{ $transactioncount }} </h1>
-        </div>
-        <div class="card">
-        <h1> No. of Not <br> Returned Books </h1>
-        <h1> {{ $notreturnedcount }} </h1>
-        </div>
-      </div>
-<footer>
-  <p>Created By: John Henly A. Montera<br>
-  <a href="https://henly09.github.io/MyPortfolio/">Montera™ 2022</a></p>
-</footer>  
-</center>
+    </div>
+</div>
 </body>
+</center>
 </html>
+
 <style>
 
-  /* Style The Dropdown Button */
+/* Style The Dropdown Button */
 .dropbtn {
    background-color: #70f72d;
    padding: 10px;
@@ -139,20 +134,6 @@
   transition: 0.3s;
 }
 
-.logged2{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-  position: absolute;
-  font-size: 16px;
-  right: 65%;
-  top: 33%;
-  padding: 5px;
-  border-radius: 10px;
-  border: 2px solid black;
-  background-color: #70f72d;
-}
-
 .logo{
   height: 5%;
   width: 5%;
@@ -160,45 +141,67 @@
   margin-top: -20px;
 }
 
-footer{
-  margin-top:10%;
-  width: 100%;
-  background-color: #348c4c;
-  padding: 15px 0px 15px 0px;
-  border-radius: 5px;
+.logged{
+   background-color: #70f72d;
+   padding: 10px;
+   margin-top: -7px;
+   border-radius: 10px;
+   border: 2px solid black;
 }
-
-center{
-  margin-top: 5px;
-}
-
-footer > p{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-  padding-bottom:5px;
-}
-
-footer > a{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-  padding-top:5px;
-}
-
 
 .mainname{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
-  margin-top: 50px;
   font-size: 40px;
+}
+
+label{
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button {
+  margin: 20px;
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
+  border-radius: 10px;
+  font-family: 'Arial';
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: white; 
+  border: none;
+  color: #4CAF50;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
 .header{
   display: flex; 
   justify-content: center; 
   padding-top: 30px;
+}
+
+
+.inputs {
+  width: 20%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 a.nav{
@@ -261,35 +264,10 @@ div.navbar-header{
   flex-direction: row;
 }
 
-.card > h1{
-  font-family: 'Arial';
-  font-weight: bold;
-  color: black;
-  text-shadow: 2px 2px gray;
-}
-
-.flex-container {
-  display: inline-flex;
-}
-
-.flex-container > div {
-  background-color:#328f49;
-  margin: 10px;
-  padding: 20px;
-  font-size: 12px;
-  border-radius: 10px;
-  border: 2px solid black;
-}
-
-div.card {
-    flex-direction: column;
-}
-
-.header > h3{
+.logged{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
 }
-
 </style>
 

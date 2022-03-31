@@ -38,7 +38,7 @@ class lmscontroller extends Controller
     public function dashboard(){
         try {        
     
-    $name = session('uniname');
+     $name = session('uniname');
 
      $acc = DB::table('adminaccs')->select('*')->get();
      $acccount = $acc->count();

@@ -33,7 +33,7 @@
             </div>
             <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Login"/>
         </form>
-        <a> Don't Have an Account? <a href="{{ route('signup')}}"> Sign Up </a></a>
+        <a> Don't Have an Account? <a class="link" href="{{ route('signup')}}"> Sign Up </a></a>
         @if(!empty($message))
         <div class="message" > Message: <br> {{ $message }} </div>
         @endif
@@ -82,6 +82,10 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.link{
+  text-decoration: none;
+}
 
 .logo{
   height: 85px;

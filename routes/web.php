@@ -7,6 +7,7 @@ use App\Http\Controllers\borrowcontroller;
 use App\Http\Controllers\borrowercontroller;
 use App\Http\Controllers\notreturnedbookscontroller;
 use App\Http\Controllers\transactionhistorycontroller;
+use App\Http\Controllers\adminacccontroller;
 
 
 /*
@@ -64,6 +65,10 @@ Route::post('/searchnotreturned', [notreturnedbookscontroller::class, 'searchnot
 
 // TRANSACTION SEARCH
 Route::post('/searchhistory', [transactionhistorycontroller::class, 'searchhistory'])->name('searchhistory'); // searchhistory
+
+//ADMIN ACC CHANGE PASSWORD
+Route::post('/changepassadmin', [adminacccontroller::class, 'changepassadmin'])->name('changepassadmin'); // changepassadmin
+Route::get('/displaychangepass', [adminacccontroller::class, 'displaychangepass'])->name('displaychangepass'); // displaychangepass
 
 
 

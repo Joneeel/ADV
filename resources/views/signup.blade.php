@@ -45,7 +45,7 @@
             <input class="button" style="margin-top: 20px" type="submit" name="signup" class="btn btn-danger" value="Sign Up"/>
         </form>
         <h1> </h1>
-        <a> Already have an Account <a href="{{ route('login')}}"> Login Already! </a></a>
+        <a> Already have an Account <a class="link" href="{{ route('login')}}"> Login Already! </a></a>
         <h1> </h1>
         @if(!empty($message))
         <div class="message"> Message: <br>  {{ $message }}</div>
@@ -95,6 +95,10 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.link{
+  text-decoration: none;
+}
 
 .logo{
   height: 120px;

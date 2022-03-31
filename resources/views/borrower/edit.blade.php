@@ -14,7 +14,13 @@
 <div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
-      <h3 class="logged"> Account Logged: {{ $name }} </h3>
+      <div class="dropdown">
+      <button class="dropbtn">Account Logged: {{ $name }}</button>
+      <div class="dropdown-content">
+      <a href="{{ route('displaychangepass') }}">Change Password</a>
+      </div>
+    </div>
+
     </div>
 
 
