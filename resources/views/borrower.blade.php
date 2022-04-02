@@ -89,7 +89,7 @@
 </table>
 <footer>
   <p>Author: John Henly A. Montera<br>
-  <a href="https://henly09.github.io/MyPortfolio/">Montera™ 2022</a></p>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
 </footer> 
 </body>
 </center>
