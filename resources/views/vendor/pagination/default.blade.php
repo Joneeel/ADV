@@ -52,6 +52,8 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: .25rem;
+  font-family: Arial;
+  font-weight: bold;
 }
 
 .pagination > li {

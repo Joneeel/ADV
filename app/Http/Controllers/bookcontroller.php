@@ -45,7 +45,7 @@ class bookcontroller extends Controller
 
             DB::table('books')->insert($data);
             
-            $books = DB::table('books')->select('*')->get();
+            $books = DB::table('books')->select('*')->paginate(6);
             $archivebooks = DB::table('archivebook')->select('*')->get();
     
             return view('books',['message' => 'Successfully Created','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -57,7 +57,7 @@ class bookcontroller extends Controller
 
         } catch (\Exception $e) {
             $name = session('uniname');
-            $books = DB::table('books')->select('*')->get();
+            $books = DB::table('books')->select('*')->paginate(6);
             $archivebooks = DB::table('archivebook')->select('*')->get();
             return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
@@ -89,7 +89,7 @@ class bookcontroller extends Controller
         $No_Stock = (int)$request->input('No_Stock');
 
         DB::table('books')->where('Book_id', $Book_id)->update(['Title' => $Title ,'Author' => $Author,'Copyright' => $Copyright,'Type' => $Type,'Category' => $Category,'No_pages' => $No_Pages,'Stock' => $No_Stock,'updated_at' => \Carbon\Carbon::now()]);
-        $books = DB::table('books')->select('*')->get();
+        $books = DB::table('books')->select('*')->paginate(6);
         $archivebooks = DB::table('archivebook')->select('*')->get();
 
         return view('books',['message' => 'Successfully Edited','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -101,7 +101,7 @@ class bookcontroller extends Controller
     
 } catch (\Exception $e) {
     $name = session('uniname');
-    $books = DB::table('books')->select('*')->get();
+    $books = DB::table('books')->select('*')->paginate(6);
     $archivebooks = DB::table('archivebook')->select('*')->get();
     return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
 }
@@ -146,13 +146,13 @@ class bookcontroller extends Controller
             DB::table('books')->where('Book_id', $Book_id)->delete();
 
             $name = session('uniname');
-            $books = DB::table('books')->select('*')->get();
+            $books = DB::table('books')->select('*')->paginate(6);
             $archivebooks = DB::table('archivebook')->select('*')->get();
             return view('books',['message' => 'Successfully Archived.','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
         else{
             $name = session('uniname');
-            $books = DB::table('books')->select('*')->get();
+            $books = DB::table('books')->select('*')->paginate(6);
             $archivebooks = DB::table('archivebook')->select('*')->get();
             return view('books',['message' => 'Some of this book are currently borrowed!','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
@@ -163,7 +163,7 @@ class bookcontroller extends Controller
     } 
 }  catch (\Exception $e) {
     $name = session('uniname');
-    $books = DB::table('books')->select('*')->get();
+    $books = DB::table('books')->select('*')->paginate(6);
     $archivebooks = DB::table('archivebook')->select('*')->get();
     return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
 }
@@ -184,7 +184,7 @@ class bookcontroller extends Controller
     } 
 } catch (\Exception $e) {
     $name = session('uniname');
-    $books = DB::table('books')->select('*')->get();
+    $books = DB::table('books')->select('*')->paginate(6);
     $archivebooks = DB::table('archivebook')->select('*')->get();
     return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
     }
@@ -226,7 +226,7 @@ class bookcontroller extends Controller
         $searchtitle = $request->input('searchtitle');
 
         $name = session('uniname');
-        $books = DB::table('books')->select('*')->where('Title','like', '%'.$searchtitle.'%')->get();
+        $books = DB::table('books')->select('*')->where('Title','like', '%'.$searchtitle.'%')->paginate(6);
         $archivebooks = DB::table('archivebook')->select('*')->get();
         if(!$name == null){
             return view('books',['message' => 'Searched Successfully!','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -237,7 +237,7 @@ class bookcontroller extends Controller
         }
     } catch (\Exception $e) {
         $name = session('uniname');
-        $books = DB::table('books')->select('*')->get();
+        $books = DB::table('books')->select('*')->paginate(6);
         $archivebooks = DB::table('archivebook')->select('*')->get();
         return view('books',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
     }
@@ -255,7 +255,7 @@ class bookcontroller extends Controller
         $searcharchivetitle = $request->input('searcharchivetitle');
 
         $name = session('uniname');
-        $books = $books = DB::table('books')->select('*')->get();
+        $books = $books = DB::table('books')->select('*')->paginate(6);
         $archivebooks = DB::table('archivebook')->select('*')->where('Title','like', '%'.$searcharchivetitle.'%')->get();
         if(!$name == null){
             return view('books',['message' => 'Searched Successfully!','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 1]);
@@ -266,9 +266,9 @@ class bookcontroller extends Controller
         }
     } catch (\Exception $e) {
         $name = session('uniname');
-        $books = DB::table('books')->select('*')->get();
+        $books = DB::table('books')->select('*')->paginate(5);
         $archivebooks = DB::table('archivebook')->select('*')->get();
-        return view('books',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
+        return view('books',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 1]);
     }
 
    }

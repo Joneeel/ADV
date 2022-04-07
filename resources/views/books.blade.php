@@ -59,6 +59,7 @@
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
+  @if(!empty($books) && $books->count())
 <table>
   <tr>
     <th>Book_id</th>
@@ -96,7 +97,13 @@
     </td>
   </tr>
   @endforeach
+  @else
+                <tr>
+                    <td colspan="10">There are no data.</td>
+                </tr>
+  @endif
 </table>
+{{ $books->links('vendor\pagination\default') }}
 </body>
 </center>
 <footer>

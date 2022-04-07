@@ -14,7 +14,7 @@ class lmscontroller extends Controller
     public function books(){
 
         $name = session('uniname');
-        $books = DB::table('books')->select('*')->get();
+        $books = DB::table('books')->select('*')->paginate(6);
         $archivebooks = DB::table('archivebook')->select('*')->get();
         if(!$name == null){
             return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -80,7 +80,7 @@ class lmscontroller extends Controller
     public function borrower(){
     try {
         $name = session('uniname');
-        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
+        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
         $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
         if(!$name == null){
             return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);

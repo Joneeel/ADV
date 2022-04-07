@@ -59,6 +59,7 @@
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
+  @if(!empty($borroweractive) && $borroweractive->count())
 <table>
   <tr>
     <th>Borrower_id</th>
@@ -96,7 +97,13 @@
     </td>
   </tr>
   @endforeach
+  @else
+                <tr>
+                    <td colspan="10">There are no data.</td>
+                </tr>
+  @endif
 </table>
+{{ $borroweractive->links('vendor\pagination\default') }}
 <footer>
   <p>Author: John Henly A. Montera<br>
   <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
@@ -374,7 +381,7 @@
 
 
 footer{
-  margin-top:20%;
+  margin-top:10%;
   background-color: #348c4c;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
