@@ -48,7 +48,7 @@
         <h1> {{ $bookcount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of <br> Borrower Accounts </h1>
+        <h1> No. of Active <br> Borrower Accounts </h1>
         <h1> {{ $borrowercount }} </h1>
         </div>
       </div> 
@@ -81,7 +81,7 @@
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
-   border-radius: 10px;
+   border-radius: 10px 10px 0px 0px;
    border: 2px solid black;
    font-family: 'Arial';
    font-weight: bold;
@@ -146,7 +146,7 @@
   position: absolute;
   font-size: 16px;
   right: 65%;
-  top: 33%;
+  top: 195px;
   padding: 5px;
   border-radius: 10px;
   border: 2px solid black;
@@ -161,8 +161,7 @@
 }
 
 footer{
-  margin-top:10%;
-  width: 100%;
+  margin-top:12%;
   background-color: #348c4c;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;

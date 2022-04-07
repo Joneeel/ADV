@@ -76,12 +76,13 @@
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
-   border-radius: 10px;
+   border-radius: 10px 10px 0px 0px;
    border: 2px solid black;
    font-family: 'Arial';
    font-weight: bold;
    color: black;
    font-size: 20px;
+
 }
 
 /* The container <div> - needed to position the dropdown content */

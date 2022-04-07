@@ -12,19 +12,18 @@ use Illuminate\Support\Facades\View;
 class lmscontroller extends Controller
 {
     public function books(){
-        try {
+
         $name = session('uniname');
         $books = DB::table('books')->select('*')->get();
+        $archivebooks = DB::table('archivebook')->select('*')->get();
         if(!$name == null){
-            return view('books',['message' => '','name' => $name, 'books' => $books]);
+            return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
         else {
             $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
-    } catch (\Exception $e) {
-        return view('login',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...']);
-    }
+
     }
 
     public function login(){
@@ -46,7 +45,7 @@ class lmscontroller extends Controller
      $book = DB::table('books')->select('*')->get();
      $bookcount = $book->count();
 
-     $borrower = DB::table('borrowers')->select('*')->get();
+     $borrower = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
      $borrowercount = $borrower->count();
 
      $history = DB::table('historys')->select('*')->get();
@@ -81,9 +80,10 @@ class lmscontroller extends Controller
     public function borrower(){
     try {
         $name = session('uniname');
-        $borrower = DB::table('borrowers')->select('*')->get();
+        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
+        $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
         if(!$name == null){
-            return view('borrower',['message' => '','borrowers' => $borrower,'name' => $name]);
+            return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
         }
         else {
             $request->session()->flush();
@@ -162,7 +162,7 @@ class lmscontroller extends Controller
 
         $now = \Carbon\Carbon::now();
 
-        DB::table('borrowers')->where('resetmonth', '!=' ,$now->month)->update(['vio_count' => 0, 'resetmonth' => $now->month]);
+        DB::table('borrowers')->where('resetmonth', '!=' ,$now->month)->where('Status','=','Active')->update(['vio_count' => 0, 'resetmonth' => $now->month]);
         
         $this->validate($request, [
             'username' => 'required',
@@ -181,7 +181,7 @@ class lmscontroller extends Controller
      $bookcount = $book->count();
      $request->session()->put('unibookcount', $bookcount);
 
-     $borrower = DB::table('borrowers')->select('*')->get();
+     $borrower = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
      $borrowercount = $borrower->count();
      $request->session()->put('uniborrowercount', $borrowercount);
 

@@ -16,7 +16,7 @@ class borrowerSeeder extends Seeder
     {
 
         if (borrower::count() == 0) {
-            borrower::factory(10)->create();
+            borrower::factory(20)->create();
         }
 
        /* DB::table('borrower')->insert([

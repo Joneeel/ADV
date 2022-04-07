@@ -17,6 +17,7 @@ class CreateBorrowerTable extends Migration
             $table->increments('Borrower_id');
             $table->string('fullname')->unique();
             $table->string('gender');
+            $table->string('status');
             $table->string('address');
             $table->integer('vio_count')->default('0');
             $table->timestamps();

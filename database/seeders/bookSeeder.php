@@ -18,7 +18,7 @@ class bookSeeder extends Seeder
 
 
         if (book::count() == 0) {
-            book::factory(10)->create();
+            book::factory(20)->create();
         }
 
         /* DB::table('book')->insert([

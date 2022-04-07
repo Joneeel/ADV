@@ -20,7 +20,6 @@
       <a href="{{ route('displaychangepass') }}">Change Password</a>
       </div>
     </div>
-
     </div>
 
 
@@ -57,6 +56,10 @@
                         <input type="text" class="inputs" name="fullname" value="{{ $fullname }}" required>
                     </div>
                     <div>
+                        <label>No. Of Violations: </label>
+                        <input type="text" class="inputs" name="vio" value="{{ $vio }}" required>
+                    </div>
+                    <div>
                         <label>Gender: </label>
                         <input type="text" class="inputs" name="gender" value="{{ $gender }}" required>
                     </div>
@@ -75,6 +78,69 @@
 </html>
 
 <style>
+
+  /* Style The Dropdown Button */
+.dropbtn {
+   background-color: #70f72d;
+   padding: 10px;
+   margin-top: -7px;
+   border-radius: 10px 10px 0px 0px;
+   border: 2px solid black;
+   font-family: 'Arial';
+   font-weight: bold;
+   color: black;
+   font-size: 20px;
+}
+
+  /* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #70f72d;
+  min-width: 235px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-family: 'Arial';
+   font-weight: bold;
+   color: black;
+   font-size: 16px;
+   border-radius: 0px 0px 10px 10px;
+   border: 2px solid black;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: red;
+  border-radius: 0px 0px 10px 10px;
+  color:white;
+  transition: 0.3s;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  transition: 0.3s;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+  transition: 0.3s;
+}
 
 .logo{
   height: 5%;

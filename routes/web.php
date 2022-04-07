@@ -44,14 +44,17 @@ Route::post('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('b
 Route::post('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
 Route::post('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
 Route::post('/searchbook', [bookcontroller::class, 'searchbook'])->name('searchbook'); // searchbook
+Route::post('/searcharchivebook', [bookcontroller::class, 'searcharchivebook'])->name('searcharchivebook'); // searcharchivebook
 
 // Borrower CRUD
 Route::get('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
 Route::post('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
 Route::post('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
+Route::post('/borrowernotactive/{Borrower_id}', [borrowercontroller::class, 'borrowernotactive'])->name('borrowernotactive'); // borrowernotactive
 Route::post('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
 Route::post('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
-Route::post('/searchborrower', [borrowercontroller::class, 'searchborrower'])->name('searchborrower'); // searchborrower
+Route::post('/searchborroweractive', [borrowercontroller::class, 'searchborroweractive'])->name('searchborroweractive'); // searchborroweractive
+Route::post('/searchborrowernotactive', [borrowercontroller::class, 'searchborrowernotactive'])->name('searchborrowernotactive'); // searchborrowernotactive
 
 // ISSUE CRUD
 Route::post('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue

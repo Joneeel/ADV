@@ -19,7 +19,7 @@
       <a href="{{ route('displaychangepass') }}">Change Password</a>
       </div>
       </div>
-    </div>
+</div>
 
     <ul class="nav navbar-nav">
       <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
@@ -32,6 +32,7 @@
     </ul>
 </nav>
 </center>
+
   <center>
 <body style='background-color: #56f0ba'>  
 <div id="admin-content">
@@ -49,23 +50,44 @@
                         <label>Title: </label>
                         <input type="text" class="inputs" name="Title" value="" required>
                     </div>
+
                     <div>
                         <label>Author: </label>
                         <input type="text" class="inputs" name="Author" value="" required>
                     </div>
+
                     <div>
                         <label>Copyright: </label>
                         <input type="text" class="inputs" name="Copyright" value="" required>
                     </div>
+
+                    <div>
+                    <label>Type: </label>
+                        <select id="typeid" class="inputs" name="type" required>
+                                <option value=""> Select Type... </option>
+                                <option value="Fiction">Fiction</option>
+                                <option value='NonFiction'>Non Fiction</option>
+                      </select>
+                  </div>
+
+                    <div>
+                      <label>Category: </label>
+                      <select id="categoryid" class="inputs" name="category" required>
+                      </select>
+                    </div>
+
                     <div>
                         <label>No_Pages: </label>
                         <input type="number" class="inputs" name="No_Pages" value="" required>
                     </div>
+
                     <div>
                         <label>No_Stock: </label>
                         <input type="number" class="inputs" name="No_Stock" value="" required>
                     </div>
+
                     <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create" required>
+
                 </form>
             </div>
         </div>
@@ -74,6 +96,78 @@
 </body>
 </center>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+
+ $(document).ready(function() {
+
+$("#typeid").change(function() {
+  var val = $(this).val();
+  if (val == "Fiction") {
+    $("#categoryid").html("<option value='Action and adventure'>Action and adventure</option>"
+      	 		    +"<option value='Alternate history'>Alternate history</option>"
+                +"<option value='Anthology'>Anthology</option>"
+      	 		    +"<option value='Chick lit'>Chick lit</option>"
+                +"<option value='Children's'>Children's</option>"
+      	 		    +"<option value='Classic'>Classic</option>"
+                +"<option value='Comic book'>Comic book</option>"
+      	 		    +"<option value='Coming-of-age'>Coming-of-age</option>"
+                +"<option value='Crime'>Crime</option>"
+      	 		    +"<option value='Drama'>Drama</option>"
+                +"<option value='Fairytale'>Fairytale</option>"
+      	 		    +"<option value='Fantasy'>Fantasy</option>"
+                +"<option value='Graphic novel'>Graphic novel</option>"
+      	 		    +"<option value='Historical fiction'>Historical fiction</option>"
+                +"<option value='Horror'>Horror</option>"
+      	 		    +"<option value='Mystery'>Mystery</option>"
+                +"<option value='Paranormal romance'>Paranormal romance</option>"
+      	 		    +"<option value='Picture book'>Picture book</option>"
+                +"<option value='Poetry'>Poetry</option>"
+      	 		    +"<option value='Political thriller'>Political thriller</option>"
+                +"<option value='Romance'>Romance</option>"
+      	 		    +"<option value='Satire'>Satire</option>"
+                +"<option value='Science fiction'>Science fiction</option>"
+      	 		    +"<option value='Short story'>Short story</option>"
+                +"<option value='Suspense'>Suspense</option>"
+      	 		    +"<option value='Thriller'>Thriller</option>"
+                +"<option value='Western'>Western</option>"
+      	 		    +"<option value='Young adult'>Young adult</option>");
+
+  } else if (val == "NonFiction") {
+    $("#categoryid").html("<option value='Art/architecture'>Art/architecture</option>"
+      	 		    +"<option value='Autobiography'>Autobiography</option>"
+                +"<option value='Biography'>Biography</option>"
+      	 		    +"<option value='Business/economics'>Business/economics</option>"
+                +"<option value='Crafts/hobbies'>Crafts/hobbies</option>"
+      	 		    +"<option value='Cookbook'>Cookbook</option>"
+                +"<option value='Diary'>Diary</option>"
+      	 		    +"<option value='Dictionary'>Dictionary</option>"
+                +"<option value='Encyclopedia'>Encyclopedia</option>"
+      	 		    +"<option value='Guide'>Guide</option>"
+                +"<option value='Health/fitness'>Health/fitness</option>"
+      	 		    +"<option value='History'>History</option>"
+                +"<option value='Home and garden'>Home and garden</option>"
+      	 		    +"<option value='Humor'>Humor</option>"
+                +"<option value='Journal'>Journal</option>"
+      	 		    +"<option value='Math'>Math</option>"
+                +"<option value='Memoir'>Memoir</option>"
+      	 		    +"<option value='Philosophy'>Philosophy</option>"
+                +"<option value='Prayer'>Prayer</option>"
+      	 		    +"<option value='Religion, spirituality, and new age'>Religion, spirituality, and new age</option>"
+                +"<option value='Textbook'>Textbook</option>"
+      	 		    +"<option value='True crime'>True crime</option>"
+                +"<option value='Review'>Review</option>"
+      	 		    +"<option value='Science'>Science</option>"
+                +"<option value='Self help'>Self help</option>"
+      	 		    +"<option value='Sports and leisure'>Sports and leisure</option>"
+                +"<option value='Travel'>Travel</option>"
+      	 		    +"<option value='True crime'>True crime</option>");
+  } else {
+    $("#categoryid").html("<option value=''>Select Category..</option>");
+  }
+});
+});
+</script>
 
 <style>
 
@@ -82,7 +176,7 @@
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
-   border-radius: 10px;
+   border-radius: 10px 10px 0px 0px;
    border: 2px solid black;
    font-family: 'Arial';
    font-weight: bold;

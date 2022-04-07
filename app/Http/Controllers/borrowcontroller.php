@@ -129,7 +129,7 @@ class borrowcontroller extends Controller
         $name = session('uniname');
 
         if(!$name == null){
-            $borrower = DB::table('borrowers')->select('*')->get();
+            $borrower = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
             $books = DB::table('books')->select('*')->get();
             return view('borrow.issue',['name' => $name, 'borrower' => $borrower, 'books' => $books]);
         }

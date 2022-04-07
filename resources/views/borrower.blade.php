@@ -33,21 +33,29 @@
     </ul>
 </nav>
 </center>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Active')">ACTIVE</button>
+  <button class="tablinks" onclick="openTab(event, 'NotActive')">NOT ACTIVE</button>
+</div>
+
+<!-- ACTIVE SIDE -->
+
+<div id="Active" class="tabcontent">
 <center>
 <body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'>  
   <div style="display: inline-flex;">
-    <h1 class="mainname"> BORROWERS </h1>
+    <h1 class="mainname"> ACTIVE BORROWERS </h1>
       <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
       @if(!empty($message))
       <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
       @endif
-    </form>
   </div>
-  <form action="{{ route('searchborrower') }}" method="post">
+  <form action="{{ route('searchborroweractive') }}" method="post">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
-        <input class="inputs" type="text" name="searchborrower" class="form-control" value="" placeholder="Search for the name of the borrower.." required>
+        <input class="inputs" type="text" name="searchborroweractive" class="form-control" value="" placeholder="Search for the name of the borrower.." required>
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
@@ -56,18 +64,20 @@
     <th>Borrower_id</th>
     <th>Fullname</th>
     <th>Gender</th>
+    <th>Status</th>
     <th>Address</th>
     <th>No# of Overdued Books</th>
     <th>Created_at</th>
     <th>Updated_at</th>
     <th>Edit</th>
-    <th>Delete</th>
+    <th>N.A</th>
   </tr>
-  @foreach($borrowers as $key => $data)
+  @foreach($borroweractive as $key => $data)
   <tr>
     <td>{{ $data->Borrower_id }}</td>
     <td>{{ $data->fullname }}</td>
     <td>{{ $data->gender }}</td>
+    <td>{{ $data->status }}</td>
     <td>{{ $data->address }}</td> 
     <td>{{ $data->vio_count }}</td>
     <td>{{ $data->created_at }}</td>
@@ -79,7 +89,65 @@
       </form>
     </td>
     <td class="deletebutton">
-      <form action="{{ route('borrowerdelete', $data->Borrower_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('borrowernotactive', $data->Borrower_id) }}" method="post" class="form-hidden">
+        <button >N.Active</button>
+        @csrf
+      </form>
+    </td>
+  </tr>
+  @endforeach
+</table>
+<footer>
+  <p>Author: John Henly A. Montera<br>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
+</footer> 
+</body>
+</center>
+</div>
+
+<!-- NOT ACTIVE SIDE -->
+
+<div id="NotActive" class="tabcontent">
+<center>
+<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'>  
+  <div style="display: inline-flex;">
+    <h1 class="mainname"> ARCHIVED BORROWERS </h1>
+      @if(!empty($message))
+      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @endif
+  </div>
+  <form action="{{ route('searchborrowernotactive') }}" method="post">
+    @csrf 
+      <div class="searcholder">
+        <label class='search'> Search: </label>
+        <input class="inputs" type="text" name="searchborrowernotactive" class="form-control" value="" placeholder="Search for the name of the borrower.." required>
+        <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
+       </div>
+  </form> 
+<table>
+  <tr>
+    <th>Borrower_id</th>
+    <th>Fullname</th>
+    <th>Gender</th>
+    <th>Status</th>
+    <th>Address</th>
+    <th>No# of Overdued Books</th>
+    <th>Created_at</th>
+    <th>Updated_at</th>
+    <th>Delete</th>
+  </tr>
+  @foreach($borrowernotactive as $key => $data2)
+  <tr>
+    <td>{{ $data2->Borrower_id }}</td>
+    <td>{{ $data2->fullname }}</td>
+    <td>{{ $data2->gender }}</td>
+    <td>{{ $data2->status }}</td>
+    <td>{{ $data2->address }}</td> 
+    <td>{{ $data2->vio_count }}</td>
+    <td>{{ $data2->created_at }}</td>
+    <td>{{ $data2->updated_at }}</td>
+    <td class="deletebutton">
+      <form action="{{ route('borrowerdelete', $data2->Borrower_id) }}" method="post" class="form-hidden">
         <button >Delete</button>
         @csrf
       </form>
@@ -93,14 +161,107 @@
 </footer> 
 </body>
 </center>
+</div>
 </html>
+
+<script>
+
+  document.getElementsByClassName('tablinks')[{{ $page }}].click();
+
+  function openTab(evt, tab) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tab).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+</script>
+
 <style>
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Style the tab */
+.tab {
+  margin-top:20px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #70f72d;
+  border: 2px solid black;
+  width: 300px;
+  padding-left: 30px;
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: none;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: #70f72d;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 8px;
+  transition: 0.3s;
+  margin-left: 25px;
+  font-family: 'Arial';
+  font-weight: bold;
+  padding:10px;
+  color: black;
+  font-size:14px;
+  border-radius: 3px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #3e8e41;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-radius: 0px 10px 10px 10px;
+  border: 2px solid black;
+  background-color: #70f72d;
+
+}
+
 /* Style The Dropdown Button */
 .dropbtn {
    background-color: #70f72d;
    padding: 10px;
-   margin-top: -7px;
-   border-radius: 10px;
+   margin-top: -10px;
+   border-radius: 10px 10px 0px 0px;
    border: 2px solid black;
    font-family: 'Arial';
    font-weight: bold;
@@ -176,6 +337,7 @@
   color: black;
 }
 
+
 .button {
   background-color: #4CAF50; 
   border: none;
@@ -212,8 +374,7 @@
 
 
 footer{
-  margin-top:30%;
-  width: 99%;
+  margin-top:20%;
   background-color: #348c4c;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
@@ -239,12 +400,13 @@ footer > a{
   color: black;
   position: absolute;
   font-size: 16px;
-  right: 75%;
-  top: 35%;
+  right: 72%;
+  top: 300px;
   padding: 5px;
   border-radius: 10px;
   border: 2px solid black;
   background-color: #70f72d;
+  width: 20%;
 }
 
 .addnewbook{
@@ -252,7 +414,7 @@ footer > a{
   font-weight: bold;
   color: black;
   position: absolute;
-  margin-left: 37%;
+  margin-left: 35%;
   background-color: green; 
   border: none;
   color: white;
@@ -265,7 +427,7 @@ footer > a{
   border-radius: 10px;
   font-family: 'Arial';
   font-weight: bold;
-  margin-top:15px;
+  margin-top:85px;
 }
 
 .addnewbook:hover{
@@ -330,6 +492,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
 }
+
 .header{
   display: flex; 
   justify-content: center; 

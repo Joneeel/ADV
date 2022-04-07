@@ -87,7 +87,7 @@
    background-color: #70f72d;
    padding: 10px;
    margin-top: -7px;
-   border-radius: 10px;
+   border-radius: 10px 10px 0px 0px;
    border: 2px solid black;
    font-family: 'Arial';
    font-weight: bold;
@@ -218,10 +218,9 @@
   border-radius: 5px;
 }
 
+
 footer{
-  position: absolute;
-  margin-top:30%;
-  width: 99%;
+  margin-top:20%;
   background-color: #348c4c;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
