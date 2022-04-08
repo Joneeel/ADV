@@ -154,8 +154,8 @@
 }
 
 .logo{
-  height: 5%;
-  width: 5%;
+  height: 80px;
+  width: 80px;
   margin-right: 15px;
   margin-top: -20px;
 }

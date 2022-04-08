@@ -17,7 +17,7 @@ class transactionhistorycontroller extends Controller
             $searchhistory = $request->input('searchhistory');
     
             $name = session('uniname');
-            $searchhistory = DB::table('historys')->select('*')->where('Book_id','=', $searchhistory)->get();
+            $searchhistory = DB::table('historys')->select('*')->where('Book_id','=', $searchhistory)->paginate(6);
             if(!$name == null){
                 return view('transactionhistory',['message' => 'Searched Successfully!','name' => $name, 'historys' => $searchhistory]);
             }
@@ -27,7 +27,7 @@ class transactionhistorycontroller extends Controller
 
         } catch (\Exception $e) {
             $name = session('uniname');
-            $history = DB::table('historys')->select('*')->get();
+            $history = DB::table('historys')->select('*')->paginate(6);
             return view('transactionhistory',['message' => 'Searched Successfully!','name' => $name, 'historys' => $history]);
         }
     }

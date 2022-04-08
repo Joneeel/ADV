@@ -50,6 +50,7 @@
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
+  @if(!empty($issuebookborrow) && $issuebookborrow->count())
 <table>
   <tr>
     <th>Transac_id</th>
@@ -82,7 +83,15 @@
     </td>
   </tr>
   @endforeach
+  @else   
+        <div style="margin-top: 150px; font-family: Arial; font-weight: bold;">
+                <tr>
+                    <td classcolspan="10">There are no data.</td>
+                </tr>
+        </div>
+  @endif
 </table>
+{{ $issuebookborrow->links('vendor\pagination\default') }}
 <footer>
   <p>Author: John Henly A. Montera<br>
   <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
@@ -155,8 +164,8 @@
 }
 
 .logo{
-  height: 5%;
-  width: 5%;
+  height: 80px;
+  width: 80px;
   margin-right: 15px;
   margin-top: -20px;
 }

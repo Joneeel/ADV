@@ -12,16 +12,20 @@ use Illuminate\Support\Facades\View;
 class lmscontroller extends Controller
 {
     public function books(){
-
-        $name = session('uniname');
-        $books = DB::table('books')->select('*')->paginate(6);
-        $archivebooks = DB::table('archivebook')->select('*')->get();
-        if(!$name == null){
-            return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
-        }
-        else {
+        try{
+            $name = session('uniname');
+            $books = DB::table('books')->select('*')->paginate(6);
+            $archivebooks = DB::table('archivebook')->select('*')->get();
+            if(!$name == null){
+                return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
+            }
+            else {
+                $request->session()->flush();
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
             $request->session()->flush();
-            return view('login',['message' => 'Error!']);
+            return view('login',['message' => 'Error Occured in Accessing Books! Please Try Again Later...']);
         }
 
     }
@@ -72,6 +76,7 @@ class lmscontroller extends Controller
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
+        $request->session()->flush();
         return view('login',['message' => 'Error Occured in Accessing Dashboard! Please Try Again Later...']);
     }
 
@@ -90,6 +95,7 @@ class lmscontroller extends Controller
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
+        $request->session()->flush();
         return view('login',['message' => 'Error Occured in Accessing Borrower Page! Please Try Again Later...']);
     }
     }
@@ -97,7 +103,7 @@ class lmscontroller extends Controller
     public function notreturnedbooks(){
         try {
         $name = session('uniname');
-        $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
+        $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->paginate(6); // due
         if(!$name == null){
             return view('notreturnedbooks',['message' => '','name' => $name, 'notreturned' => $notreturned]);
         }
@@ -106,6 +112,7 @@ class lmscontroller extends Controller
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
+        $request->session()->flush();
         return view('login',['message' => 'Error Occured in Accessing NotReturnedPage! Please Try Again Later...']);
     }
     }
@@ -113,7 +120,7 @@ class lmscontroller extends Controller
     public function borrow(){
         try {
         $name = session('uniname');
-        $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
+        $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
         if(!$name == null){
             return view('borrow',['message' => '','name' => $name, 'issuebookborrow' => $transactions]);
         }
@@ -122,6 +129,7 @@ class lmscontroller extends Controller
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
+        $request->session()->flush();
         return view('login',['message' => 'Error Occured in Accessing Borrow Page! Please Try Again Later...']);
     }
     }
@@ -129,7 +137,7 @@ class lmscontroller extends Controller
     public function transactionhistory(){
         try {
         $name = session('uniname');
-        $historys = DB::table('historys')->select('*')->get();
+        $historys = DB::table('historys')->select('*')->paginate(6);
         if(!$name == null){
             return view('transactionhistory',['message' => '','name' => $name , 'historys' => $historys]);
         }
@@ -138,6 +146,7 @@ class lmscontroller extends Controller
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
+        $request->session()->flush();
         return view('login',['message' => 'Error Occured in accessing Transaction History! Please Try Again Later...']);
     }
     }
