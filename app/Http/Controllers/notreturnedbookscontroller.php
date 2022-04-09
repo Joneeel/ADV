@@ -41,7 +41,6 @@ class notreturnedbookscontroller extends Controller
                 return redirect()->route('notreturnedbooks')->with('message','Book Successfully Returned');
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error, Please try again later!']);
             } 
 
@@ -66,9 +65,7 @@ class notreturnedbookscontroller extends Controller
                 return view('login',['message' => 'Error!']);
             }
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->paginate(6); // due
-            return view('notreturnedbooks',['name' => $name,'notreturned' => $notreturned]);
+            return redirect()->route('notreturnedbooks')->with('message', 'Error Occured.');
         }
     }
 

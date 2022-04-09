@@ -64,7 +64,6 @@ class borrowcontroller extends Controller
 
             else {
                 
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
 
@@ -104,7 +103,6 @@ class borrowcontroller extends Controller
         return redirect()->route('borrow')->with('message', 'Book Successfully Returned');
     }
     else {
-        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
 
@@ -124,7 +122,6 @@ class borrowcontroller extends Controller
             return view('borrow.issue',['name' => $name, 'borrower' => $borrower, 'books' => $books]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     }
@@ -141,17 +138,16 @@ class borrowcontroller extends Controller
     
             $name = session('uniname');
             $searchissue = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchissue.'%')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
+            
             if(!$name == null){
                 return view('borrow',['message' => 'Searched Successfully!','name' => $name, 'issuebookborrow' => $searchissue]);
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
+            
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-            return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
+            return view('login',['message' => 'Error!']);
         }
     }
 

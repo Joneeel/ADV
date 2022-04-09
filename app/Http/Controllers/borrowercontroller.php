@@ -36,7 +36,6 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message', 'Successfully Created!');
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
         } catch (\Exception $e) {
@@ -66,7 +65,6 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message', 'Successfully Edited!');
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
@@ -87,7 +85,6 @@ class borrowercontroller extends Controller
 
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
@@ -131,7 +128,6 @@ class borrowercontroller extends Controller
             }
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
@@ -148,7 +144,6 @@ class borrowercontroller extends Controller
             return view('borrower.create',['name' => $name]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     }
@@ -170,7 +165,6 @@ class borrowercontroller extends Controller
         }
 
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     }
@@ -191,7 +185,6 @@ class borrowercontroller extends Controller
                 return view('borrower',['name' => $name, 'borroweractive' => $searchborrower,'borrowernotactive' => $borrowernotactive,'page' => 0]);
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
         } catch (\Exception $e) {
@@ -216,7 +209,6 @@ class borrowercontroller extends Controller
                 return view('borrower',['name' => $name, 'borroweractive' => $borroweractive,'borrowernotactive' => $searchborrowernotactive, 'page' => 1]);
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
         } catch (\Exception $e) {

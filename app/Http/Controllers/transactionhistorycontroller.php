@@ -26,9 +26,7 @@ class transactionhistorycontroller extends Controller
             }
 
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $history = DB::table('historys')->select('*')->paginate(6);
-            return view('transactionhistory',['message' => 'Searched Successfully!','name' => $name, 'historys' => $history]);
+            return redirect()->route('transactionhistory')->with('message', 'Error Occured.');
         }
     }
 

@@ -35,7 +35,6 @@ class adminacccontroller extends Controller
             
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
 
@@ -53,7 +52,6 @@ class adminacccontroller extends Controller
             return view('accchangepass',['name' => $name]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {

@@ -98,9 +98,11 @@
   </tr>
   @endforeach
   @else
+  <div style="margin-top: 150px; font-family: Arial; font-weight: bold;">
                 <tr>
-                    <td colspan="10">There are no data.</td>
+                    <td classcolspan="10">There are no data.</td>
                 </tr>
+        </div>
   @endif
 </table>
 {{ $borroweractive->links('vendor\pagination\default') }}

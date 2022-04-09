@@ -48,7 +48,6 @@ class bookcontroller extends Controller
             return redirect()->route('books')->with('message','Successfully Created');
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
 
@@ -87,7 +86,6 @@ class bookcontroller extends Controller
         return redirect()->route('books')->with('message','Successfully Edited');
     }
     else {
-        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
     
@@ -141,7 +139,6 @@ class bookcontroller extends Controller
         }
     }
     else {
-        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
 }  catch (\Exception $e) {
@@ -159,7 +156,6 @@ class bookcontroller extends Controller
         return view('book.create',['name' => $name]);
     }
     else {
-        $request->session()->flush();
         return view('login',['message' => 'Error!']);
     } 
 } catch (\Exception $e) {
@@ -189,7 +185,6 @@ class bookcontroller extends Controller
         }
 
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
 
@@ -212,7 +207,6 @@ class bookcontroller extends Controller
             return view('books',['name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -238,7 +232,6 @@ class bookcontroller extends Controller
             return view('books',['name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 1]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
