@@ -36,12 +36,12 @@
   <center>
 <div style="display: inline-flex;">
     <h1 class="mainname"> NOT RETURNED BOOKS </h1>
-    @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+    @if(!empty(session()->get('message')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
     </form>
 </div>
-<form action="{{ route('searchnotreturned') }}" method="post">
+<form action="{{ route('searchnotreturned') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>

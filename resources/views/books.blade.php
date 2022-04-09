@@ -46,12 +46,12 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> AVAILABLE BOOKS </h1>
       <a href="{{ route('bookcreate') }}" class="addnewbook"> CREATE NEW BOOK </a>
-      @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @if(!empty(session()->get('message')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
     </form>
   </div>
-  <form action="{{ route('searchbook') }}" method="post">
+  <form action="{{ route('searchbook') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
@@ -84,13 +84,13 @@
     <td>{{ $data->No_pages }}</td>
     <td>{{ $data->Stock }}</td>
     <td class="editbutton">
-      <form action="{{ route('bookedit',$data->Book_id)}}" method="post" class="form-hidden">
+      <form action="{{ route('bookedit',$data->Book_id)}}" method="any" class="form-hidden">
         <button>Edit</button>
         @csrf
       </form>
     </td>
     <td class="deletebutton">
-      <form action="{{ route('bookdelete', $data->Book_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('bookdelete', $data->Book_id) }}" method="any" class="form-hidden">
         <button >Delete</button>
         @csrf
       </form>
@@ -119,12 +119,12 @@
   <body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'> 
   <div style="display: inline-flex;">
     <h1 class="mainname"> ARCHIVED BOOKS </h1>
-      @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @if(!empty(session()->get('message2')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message2') }} </h2> 
       @endif
     </form>
   </div>
-  <form action="{{ route('searcharchivebook') }}" method="post">
+  <form action="{{ route('searcharchivebook') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
@@ -373,7 +373,7 @@
 }
 
 footer{
-  margin-top:10%;
+  margin-top:15%;
   background-color: #348c4c;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;

@@ -22,56 +22,55 @@ use App\Http\Controllers\adminacccontroller;
 */
 
 // Index Displays
-
-Route::get('/', [lmscontroller::class, 'login'])->name('login'); // login
-Route::get('/signup', [lmscontroller::class, 'signup'])->name('signup'); // signup
-Route::get('/dashboard', [lmscontroller::class, 'dashboard'])->name('dashboard'); // dashboard
-Route::get('/books', [lmscontroller::class, 'books'])->name('books'); // books
-Route::get('/borrower', [lmscontroller::class, 'borrower'])->name('borrower'); // borrower
-Route::get('/notreturnedbooks', [lmscontroller::class, 'notreturnedbooks'])->name('notreturnedbooks'); // notreturnedbooks
-Route::get('/borrow', [lmscontroller::class, 'borrow'])->name('borrow'); // borrow
-Route::get('/transactionhistory', [lmscontroller::class, 'transactionhistory'])->name('transactionhistory'); // transactionhistory
+Route::any('/', [lmscontroller::class, 'login'])->name('login'); // login
+Route::any('/signup', [lmscontroller::class, 'signup'])->name('signup'); // signup
+Route::any('/dashboard', [lmscontroller::class, 'dashboard'])->name('dashboard'); // dashboard
+Route::any('/books', [lmscontroller::class, 'books'])->name('books'); // books
+Route::any('/borrower', [lmscontroller::class, 'borrower'])->name('borrower'); // borrower
+Route::any('/notreturnedbooks', [lmscontroller::class, 'notreturnedbooks'])->name('notreturnedbooks'); // notreturnedbooks
+Route::any('/borrow', [lmscontroller::class, 'borrow'])->name('borrow'); // borrow
+Route::any('/transactionhistory', [lmscontroller::class, 'transactionhistory'])->name('transactionhistory'); // transactionhistory
 
 // Admin Acc Login-Logout-Signup
-Route::get('/loginvalidation', [lmscontroller::class, 'loginvalidation'])->name('loginvalidation'); // loginvalidation
-Route::get('/signupvalidation', [lmscontroller::class, 'signupvalidation'])->name('signupvalidation'); // signupvalidation
-Route::get('/logout', [lmscontroller::class, 'logout'])->name('logout'); // logout
+Route::any('/loginvalidation', [lmscontroller::class, 'loginvalidation'])->name('loginvalidation'); // loginvalidation
+Route::any('/signupvalidation', [lmscontroller::class, 'signupvalidation'])->name('signupvalidation'); // signupvalidation
+Route::any('/logout', [lmscontroller::class, 'logout'])->name('logout'); // logout
 
 // Books CRUD
-Route::get('/book/create', [bookcontroller::class, 'createdisplay'])->name('bookcreate'); // bookcreate
-Route::post('/book/edit/{Book_id}', [bookcontroller::class, 'editdisplay'])->name('bookedit'); // bookedit
-Route::post('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('bookdelete'); // bookdelete
-Route::post('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
-Route::post('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
-Route::post('/searchbook', [bookcontroller::class, 'searchbook'])->name('searchbook'); // searchbook
-Route::post('/searcharchivebook', [bookcontroller::class, 'searcharchivebook'])->name('searcharchivebook'); // searcharchivebook
+Route::any('/book/create', [bookcontroller::class, 'createdisplay'])->name('bookcreate'); // bookcreate
+Route::any('/book/edit/{Book_id}', [bookcontroller::class, 'editdisplay'])->name('bookedit'); // bookedit
+Route::any('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('bookdelete'); // bookdelete
+Route::any('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
+Route::any('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
+Route::any('/searchbook', [bookcontroller::class, 'searchbook'])->name('searchbook'); // searchbook
+Route::any('/searcharchivebook', [bookcontroller::class, 'searcharchivebook'])->name('searcharchivebook'); // searcharchivebook
 
 // Borrower CRUD
-Route::get('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
-Route::post('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
-Route::post('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
-Route::post('/borrowernotactive/{Borrower_id}', [borrowercontroller::class, 'borrowernotactive'])->name('borrowernotactive'); // borrowernotactive
-Route::post('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
-Route::post('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
-Route::post('/searchborroweractive', [borrowercontroller::class, 'searchborroweractive'])->name('searchborroweractive'); // searchborroweractive
-Route::post('/searchborrowernotactive', [borrowercontroller::class, 'searchborrowernotactive'])->name('searchborrowernotactive'); // searchborrowernotactive
+Route::any('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
+Route::any('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
+Route::any('/borrower/{Borrower_id}', [borrowercontroller::class, 'delete'])->name('borrowerdelete'); // borrowerdelete
+Route::any('/borrowernotactive/{Borrower_id}', [borrowercontroller::class, 'borrowernotactive'])->name('borrowernotactive'); // borrowernotactive
+Route::any('/borrowercreateprocess', [borrowercontroller::class, 'create'])->name('borrowercreateprocess'); // borrowercreateprocess
+Route::any('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
+Route::any('/searchborroweractive', [borrowercontroller::class, 'searchborroweractive'])->name('searchborroweractive'); // searchborroweractive
+Route::any('/searchborrowernotactive', [borrowercontroller::class, 'searchborrowernotactive'])->name('searchborrowernotactive'); // searchborrowernotactive
 
 // ISSUE CRUD
-Route::post('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue
-Route::post('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
-Route::get('/borrowissueprocess', [borrowcontroller::class, 'issuedisplay'])->name('issuedisplay'); // issuedisplay
-Route::post('/searchissue', [borrowcontroller::class, 'searchissue'])->name('searchissue'); // searchissue
+Route::any('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue
+Route::any('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
+Route::any('/borrowissueprocess', [borrowcontroller::class, 'issuedisplay'])->name('issuedisplay'); // issuedisplay
+Route::any('/searchissue', [borrowcontroller::class, 'searchissue'])->name('searchissue'); // searchissue
 
 // NOT RETURNED DELETE AND SEARCH
-Route::post('/notreturnedbook/{Transac_id}', [notreturnedbookscontroller::class, 'notreturnedbook'])->name('notreturnedbook'); // returned
-Route::post('/searchnotreturned', [notreturnedbookscontroller::class, 'searchnotreturned'])->name('searchnotreturned'); // searchnotreturned
+Route::any('/notreturnedbook/{Transac_id}', [notreturnedbookscontroller::class, 'notreturnedbook'])->name('notreturnedbook'); // returned
+Route::any('/searchnotreturned', [notreturnedbookscontroller::class, 'searchnotreturned'])->name('searchnotreturned'); // searchnotreturned
 
 // TRANSACTION SEARCH
-Route::post('/searchhistory', [transactionhistorycontroller::class, 'searchhistory'])->name('searchhistory'); // searchhistory
+Route::any('/searchhistory', [transactionhistorycontroller::class, 'searchhistory'])->name('searchhistory'); // searchhistory
 
 //ADMIN ACC CHANGE PASSWORD
-Route::post('/changepassadmin', [adminacccontroller::class, 'changepassadmin'])->name('changepassadmin'); // changepassadmin
-Route::get('/displaychangepass', [adminacccontroller::class, 'displaychangepass'])->name('displaychangepass'); // displaychangepass
+Route::any('/changepassadmin', [adminacccontroller::class, 'changepassadmin'])->name('changepassadmin'); // changepassadmin
+Route::any('/displaychangepass', [adminacccontroller::class, 'displaychangepass'])->name('displaychangepass'); // displaychangepass
 
 
 

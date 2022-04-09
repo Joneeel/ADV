@@ -37,12 +37,12 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> ISSUE BOOK BORROW </h1>
       <a href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
-      @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @if(!empty(session()->get('message')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
     </form>
   </div>
-  <form action="{{ route('searchissue') }}" method="post">
+  <form action="{{ route('searchissue') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
@@ -76,7 +76,7 @@
     <td>{{ $data->created_at }}</td>
     <td>{{ $data->updated_at }}</td>
     <td class="deletebutton">
-      <form action="{{ route('returned', $data->Transac_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('returned', $data->Transac_id) }}" method="any" class="form-hidden">
         <button >Returned</button>
         @csrf
       </form>

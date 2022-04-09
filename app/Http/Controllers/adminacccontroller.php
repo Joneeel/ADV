@@ -25,44 +25,12 @@ class adminacccontroller extends Controller
             $inputcurrentpassword = $request->input('currentpassword');
             $newpassword = $request->input('newpassword');
 
-            $acc = DB::table('adminaccs')->select('*')->get();
-            $acccount = $acc->count();
-       
-            $book = DB::table('books')->select('*')->get();
-            $bookcount = $book->count();
-       
-            $borrower = DB::table('borrowers')->select('*')->get();
-            $borrowercount = $borrower->count();
-       
-            $history = DB::table('historys')->select('*')->get();
-            $historycount = $history->count();
-       
-            $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
-            $transactionscount = $transactions->count();
-       
-            $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
-            $notreturnedcount = $notreturned->count();
-
             if($currentpassword == $inputcurrentpassword){
                 DB::table('adminaccs')->where('name',$name )->update(['password' => $newpassword]);
-                return view('dashboard',['message' => 'Change Password Successfully',
-                'name' => $name,
-                'acccount' => $acccount,
-                'bookcount' => $bookcount,
-                'borrowercount' => $borrowercount, 
-                'historycount' => $historycount,
-                'transactioncount' => $transactionscount,
-                'notreturnedcount' => $notreturnedcount ]);
+                return redirect()->route('dashboard')->with('message', 'Change Password Successfully');
             }
             else{
-                return view('dashboard',['message' => 'Change Password Failed, Please Try Again Later!',
-                'name' => $name,
-                'acccount' => $acccount,
-                'bookcount' => $bookcount,
-                'borrowercount' => $borrowercount, 
-                'historycount' => $historycount,
-                'transactioncount' => $transactionscount,
-                'notreturnedcount' => $notreturnedcount ]);
+                return redirect()->route('dashboard')->with('message', 'Change Password Failed, Please Try Again Later!');
             }
             
         }
@@ -73,39 +41,8 @@ class adminacccontroller extends Controller
 
     }
     catch (\Exception $e){
-        $name = session('uniname');
-
-        $inputcurrentpassword = $request->input('currentpassword');
-        $newpassword = $request->input('newpassword');
-
-        $acc = DB::table('adminaccs')->select('*')->get();
-        $acccount = $acc->count();
-   
-        $book = DB::table('books')->select('*')->get();
-        $bookcount = $book->count();
-   
-        $borrower = DB::table('borrowers')->select('*')->get();
-        $borrowercount = $borrower->count();
-   
-        $history = DB::table('historys')->select('*')->get();
-        $historycount = $history->count();
-   
-        $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
-        $transactionscount = $transactions->count();
-   
-        $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
-        $notreturnedcount = $notreturned->count();
-
-        return view('dashboard',['message' => 'Error Occured! Please Try Again Later...',
-        'name' => $name,
-        'acccount' => $acccount,
-        'bookcount' => $bookcount,
-        'borrowercount' => $borrowercount, 
-        'historycount' => $historycount,
-        'transactioncount' => $transactionscount,
-        'notreturnedcount' => $notreturnedcount ]);
+        return redirect()->route('dashboard')->with('message', 'Error Occured! Please Try Again Later...');
     }
-
 
     }
 

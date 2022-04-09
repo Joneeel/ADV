@@ -43,7 +43,7 @@
       @endif
     </form>
 </div>
-    <form action="{{ route('searchhistory') }}" method="post">
+    <form action="{{ route('searchhistory') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>

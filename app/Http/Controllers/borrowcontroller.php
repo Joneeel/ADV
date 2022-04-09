@@ -45,23 +45,19 @@ class borrowcontroller extends Controller
                     "updated_at" => \Carbon\Carbon::now());
     
                 DB::table('transactions')->insert($data);
-                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
                 $newstock = $Stock - 1;
                 DB::table('books')->where('Book_id', $Book_id)->update(['Stock' => $newstock]);
-                return view('borrow',['message' => 'Successfully Issued.','name' => $name,'issuebookborrow' => $transactions]);
+
+                return redirect()->route('borrow')->with('message', 'Successfully Issued.');
             }
             else {
-                $name = session('uniname');
-                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-                return view('borrow',['message' => 'This book is out of stock','name' => $name,'issuebookborrow' => $transactions]);
+                return redirect()->route('borrow')->with('message', 'This book is out of stock');
             }
 
             }
 
             else{
-                $name = session('uniname');
-                $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-                return view('borrow',['message' => 'This user had already the book','name' => $name,'issuebookborrow' => $transactions]);
+                return redirect()->route('borrow')->with('message', 'This user had already the book');
             } 
 
             }
@@ -73,9 +69,7 @@ class borrowcontroller extends Controller
             } 
 
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-            return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
+            return redirect()->route('borrow')->with('message', 'Error Occured! Please Try Again Later...');
         }
 
     }
@@ -107,9 +101,7 @@ class borrowcontroller extends Controller
 
         DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
 
-        $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-
-        return view('borrow',['message' => 'Book Successfully Returned','name' => $name,'issuebookborrow' => $transactions]);
+        return redirect()->route('borrow')->with('message', 'Book Successfully Returned');
     }
     else {
         $request->session()->flush();
@@ -117,9 +109,7 @@ class borrowcontroller extends Controller
     } 
 
 } catch (\Exception $e) {
-    $name = session('uniname');
-    $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->paginate(6); // not due
-    return view('borrow',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'issuebookborrow' => $transactions]);
+    return redirect()->route('borrow')->with('message', 'Error Occured! Please Try Again Later...');
 }
 
 

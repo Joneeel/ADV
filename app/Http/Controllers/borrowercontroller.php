@@ -32,21 +32,15 @@ class borrowercontroller extends Controller
                 "resetmonth" => $now->month);
 
             DB::table('borrowers')->insert($data);
-            
-            $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-            $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
     
-            return view('borrower',['message' => 'Successfully Created!','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+            return redirect()->route('borrower')->with('message', 'Successfully Created!');
             }
             else {
                 $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             } 
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-            $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-            return view('borrower',['message' => 'Error Occured.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+            return redirect()->route('borrower')->with('message', 'Error Occured.');
         }
     }
 
@@ -69,20 +63,14 @@ class borrowercontroller extends Controller
             $address = $request->input('address');
 
             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['fullname' => $fullname ,'gender' => $gender,'address' => $address,'vio_count' => $vio,'updated_at' => \Carbon\Carbon::now()]);
-            $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-            $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-    
-            return view('borrower',['message' => 'Successfully Edited!','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+            return redirect()->route('borrower')->with('message', 'Successfully Edited!');
         }
         else {
             $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
-        $name = session('uniname');
-        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-        $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-        return view('borrower',['message' => 'Error Occured.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+        return redirect()->route('borrower')->with('message', 'Error Occured.');
     }
     }
 
@@ -95,23 +83,15 @@ class borrowercontroller extends Controller
         if(!$name == null){
 
             DB::table('borrowers')->where('Borrower_id', $Borrower_id)->delete();
+            return redirect()->route('borrower')->with('message2', 'Successfully Deleted.')->with('page', 1);
 
-            $name = session('uniname');
-
-            $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-            $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-            
-            return view('borrower',['message' => 'Successfully Deleted.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 1]);
         }
         else {
             $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
-        $name = session('uniname');
-        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-        $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-        return view('borrower',['message' => 'Error Occured.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 1]);
+        return redirect()->route('borrower')->with('message2', 'Error Occured.')->with('page', 1);
     }
 
     }
@@ -139,43 +119,23 @@ class borrowercontroller extends Controller
                     DB::table('historys')->where('Borrower_id', $Borrower_id)->delete();
                     DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['status' => 'NotActive']);
         
-                    $name = session('uniname');
         
-                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-                    
-                    return view('borrower',['message' => 'Successfully Archived.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
-                
+                    return redirect()->route('borrower')->with('message', 'Successfully Archived.');
                 }
                 else{
-                    $name = session('uniname');
-    
-                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-                    
-                    return view('borrower',['message' => 'This Still Have Violations!.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+                    return redirect()->route('borrower')->with('message', 'This Still Have Violations!');
                 }
             }
             else {
-
-                $name = session('uniname');
-    
-                $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-                $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-                
-                return view('borrower',['message' => 'This User have not returned book!.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+                return redirect()->route('borrower')->with('message', 'This User have not returned book!.');
             }
-
         }
         else {
             $request->session()->flush();
             return view('login',['message' => 'Error!']);
         } 
     } catch (\Exception $e) {
-        $name = session('uniname');
-        $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-        $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-        return view('borrower',['message' => 'Error Occured.','name' => $name,'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+        return redirect()->route('borrower')->with('message', 'Error Occured.');
     }
 
     }
@@ -216,7 +176,7 @@ class borrowercontroller extends Controller
     }
 
     public function searchborroweractive(Request $request){
-
+        try {
 
             $this->validate($request, [
                 'searchborroweractive' => 'required',
@@ -228,12 +188,15 @@ class borrowercontroller extends Controller
             $searchborrower = DB::table('borrowers')->select('*')->where('fullname','like', '%'.$searchborroweractive.'%')->where('Status', '=' , 'Active')->paginate(6);
             $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
             if(!$name == null){
-                return view('borrower',['message' => 'Searched Successfully!','name' => $name, 'borroweractive' => $searchborrower,'borrowernotactive' => $borrowernotactive,'page' => 0]);
+                return view('borrower',['name' => $name, 'borroweractive' => $searchborrower,'borrowernotactive' => $borrowernotactive,'page' => 0]);
             }
             else {
                 $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message', 'Error Occured.');
+        }
 
     }
 
@@ -250,17 +213,14 @@ class borrowercontroller extends Controller
             $searchborrowernotactive = DB::table('borrowers')->select('*')->where('fullname','like', '%'.$searchborrowernotactive.'%')->where('Status', '=' , 'NotActive')->get();
             $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
             if(!$name == null){
-                return view('borrower',['message' => 'Searched Successfully!','name' => $name, 'borroweractive' => $borroweractive,'borrowernotactive' => $searchborrowernotactive, 'page' => 1]);
+                return view('borrower',['name' => $name, 'borroweractive' => $borroweractive,'borrowernotactive' => $searchborrowernotactive, 'page' => 1]);
             }
             else {
                 $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
         } catch (\Exception $e) {
-            $name = session('uniname');
-            $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->paginate(6);
-            $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
-            return view('borrower',['message' => 'Error Occured in Accessing Book Page! Please Try Again Later...','name' => $name, 'borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive, 'page' => 1]);
+            return redirect()->route('borrower')->with('message', 'Error Occured.');
         }
     }
 

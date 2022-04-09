@@ -38,9 +38,7 @@ class notreturnedbookscontroller extends Controller
         
                 DB::table('transactions')->where('Transac_id', $Transac_id)->delete();
         
-                $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->paginate(6); // due
-        
-                return view('notreturnedbooks',['message' => 'Book Successfully Returned','name' => $name,'notreturned' => $notreturned]);
+                return redirect()->route('notreturnedbooks')->with('message','Book Successfully Returned');
             }
             else {
                 $request->session()->flush();
@@ -62,7 +60,7 @@ class notreturnedbookscontroller extends Controller
             $name = session('uniname');
             $searchnotreturned = DB::table('transactions')->select('*')->where('Fullname','like', '%'.$searchnotreturned.'%')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->paginate(6); // due
             if(!$name == null){
-                return view('notreturnedbooks',['message' => 'Searched Successfully!','name' => $name, 'notreturned' => $searchnotreturned]);
+                return view('notreturnedbooks',['name' => $name, 'notreturned' => $searchnotreturned]);
             }
             else {
                 return view('login',['message' => 'Error!']);
@@ -70,7 +68,7 @@ class notreturnedbookscontroller extends Controller
         } catch (\Exception $e) {
             $name = session('uniname');
             $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->paginate(6); // due
-            return view('notreturnedbooks',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'notreturned' => $notreturned]);
+            return view('notreturnedbooks',['name' => $name,'notreturned' => $notreturned]);
         }
     }
 

@@ -35,8 +35,8 @@
 <body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba' class="body">  
   <center>
     <h1 class="mainname"> DASHBOARD </h1>
-    @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+    @if(!empty(session()->get('message')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
       <div class="flex-container">
         <div class="card">

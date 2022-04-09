@@ -19,7 +19,7 @@
       <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_right" />
     </svg>
 </div>
-        <form action="{{ route('loginvalidation') }}" method="get">
+        <form action="{{ route('loginvalidation') }}" method="any">
             @csrf 
             <h1 class="title"> <img class="logo" src="{{ asset('Image/logo.png') }}"/> LIBRARY MANAGEMENT SYSTEM </h1>
             <div>

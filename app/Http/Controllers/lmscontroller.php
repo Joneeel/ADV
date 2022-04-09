@@ -20,7 +20,6 @@ class lmscontroller extends Controller
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             else {
-                $request->session()->flush();
                 return view('login',['message' => 'Error!']);
             }
         } catch (\Exception $e) {
@@ -72,7 +71,6 @@ class lmscontroller extends Controller
             'name' => $name]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -91,7 +89,6 @@ class lmscontroller extends Controller
             return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -108,7 +105,6 @@ class lmscontroller extends Controller
             return view('notreturnedbooks',['message' => '','name' => $name, 'notreturned' => $notreturned]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -125,7 +121,6 @@ class lmscontroller extends Controller
             return view('borrow',['message' => '','name' => $name, 'issuebookborrow' => $transactions]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -142,7 +137,6 @@ class lmscontroller extends Controller
             return view('transactionhistory',['message' => '','name' => $name , 'historys' => $historys]);
         }
         else {
-            $request->session()->flush();
             return view('login',['message' => 'Error!']);
         }
     } catch (\Exception $e) {
@@ -213,6 +207,7 @@ class lmscontroller extends Controller
      $request->session()->put('uniname', $name);
 
         if (!$usercount == 0) {
+
             return view('dashboard',
             ['acccount' => $acccount,
             'bookcount' => $bookcount,

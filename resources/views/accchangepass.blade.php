@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <div class="offset-md-3 col-md-6">
-                <form class="yourform" action="{{ route('changepassadmin')}}" method="post" autocomplete="off">
+                <form class="yourform" action="{{ route('changepassadmin')}}" method="any" autocomplete="off">
                     @csrf
                     <div>
                         <label>Current Password: </label>

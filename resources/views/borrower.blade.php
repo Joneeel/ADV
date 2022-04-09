@@ -47,11 +47,11 @@
   <div style="display: inline-flex;">
     <h1 class="mainname"> ACTIVE BORROWERS </h1>
       <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
-      @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @if(!empty(session()->get('message')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
   </div>
-  <form action="{{ route('searchborroweractive') }}" method="post">
+  <form action="{{ route('searchborroweractive') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
@@ -84,13 +84,13 @@
     <td>{{ $data->created_at }}</td>
     <td>{{ $data->updated_at }}</td>
     <td class="editbutton">
-      <form action="{{ route('borroweredit', $data->Borrower_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('borroweredit', $data->Borrower_id) }}" method="any" class="form-hidden">
         <button>Edit</button>
         @csrf
       </form>
     </td>
     <td class="deletebutton">
-      <form action="{{ route('borrowernotactive', $data->Borrower_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('borrowernotactive', $data->Borrower_id) }}" method="any" class="form-hidden">
         <button >N.Active</button>
         @csrf
       </form>
@@ -119,11 +119,11 @@
 <body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'>  
   <div style="display: inline-flex;">
     <h1 class="mainname"> ARCHIVED BORROWERS </h1>
-      @if(!empty($message))
-      <h2 class='logged2'> Message: <br> {{ $message }} </h2> 
+      @if(!empty(session()->get('message2')))
+      <h2 class='logged2'> Message: <br> {{ session()->get('message2') }} </h2> 
       @endif
   </div>
-  <form action="{{ route('searchborrowernotactive') }}" method="post">
+  <form action="{{ route('searchborrowernotactive') }}" method="any">
     @csrf 
       <div class="searcholder">
         <label class='search'> Search: </label>
@@ -154,7 +154,7 @@
     <td>{{ $data2->created_at }}</td>
     <td>{{ $data2->updated_at }}</td>
     <td class="deletebutton">
-      <form action="{{ route('borrowerdelete', $data2->Borrower_id) }}" method="post" class="form-hidden">
+      <form action="{{ route('borrowerdelete', $data2->Borrower_id) }}" method="any" class="form-hidden">
         <button >Delete</button>
         @csrf
       </form>
@@ -173,7 +173,12 @@
 
 <script>
 
+
+  @if(empty($page) && session()->get('page') == 1)
+  document.getElementsByClassName('tablinks')[{{ session()->get('page') }}].click();
+  @else
   document.getElementsByClassName('tablinks')[{{ $page }}].click();
+  @endif
 
   function openTab(evt, tab) {
   // Declare all variables

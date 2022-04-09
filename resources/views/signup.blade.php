@@ -19,7 +19,7 @@
       <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_right" />
     </svg>
 </div>
-        <form class="" action="{{ route('signupvalidation') }}" method="get">
+        <form class="" action="{{ route('signupvalidation') }}" method="any">
 
             @csrf 
             <div style="display: inline-flex; margin-left: -5%; ">
