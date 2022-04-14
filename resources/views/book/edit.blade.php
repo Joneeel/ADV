@@ -12,7 +12,7 @@
 
 <div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
-      <a style="margin-right: 25%; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+      <a style="margin-right: 200px; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
       <button class="dropbtn">👤 Account Logged: {{ $name }}</button>
       <div class="dropdown-content">
@@ -174,7 +174,7 @@ $("#typeid").change(function() {
 .dropbtn {
    background-color: #efb79d;
    padding: 10px;
-   margin-top: -7px;
+   margin-top: -5px;
    border-radius: 5px 5px 0px 0px;
    font-family: 'Arial';
    font-weight: bold;
