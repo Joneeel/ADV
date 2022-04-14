@@ -12,7 +12,7 @@
 
     <div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
-      <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+      <a style="margin-right: 25%; text-decoration: none; text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
       <button class="dropbtn">Account Logged: {{ $name }}</button>
       <div class="dropdown-content">
@@ -32,7 +32,7 @@
     </ul>
 </nav>
 </center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba' class="body">  
+<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459' >  
   <center>
     <h1 class="mainname"> DASHBOARD </h1>
     @if(!empty(session()->get('message')))
@@ -41,30 +41,30 @@
       <div class="flex-container">
         <div class="card">
         <h1> No. of <br> Admin Accounts </h1>
-        <h1> {{ $acccount }} </h1>
+        <h1> x{{ $acccount }} </h1>
         </div>
         <div class="card">
         <h1> No. of <br> Available Books </h1>
-        <h1> {{ $bookcount }} </h1>
+        <h1> x{{ $bookcount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Active <br> Borrower Accounts </h1>
-        <h1> {{ $borrowercount }} </h1>
+        <h1> No. of Borrower <br> Active Accounts </h1>
+        <h1> x{{ $borrowercount }} </h1>
         </div>
       </div> 
       
       <div class="flex-container">
         <div class="card">
         <h1> No. of <br> All Transactions </h1>
-        <h1> {{ $historycount }} </h1>
+        <h1> x{{ $historycount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of <br> Borrowed Books </h1>
-        <h1> {{ $transactioncount }} </h1>
+        <h1> No. of Books <br> Borrowed </h1>
+        <h1> x{{ $transactioncount }} </h1>
         </div>
         <div class="card">
-        <h1> No. of Not <br> Returned Books </h1>
-        <h1> {{ $notreturnedcount }} </h1>
+        <h1> No. of Over-Due <br> Returned Books </h1>
+        <h1> x{{ $notreturnedcount }} </h1>
         </div>
       </div>
 <footer>
@@ -78,37 +78,39 @@
 
   /* Style The Dropdown Button */
 .dropbtn {
-   background-color: #70f72d;
+   background-color: #efb79d;
    padding: 10px;
    margin-top: -7px;
-   border-radius: 10px 10px 0px 0px;
-   border: 2px solid black;
+   border-radius: 5px 5px 0px 0px;
    font-family: 'Arial';
    font-weight: bold;
    color: black;
-   font-size: 20px;
+   font-size: 15px;
+   transition: 0.3s;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
+  transition: 0.3s;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #70f72d;
-  min-width: 235px;
+  background-color: #efb79d;
+  min-width: 185px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   font-family: 'Arial';
    font-weight: bold;
    color: black;
-   font-size: 16px;
-   border-radius: 0px 0px 10px 10px;
-   border: 2px solid black;
+   font-size: 15px;
+   border-radius: 0px 0px 5px 5px;
+   transition: 0.3s;
 }
 
 /* Links inside the dropdown */
@@ -117,12 +119,13 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  transition: 0.3s;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: red;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 5px 5px;
   color:white;
   transition: 0.3s;
 }
@@ -135,7 +138,7 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #cf7c5c;
   transition: 0.3s;
 }
 
@@ -148,9 +151,8 @@
   right: 65%;
   top: 195px;
   padding: 5px;
-  border-radius: 10px;
-  border: 2px solid black;
-  background-color: #70f72d;
+  border-radius: 5px;
+  background-color: #f4645c;
 }
 
 .logo{
@@ -162,9 +164,10 @@
 
 footer{
   margin-top:12%;
-  background-color: #348c4c;
+  background-color: #ceb396;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 center{
@@ -176,6 +179,7 @@ footer > p{
   font-weight: bold;
   color: black;
   padding-bottom:5px;
+  
 }
 
 footer > a{
@@ -183,6 +187,7 @@ footer > a{
   font-weight: bold;
   color: black;
   padding-top:5px;
+  text-decoration: none;
 }
 
 
@@ -192,6 +197,7 @@ footer > a{
   color: black;
   margin-top: 50px;
   font-size: 40px;
+  text-shadow: 2px 2px #f9eebd;
 }
 
 .header{
@@ -217,7 +223,7 @@ a.nav:hover{
   font-family: 'Arial';
   font-weight: bold;
   color: white;
-  background-color:black;
+  background-color:#343434;
   transition: 0.3s;
 }
 
@@ -243,10 +249,10 @@ a.navlogout:hover{
 }
 
 ul.nav{
-  background-color: #70f72d;
-  padding: 15px;
-  border-radius: 10px;
-  border: 2px solid black;
+  background-color: #edd8c0;
+  padding: 18px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 a.navbar-brand{
@@ -264,7 +270,7 @@ div.navbar-header{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
-  text-shadow: 2px 2px gray;
+  text-shadow: 0.5px 0.5px #efb79d;
 }
 
 .flex-container {
@@ -272,12 +278,13 @@ div.navbar-header{
 }
 
 .flex-container > div {
-  background-color:#328f49;
+  background-color: #d4dc64;
   margin: 10px;
   padding: 20px;
   font-size: 12px;
-  border-radius: 10px;
-  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  
 }
 
 div.card {

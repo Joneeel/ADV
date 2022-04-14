@@ -216,6 +216,233 @@ class borrowercontroller extends Controller
         }
     }
 
+
+    public function borroweridsort(Request $request){
+        try{
+            $sortstatus1borrower = session('sortstatus1borrower');
+            error_log($sortstatus1borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus1borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('Borrower_id', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus1borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus1borrower == 'DESC' || $sortstatus1borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('Borrower_id', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus1borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+
+    public function fullnamesort(Request $request){
+        try{
+            $sortstatus2borrower = session('sortstatus2borrower');
+            error_log($sortstatus2borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus2borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('fullname', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus2borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus2borrower == 'DESC' || $sortstatus2borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('fullname', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus2borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function gendersort(Request $request){
+        try{
+            $sortstatus3borrower = session('sortstatus3borrower');
+            error_log($sortstatus3borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus3borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('gender', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus3borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus3borrower == 'DESC' || $sortstatus3borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('gender', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus3borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function statussort(Request $request){
+        try{
+            $sortstatus4borrower = session('sortstatus4borrower');
+            error_log($sortstatus4borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus4borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('status', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus4borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus4borrower == 'DESC' || $sortstatus4borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('status', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus4borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function addresssort(Request $request){
+        try{
+            $sortstatus5borrower = session('sortstatus5borrower');
+            error_log($sortstatus5borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus5borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('address', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus5borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus5borrower == 'DESC' || $sortstatus5borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('address', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus5borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function viocountsort(Request $request){
+        try{
+            $sortstatus6borrower = session('sortstatus6borrower');
+            error_log($sortstatus6borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus6borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('vio_count', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus6borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus6borrower == 'DESC' || $sortstatus6borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('vio_count', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus6borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function createdatsort(Request $request){
+        try{
+            $sortstatus7borrower = session('sortstatus7borrower');
+            error_log($sortstatus7borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus7borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('created_at', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus7borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus7borrower == 'DESC' || $sortstatus7borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('created_at', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus7borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+    public function updatesort(Request $request){
+        try{
+            $sortstatus8borrower = session('sortstatus8borrower');
+            error_log($sortstatus8borrower);
+            $name = session('uniname');
+            if(!$name == null){
+                if($sortstatus8borrower == 'ASC'){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('updated_at', 'ASC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'DESC';
+                    $request->session()->put('sortstatus8borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+                if($sortstatus8borrower == 'DESC' || $sortstatus8borrower == null ){
+                    $borroweractive = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->orderBy('updated_at', 'DESC')->paginate(6);
+                    $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+                    $value = 'ASC';
+                    $request->session()->put('sortstatus8borrower', $value);
+                     return view('borrower',['message' => '','borroweractive' => $borroweractive,'borrowernotactive' => $borrowernotactive,'name' => $name,'page' => 0]);
+                }
+            }
+            else {
+                return view('login',['message' => 'Error!']);
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
+        }
+    }
+
 }
 
 

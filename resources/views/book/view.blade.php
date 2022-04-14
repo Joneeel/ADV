@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISSUE NEW BOOK (LMS) </title>
+    <title>EDITS BOOK'S INFORMATION (LMS) </title>
 </head>
 <center>
 <nav class="navbar navbar-inverse">
@@ -33,41 +33,50 @@
 </nav>
 </center>
   <center>
-<body style='background-color: #fd9459'>  
+<body style='background-color: #fd9459; margin-bottom: 120px;' >  
 <div id="admin-content">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="mainname">NEW ISSUED BOOK</h2>
+                <h2 class="mainname">BOOK'S INFORMATION</h2>
             </div>
         </div>
         <div class="row">
             <div class="offset-md-3 col-md-6">
-                <form class="yourform" action="{{ route('issue') }}" method="any" autocomplete="off">
+                <form class="yourform" action="{{ route('bookeditprocess')}}" method="any" autocomplete="off">
                     @csrf
                     <div>
-                        <label>Borrower's Name: </label>
-                        <select class="inputs" name="borrower_id" required>
-                                <option value="">Select Name</option>
-                                @foreach ($borrower as $borrowers)
-                                    <option value='{{ $borrowers->Borrower_id }}'>{{ $borrowers->fullname }}</option>
-                                @endforeach
-                        </select>
+                        <label>Book_id: </label>
+                        <input type="text" class="inputs" name="Book_id" value="{{ $Book_id }}" readonly>
                     </div>
                     <div>
-                        <label>Book's Name: </label>
-                        <select class="inputs" name="book_id" required>
-                                <option value="">Select Book</option>
-                                @foreach ($books as $book)
-                                    <option value='{{ $book->Book_id }}'>{{ $book->Title }}</option>
-                                @endforeach
-                        </select>
+                        <label>Title: </label>
+                        <input type="text" class="inputs" name="Title" value="{{ $Title }}" readonly>
                     </div>
                     <div>
-                        <label>Due Date: </label>
-                        <input type="date" id="datePicker" class="inputs" name="days" min="<?php echo date("Y-m-d",strtotime("+1 day")); ?>" required>
+                        <label>Author: </label>
+                        <input type="text" class="inputs" name="Author" value="{{ $Author }}" readonly>
                     </div>
-                   <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create Issue" required>
+                    <div>
+                        <label>Type: </label>
+                        <input type="text" class="inputs" name="Copyright" value="{{ $Type }}" readonly>
+                    </div>
+                    <div>
+                        <label>Category: </label>
+                        <input type="text" class="inputs" name="Copyright" value="{{ $Category }}" readonly>
+                    </div>
+                    <div>
+                        <label>Copyright: </label>
+                        <input type="text" class="inputs" name="Copyright" value="{{ $Copyright }}" readonly>
+                    </div>
+                    <div>
+                        <label>No_Pages: </label>
+                        <input type="number" class="inputs" name="No_Pages" value="{{ $No_pages }}" readonly>
+                    </div>
+                    <div>
+                        <label>No_Stock: </label>
+                        <input type="number" class="inputs" name="No_Stock" value="{{ $Stock }}" readonly>
+                    </div>
                 </form>
             </div>
         </div>
@@ -77,13 +86,8 @@
 </center>
 </html>
 
-<script>
-      var date = new Date(); 
-      date.setDate(date.getDate() + 5);
-      document.getElementById('datePicker').valueAsDate = date;
-</script>
-
 <style>
+
 
 /* Style The Dropdown Button */
 .dropbtn {
@@ -224,7 +228,6 @@ a.nav{
   text-decoration: none;
 }
 
-
 a.nav:hover{
   padding:10px;
   font-size:18px;
@@ -263,6 +266,7 @@ ul.nav{
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
+
 
 a.navbar-brand{
   font-size:35px;

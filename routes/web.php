@@ -39,11 +39,23 @@ Route::any('/logout', [lmscontroller::class, 'logout'])->name('logout'); // logo
 // Books CRUD
 Route::any('/book/create', [bookcontroller::class, 'createdisplay'])->name('bookcreate'); // bookcreate
 Route::any('/book/edit/{Book_id}', [bookcontroller::class, 'editdisplay'])->name('bookedit'); // bookedit
+Route::any('/book/view/{Book_id}', [bookcontroller::class, 'bookview'])->name('bookview'); // bookview
 Route::any('/bookdelete/{Book_id}', [bookcontroller::class, 'delete'])->name('bookdelete'); // bookdelete
 Route::any('/bookcreateprocess', [bookcontroller::class, 'create'])->name('bookcreateprocess'); // bookcreateprocess
 Route::any('/bookeditprocess', [bookcontroller::class, 'edit'])->name('bookeditprocess'); // bookeditprocess
 Route::any('/searchbook', [bookcontroller::class, 'searchbook'])->name('searchbook'); // searchbook
+Route::any('/searchbookcategory', [bookcontroller::class, 'searchbookcategory'])->name('searchbookcategory'); // searchbookcategory
 Route::any('/searcharchivebook', [bookcontroller::class, 'searcharchivebook'])->name('searcharchivebook'); // searcharchivebook
+
+// Books Sorter
+Route::any('/sortidbook', [bookcontroller::class, 'bookidsort'])->name('bookidsort'); // bookidsort
+Route::any('/sorttitlebook', [bookcontroller::class, 'titlesort'])->name('titlesort'); // titlesort
+Route::any('/sortauthorbook', [bookcontroller::class, 'authorsort'])->name('authorsort'); // authorsort
+Route::any('/sortcopyrightbook', [bookcontroller::class, 'copyrightsort'])->name('copyrightsort'); // copyrightsort
+Route::any('/sorttypebook', [bookcontroller::class, 'typesort'])->name('typesort'); // typesort
+Route::any('/sortcategorybook', [bookcontroller::class, 'categorysort'])->name('categorysort'); // categorysort
+Route::any('/sortnopagebook', [bookcontroller::class, 'nopagesort'])->name('nopagesort'); // nopagesort
+Route::any('/sortnostockbook', [bookcontroller::class, 'nostocksort'])->name('nostocksort'); // nostocksort
 
 // Borrower CRUD
 Route::any('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
@@ -54,6 +66,16 @@ Route::any('/borrowercreateprocess', [borrowercontroller::class, 'create'])->nam
 Route::any('/borrowereditprocess', [borrowercontroller::class, 'edit'])->name('borrowereditprocess'); // borrowereditprocess
 Route::any('/searchborroweractive', [borrowercontroller::class, 'searchborroweractive'])->name('searchborroweractive'); // searchborroweractive
 Route::any('/searchborrowernotactive', [borrowercontroller::class, 'searchborrowernotactive'])->name('searchborrowernotactive'); // searchborrowernotactive
+
+// Borrower Sorter
+Route::any('/borroweridsort', [borrowercontroller::class, 'borroweridsort'])->name('borroweridsort'); // borroweridsort
+Route::any('/borrowerfullnamesort', [borrowercontroller::class, 'fullnamesort'])->name('fullnamesort'); // fullnamesort
+Route::any('/borrowergendersort', [borrowercontroller::class, 'gendersort'])->name('gendersort'); // gendersort
+Route::any('/borrowerStatussort', [borrowercontroller::class, 'statussort'])->name('statussort'); // statussort
+Route::any('/borrowerAddressSort', [borrowercontroller::class, 'addresssort'])->name('addresssort'); // addresssort
+Route::any('/borrowerDueBooksSort', [borrowercontroller::class, 'viocountsort'])->name('viocountsort'); // viocountsort
+Route::any('/borrowerCreateSort', [borrowercontroller::class, 'createdatsort'])->name('createdatsort'); // createdatsort
+Route::any('/borrowerUpdateSort', [borrowercontroller::class, 'updatesort'])->name('updatesort'); // updatesort
 
 // ISSUE CRUD
 Route::any('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue

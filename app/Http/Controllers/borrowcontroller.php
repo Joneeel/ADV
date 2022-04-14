@@ -21,7 +21,11 @@ class borrowcontroller extends Controller
 
             $Borrower_id = $request->input('borrower_id');
             $Book_id = $request->input('book_id');
-            $days = $request->input('days');
+            $borrowdate = \Carbon\Carbon::parse($request->input('days'));
+            $borrowreturn = \Carbon\Carbon::now();
+
+            $result = $borrowreturn->diffInDays($borrowdate, false);
+            $result = $result+1;
 
             $BookTitle = DB::table('books')->select('Title')->where('Book_id', $Book_id)->pluck('Title')->first();
             $Fullname = DB::table('borrowers')->select('fullname')->where('Borrower_id', $Borrower_id)->pluck('fullname')->first();
@@ -38,7 +42,7 @@ class borrowcontroller extends Controller
                     'Book_id'=> $Book_id,
                     "Borrower_id"=> $Borrower_id,
                     "DateBorrowed"=> \Carbon\Carbon::now(),
-                    "DueDateReturned"=> \Carbon\Carbon::now()->addDays($days),
+                    "DueDateReturned"=> \Carbon\Carbon::now()->addDays($result),
                     "Fullname"=>$Fullname,
                     "BookTitle"=>$BookTitle,
                     "created_at" =>  \Carbon\Carbon::now(),

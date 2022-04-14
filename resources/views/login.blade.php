@@ -99,7 +99,7 @@ form{
 }
 
 .bg{
-  background-color: rgba(25, 184, 176, 1);
+  background-color: #fd9459;
 }
 
 .eyeright{
@@ -156,7 +156,6 @@ a{
   width: 20%;
   margin-top: 2%;
   padding: 5px;
-  border: 2px solid black;
 }
 
 .button {

@@ -15,8 +15,10 @@ class CreateHistoryTable extends Migration
     {
         Schema::create('historys', function (Blueprint $table) {
             $table->increments('History_id');
-            $table->string('Book_id');
-            $table->string('Borrower_id');
+            $table->unsignedInteger('Book_id');
+            $table->foreign('Book_id')->references('Book_id')->on('books')->onDelete('cascade');
+            $table->unsignedInteger('Borrower_id');
+            $table->foreign('Borrower_id')->references('Borrower_id')->on('borrowers')->onDelete('cascade');
             $table->string('Date_Returned');
             $table->string('Date_Borrowed');
             $table->timestamps();

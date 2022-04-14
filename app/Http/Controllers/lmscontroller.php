@@ -161,7 +161,29 @@ class lmscontroller extends Controller
 
         try {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         $request->session()->flush();
+///////////////////////////////////////////////////////////////////////////////// Sorter Table Books
+        $request->session()->put('sortstatus1books', '');
+        $request->session()->put('sortstatus2books', '');
+        $request->session()->put('sortstatus3books', '');
+        $request->session()->put('sortstatus4books', '');
+        $request->session()->put('sortstatus5books', '');
+        $request->session()->put('sortstatus6books', '');
+        $request->session()->put('sortstatus7books', '');
+        $request->session()->put('sortstatus8books', '');
+///////////////////////////////////////////////////////////////////////////////// Sorter Table Books
+
+///////////////////////////////////////////////////////////////////////////////// Sorter Table Borrower
+        $request->session()->put('sortstatus1borrower', '');
+        $request->session()->put('sortstatus2borrower', '');
+        $request->session()->put('sortstatus3borrower', '');
+        $request->session()->put('sortstatus4borrower', '');
+        $request->session()->put('sortstatus5borrower', '');
+        $request->session()->put('sortstatus6borrower', '');
+        $request->session()->put('sortstatus7borrower', '');
+        $request->session()->put('sortstatus8borrower', '');
+///////////////////////////////////////////////////////////////////////////////// Sorter Table Borrower
 
         $now = \Carbon\Carbon::now();
 

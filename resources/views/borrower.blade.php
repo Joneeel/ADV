@@ -12,7 +12,7 @@
 
 <div class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
-      <a style="margin-right: 25%; text-decoration: none;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
+      <a style="margin-right: 25%; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
       <button class="dropbtn">Account Logged: {{ $name }}</button>
       <div class="dropdown-content">
@@ -43,7 +43,7 @@
 
 <div id="Active" class="tabcontent">
 <center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'>  
+<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459'>  
   <div style="display: inline-flex;">
     <h1 class="mainname"> ACTIVE BORROWERS </h1>
       <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
@@ -62,14 +62,14 @@
   @if(!empty($borroweractive) && $borroweractive->count())
 <table>
   <tr>
-    <th>Borrower_id</th>
-    <th>Fullname</th>
-    <th>Gender</th>
-    <th>Status</th>
-    <th>Address</th>
-    <th>No# of Overdued Books</th>
-    <th>Created_at</th>
-    <th>Updated_at</th>
+  <th><a class="sorter" href="{{ route('borroweridsort') }}"> Borrower_id </a></th>
+    <th><a class="sorter" href="{{ route('fullnamesort') }}"> Fullname </a></th>
+    <th><a class="sorter" href="{{ route('gendersort') }}"> Gender </a></th>
+    <th><a class="sorter" href="{{ route('statussort') }}"> Status </a></th>
+    <th><a class="sorter" href="{{ route('addresssort') }}"> Address </a></th>
+    <th><a class="sorter" href="{{ route('viocountsort') }}"> No# of Overdued Books </a></th>
+    <th><a class="sorter" href="{{ route('createdatsort') }}"> Created_at </a></th>
+    <th><a class="sorter" href="{{ route('updatesort') }}"> Updated_at </a></th>
     <th>Edit</th>
     <th>N.A</th>
   </tr>
@@ -118,7 +118,7 @@
 
 <div id="NotActive" class="tabcontent">
 <center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #56f0ba'>  
+<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459'>  
   <div style="display: inline-flex;">
     <h1 class="mainname"> ARCHIVED BORROWERS </h1>
       @if(!empty(session()->get('message2')))
@@ -135,14 +135,14 @@
   </form> 
 <table>
   <tr>
-    <th>Borrower_id</th>
-    <th>Fullname</th>
-    <th>Gender</th>
-    <th>Status</th>
-    <th>Address</th>
-    <th>No# of Overdued Books</th>
-    <th>Created_at</th>
-    <th>Updated_at</th>
+    <th> Borrower_id </th>
+    <th> Fullname </th>
+    <th> Gender </th>
+    <th> Status </th>
+    <th> Address </th>
+    <th> No# of Overdued Books </th>
+    <th> Created_at </th>
+    <th> Updated_at </th>
     <th>Delete</th>
   </tr>
   @foreach($borrowernotactive as $key => $data2)
@@ -207,8 +207,18 @@
 
 <style>
 
-.tabcontent {
-  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+.sorter{
+  text-decoration: none;
+  font-size:15px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: black;
+  transition: 0.3s;
+}
+
+.sorter:hover{
+  color:white;
+  transition: 0.3s;
 }
 
 /* Go from zero to full opacity */
@@ -221,18 +231,16 @@
 .tab {
   margin-top:20px;
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #70f72d;
-  border: 2px solid black;
+  background-color: #d4dc64;
   width: 300px;
   padding-left: 30px;
-  border-radius: 10px 10px 0px 0px;
-  border-bottom: none;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  background-color: #70f72d;
+  background-color: #d4dc64;
   float: left;
   border: none;
   outline: none;
@@ -264,45 +272,47 @@
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  border-radius: 0px 10px 10px 10px;
-  border: 2px solid black;
-  background-color: #70f72d;
+  border-radius: 0px 5px 5px 5px;
+  background-color: #d4dc64;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+
 
 }
-
-/* Style The Dropdown Button */
-.dropbtn {
-   background-color: #70f72d;
+  /* Style The Dropdown Button */
+  .dropbtn {
+   background-color: #efb79d;
    padding: 10px;
-   margin-top: -10px;
-   border-radius: 10px 10px 0px 0px;
-   border: 2px solid black;
+   margin-top: -7px;
+   border-radius: 5px 5px 0px 0px;
    font-family: 'Arial';
    font-weight: bold;
    color: black;
-   font-size: 20px;
+   font-size: 15px;
+   transition: 0.3s;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
+  transition: 0.3s;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #70f72d;
-  min-width: 235px;
+  background-color: #efb79d;
+  min-width: 185px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   font-family: 'Arial';
    font-weight: bold;
    color: black;
-   font-size: 16px;
-   border-radius: 0px 0px 10px 10px;
-   border: 2px solid black;
+   font-size: 15px;
+   border-radius: 0px 0px 5px 5px;
+   transition: 0.3s;
 }
 
 /* Links inside the dropdown */
@@ -311,12 +321,13 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  transition: 0.3s;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: red;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 5px 5px;
   color:white;
   transition: 0.3s;
 }
@@ -329,7 +340,7 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #cf7c5c;
   transition: 0.3s;
 }
 
@@ -362,7 +373,7 @@
   display: inline-block;
   font-size: 16px;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
 }
@@ -388,10 +399,12 @@
 
 
 footer{
-  margin-top:10%;
-  background-color: #348c4c;
+  margin-top:15%;
+  background-color: #ceb396;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
+  text-align:center;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 footer > p{
@@ -417,9 +430,8 @@ footer > a{
   right: 72%;
   top: 300px;
   padding: 5px;
-  border-radius: 10px;
-  border: 2px solid black;
-  background-color: #70f72d;
+  border-radius: 5px;
+  background-color: #f4645c;
   width: 20%;
 }
 
@@ -438,7 +450,7 @@ footer > a{
   display: inline-block;
   font-size: 16px;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
   margin-top:85px;
@@ -459,7 +471,7 @@ footer > a{
   display: inline-block;
   font-size: 12px;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
   margin-top:3px;
@@ -480,7 +492,7 @@ footer > a{
   display: inline-block;
   font-size: 12px;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
   margin-top:3px;
@@ -496,6 +508,7 @@ footer > a{
   font-weight: bold;
   color: black;
   font-size: 40px;
+  text-shadow: 2px 2px #f9eebd;
 }
 
     table, th, td {
@@ -530,7 +543,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   color: white;
-  background-color:black;
+  background-color:#343434;
   transition: 0.3s;
 }
 
@@ -556,10 +569,10 @@ footer > a{
 }
 
 ul.nav{
-  background-color: #70f72d;
-  padding: 15px;
-  border-radius: 10px;
-  border: 2px solid black;
+  background-color: #edd8c0;
+  padding: 18px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 a.navbar-brand{
