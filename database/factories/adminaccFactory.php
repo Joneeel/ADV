@@ -14,7 +14,7 @@ class adminaccFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->lastName,
             'username' => $this->faker->username,
             'password' => $this->faker->password,
             'status' => 'Y',

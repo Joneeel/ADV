@@ -14,7 +14,7 @@
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 25%; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
-      <button class="dropbtn">Account Logged: {{ $name }}</button>
+      <button class="dropbtn">👤 Account Logged: {{ $name }}</button>
       <div class="dropdown-content">
       <a href="{{ route('displaychangepass') }}">Change Password</a>
       </div>
@@ -197,7 +197,7 @@ $("#typeid").change(function() {
   display: none;
   position: absolute;
   background-color: #efb79d;
-  min-width: 185px;
+  min-width: 205px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   font-family: 'Arial';
