@@ -211,6 +211,7 @@
   border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .button:hover {
@@ -230,6 +231,7 @@
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 footer{
@@ -274,6 +276,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   margin-top:28px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .issuenewbook:hover{

@@ -135,6 +135,7 @@ body{
   margin-top: 2%;
   padding: 5px;
   border: 2px solid black;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .title{
@@ -167,6 +168,7 @@ a{
   border-radius: 10px;
   font-family: 'Arial';
   font-weight: bold;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .button:hover {
@@ -187,6 +189,7 @@ a{
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 </style>

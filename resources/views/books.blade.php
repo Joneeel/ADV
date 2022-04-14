@@ -452,6 +452,7 @@ $("#typeid").change(function() {
   border-radius: 5px;
   font-family: 'Arial';
   font-weight: bold;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .button:hover {
@@ -471,6 +472,7 @@ $("#typeid").change(function() {
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .inputs2 {
@@ -479,6 +481,7 @@ $("#typeid").change(function() {
   margin: 8px 0;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 footer{
@@ -534,6 +537,7 @@ footer > a{
   transition: 0.3s;
   border-radius: 5px;
   margin-top:85px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 .addnewbook:hover{
