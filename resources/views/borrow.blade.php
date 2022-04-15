@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('Image/libraryicon.ico') }}">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
 <center>
 <nav class="navbar navbar-inverse">
 
-<div class="header">
+<div data-aos="fade-down" data-aos-duration="500" class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 200px; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
@@ -21,7 +22,7 @@
       </div>
     </div>
 
-    <ul class="nav navbar-nav">
+    <ul data-aos="fade-down" data-aos-duration="500" class="nav navbar-nav">
       <a class='navi' href="{{ route('dashboard')}}">DASHBOARD</a>
       <a class='navi' href="{{ route('books')}}">BOOKS</a>
       <a class='navi' href="{{ route('borrower')}}">BORROWERS</a>
@@ -33,10 +34,10 @@
 </nav>
 </center>
 <center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459'>  
+<body style='background-color: #fd9459'>  
   <div style="display: inline-flex;">
-    <h1 class="mainname"> ISSUE BOOK BORROW </h1>
-      <a href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
+    <h1 data-aos="fade-right" data-aos-duration="500" class="mainname"> ISSUE BOOK BORROW </h1>
+      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
       @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
@@ -44,7 +45,7 @@
   </div>
   <form action="{{ route('searchissue') }}" method="any">
     @csrf 
-      <div class="searcholder">
+      <div data-aos="fade-left" data-aos-duration="500" class="searcholder">
         <label class='search'> Search: </label>
         <input class="inputs" type="text" name="searchissue" class="form-control" value="" placeholder="Search for the name of borrower.." required>
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
@@ -99,6 +100,10 @@
 </body>
 </center>
 </html>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <style>  
 /* Style The Dropdown Button */
 .dropbtn {
@@ -126,7 +131,7 @@
   display: none;
   position: absolute;
   background-color: #efb79d;
-  min-width: 185px;
+  min-width: 205px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   font-family: 'Arial';
@@ -398,7 +403,7 @@ ul.nav{
   padding: 18px;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-  
+  margin-top: 25px;
 }
 
 a.navbar-brand{

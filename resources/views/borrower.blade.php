@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('Image/libraryicon.ico') }}">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
 <center>
 <nav class="navbar navbar-inverse">
 
-<div class="header">
+<div data-aos="fade-down" data-aos-duration="500" class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 200px; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
@@ -22,7 +23,7 @@
     </div>
 
 
-    <ul class="nav navbar-nav">
+    <ul data-aos="fade-down" data-aos-duration="500" class="nav navbar-nav">
       <a class='navi' href="{{ route('dashboard')}}">DASHBOARD</a>
       <a class='navi' href="{{ route('books')}}">BOOKS</a>
       <a class='navi' href="{{ route('borrower')}}">BORROWERS</a>
@@ -35,18 +36,18 @@
 </center>
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Active')">ACTIVE</button>
-  <button class="tablinks" onclick="openTab(event, 'NotActive')">NOT ACTIVE</button>
+  <button data-aos="fade-down" data-aos-duration="500" class="tablinks" onclick="openTab(event, 'Active')">ACTIVE</button>
+  <button data-aos="fade-down" data-aos-duration="500" class="tablinks" onclick="openTab(event, 'NotActive')">NOT ACTIVE</button>
 </div>
 
 <!-- ACTIVE SIDE -->
 
 <div id="Active" class="tabcontent">
 <center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459'>  
+<body  style='background-color: #fd9459'>  
   <div style="display: inline-flex;">
-    <h1 class="mainname"> ACTIVE BORROWERS </h1>
-      <a href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
+    <h1 data-aos="fade-down" data-aos-duration="500" class="mainname"> ACTIVE BORROWERS </h1>
+      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
       @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
@@ -118,7 +119,7 @@
 
 <div id="NotActive" class="tabcontent">
 <center>
-<body data-aos="fade-down" data-aos-delay="300" style='background-color: #fd9459'>  
+<body  style='background-color: #fd9459'>  
   <div style="display: inline-flex;">
     <h1 class="mainname"> ARCHIVED BORROWERS </h1>
       @if(!empty(session()->get('message2')))
@@ -180,6 +181,10 @@
 </center>
 </div>
 </html>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 <script>
 
@@ -586,6 +591,7 @@ ul.nav{
   padding: 18px;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  margin-top: 25px;
 }
 
 a.navbar-brand{

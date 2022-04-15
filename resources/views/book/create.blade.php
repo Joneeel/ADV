@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('Image/libraryicon.ico') }}">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
 <center>
 <nav class="navbar navbar-inverse">
 
-<div class="header">
+<div data-aos="fade-down" data-aos-duration="500" class="header">
      <img class="logo" src="{{ asset('Image/logo.png') }}"/>   
       <a style="margin-right: 200px; text-decoration: none;text-shadow: 2px 2px gray;" class="navbar-brand" href="{{ route('dashboard')}}">LIBRARY MANAGEMENT SYSTEM</a>
       <div class="dropdown">
@@ -21,7 +22,7 @@
       </div>
 </div>
 
-    <ul class="nav navbar-nav">
+    <ul data-aos="fade-down" data-aos-duration="500" class="nav navbar-nav">
       <a class='nav' href="{{ route('dashboard')}}">DASHBOARD</a>
       <a class='nav' href="{{ route('books')}}">BOOKS</a>
       <a class='nav' href="{{ route('borrower')}}">BORROWERS</a>
@@ -96,6 +97,10 @@
 </body>
 </center>
 </html>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 
@@ -352,6 +357,7 @@ ul.nav{
   padding: 18px;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  margin-top: 25px;
 }
 
 a.navbar-brand{
