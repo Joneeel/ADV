@@ -233,7 +233,7 @@
 
 
 footer{
-  margin-top:15%;
+  margin-top:18%;
   background-color: #ceb396;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;
@@ -259,6 +259,8 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   color: black;
+  text-shadow: 2px 2px #f9eebd;
+  box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
 table, th, td {

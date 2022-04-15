@@ -75,7 +75,6 @@
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
-  
   @if(!empty($books) && $books->count())
 <table class="table-sortable">
 <thead>
@@ -126,7 +125,7 @@
   </tbody>
   @endforeach
   @else
-  <div style="margin-top: 150px; font-family: Arial; font-weight: bold;">
+  <div style="margin-top: 180px; font-family: Arial; font-weight: bold;">
                 <tr>
                     <td classcolspan="10">There are no data.</td>
                 </tr>
@@ -162,6 +161,7 @@
         <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Search"/>
        </div>
   </form>
+  @if(!empty($archivebooks) && $archivebooks->count())
 <table>
   <tr>
     <th>Archived Book id</th>
@@ -185,6 +185,13 @@
     <td>{{ $data2->Stock }}</td>
   </tr>
   @endforeach
+  @else   
+        <div style="margin-top: 180px; font-family: Arial; font-weight: bold;">
+                <tr>
+                    <td classcolspan="10">There are no data.</td>
+                </tr>
+        </div>
+  @endif
 </table>
 <footer>
   <p>Author: John Henly A. Montera<br>
@@ -614,6 +621,7 @@ footer > a{
   color: black;
   font-size: 40px;
   text-shadow: 2px 2px #f9eebd;
+  box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
   table, th, td {

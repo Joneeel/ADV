@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="mainname">EDIT BOOK</h2>
+                <h2 class="mainname">EDIT BOOK'S INFORMATION</h2>
             </div>
         </div>
         <div class="row">
@@ -248,6 +248,8 @@ $("#typeid").change(function() {
   font-weight: bold;
   color: black;
   font-size: 40px;
+  width:550px;
+  box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
 label{

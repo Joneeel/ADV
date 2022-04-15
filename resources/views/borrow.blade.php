@@ -333,6 +333,7 @@ footer > a{
   color: black;
   font-size: 40px;
   text-shadow: 2px 2px #f9eebd;
+  box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
     table, th, td {
