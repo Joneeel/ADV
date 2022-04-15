@@ -235,6 +235,7 @@ $("#typeid").change(function() {
 .dropdown:hover .dropbtn {
   background-color: #cf7c5c;
   transition: 0.3s;
+  color:white;
 }
 
 .logo{
