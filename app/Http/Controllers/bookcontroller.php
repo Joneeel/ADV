@@ -40,6 +40,7 @@ class bookcontroller extends Controller
                 "Category"=>$Category,
                 "No_pages"=>$No_Pages,
                 "Stock"=>$No_Stock,
+                "status"=>'Active',
                 "created_at" =>  \Carbon\Carbon::now(),
                 "updated_at" => \Carbon\Carbon::now()
             );
@@ -107,29 +108,7 @@ class bookcontroller extends Controller
 
         if ($ifextransaccount == 0) {
 
-           $Title = DB::table('books')->select('Title')->where('Book_id', $Book_id)->pluck('Title')->first();
-           $Author = DB::table('books')->select('Author')->where('Book_id', $Book_id)->pluck('Author')->first();
-           $Copyright = DB::table('books')->select('Copyright')->where('Book_id', $Book_id)->pluck('Copyright')->first();
-           $Type = DB::table('books')->select('Type')->where('Book_id', $Book_id)->pluck('Type')->first();
-           $Category = DB::table('books')->select('Category')->where('Book_id', $Book_id)->pluck('Category')->first();
-           $No_pages = DB::table('books')->select('No_pages')->where('Book_id', $Book_id)->value('No_pages');
-           $Stock = DB::table('books')->select('Stock')->where('Book_id', $Book_id)->value('Stock');
-
-            $data=array(
-                "Title" => $Title,
-                "Author" => $Author,
-                "Copyright" => $Copyright,
-                "Type" => $Type,
-                "Category" => $Category,
-                "No_pages" => $No_pages,
-                "Stock" => $Stock,
-                'created_at' => \Carbon\Carbon::now(),
-                'updated_at' => \Carbon\Carbon::now(),
-            );
-
-            DB::table('archivebook')->insert($data);
-            
-            DB::table('books')->where('Book_id', $Book_id)->delete();
+            DB::table('books')->where('Book_id', $Book_id)->update(['status' => 'NotActive']);
 
             return redirect()->route('books')->with('message','Successfully Archived.');
         }
@@ -156,8 +135,8 @@ class bookcontroller extends Controller
     } 
 } catch (\Exception $e) {
     $name = session('uniname');
-    $books = DB::table('books')->select('*')->paginate(6);
-    $archivebooks = DB::table('archivebook')->select('*')->get();
+    $books = DB::table('books')->select('*')->where('status','=','Active')->paginate(6);
+    $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
     return view('books',['message' => 'Error Occured! Please Try Again Later...','name' => $name,'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
     }
 }
@@ -222,8 +201,8 @@ class bookcontroller extends Controller
         $searchtitle = $request->input('searchtitle');
 
         $name = session('uniname');
-        $books = DB::table('books')->select('*')->where('Title','like', '%'.$searchtitle.'%')->paginate(6);
-        $archivebooks = DB::table('archivebook')->select('*')->get();
+        $books = DB::table('books')->select('*')->where('Title','like', '%'.$searchtitle.'%')->where('status','=','Active')->paginate(6);
+        $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
         if(!$name == null){
             return view('books',['name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
         }
@@ -243,8 +222,8 @@ class bookcontroller extends Controller
         ]);
         $searcharchivetitle = $request->input('searcharchivetitle');
         $name = session('uniname');
-        $books = $books = DB::table('books')->select('*')->paginate(6);
-        $archivebooks = DB::table('archivebook')->select('*')->where('Title','like', '%'.$searcharchivetitle.'%')->get();
+        $books = DB::table('books')->select('*')->where('status','=','Active')->paginate(6);
+        $archivebooks = DB::table('books')->select('*')->where('Title','like', '%'.$searcharchivetitle.'%')->where('status','=','NotActive')->get();
         if(!$name == null){
             return view('books',['name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 1]);
         }
@@ -268,8 +247,8 @@ class bookcontroller extends Controller
         $category = $request->input('category');
         $name = session('uniname');
 
-        $books = $books = DB::table('books')->select('*')->where('Type','=',$type)->where('Category','=',$category)->paginate(6);
-        $archivebooks = DB::table('archivebook')->select('*')->get();
+        $books = $books = DB::table('books')->select('*')->where('Type','=',$type)->where('Category','=',$category)->where('status','=','Active')->paginate(6);
+        $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
 
         if(!$name == null){
             return view('books',['name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -289,15 +268,15 @@ public function bookidsort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus1books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Book_id', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Book_id', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus1books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus1books == 'DESC' || $sortstatus1books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Book_id', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Book_id', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus1books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -318,15 +297,15 @@ public function titlesort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus2books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Title', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Title', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus2books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus2books == 'DESC' || $sortstatus2books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Title', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Title', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus2books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -347,15 +326,15 @@ public function authorsort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus3books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Author', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Author', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus3books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus3books == 'DESC' || $sortstatus3books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Author', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Author', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus3books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -376,15 +355,15 @@ public function copyrightsort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus4books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Copyright', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Copyright', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus4books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus4books == 'DESC' || $sortstatus4books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Copyright', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Copyright', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus4books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -405,15 +384,15 @@ public function typesort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus5books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Type', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Type', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus5books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus5books == 'DESC' || $sortstatus5books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Type', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Type', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus5books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -434,15 +413,15 @@ public function categorysort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus6books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Category', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Category', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus6books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus6books == 'DESC' || $sortstatus6books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Category', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Category', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus6books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -463,15 +442,15 @@ public function nopagesort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus7books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('No_pages', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('No_pages', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus7books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus7books == 'DESC' || $sortstatus7books == null ){
-                $books = DB::table('books')->select('*')->orderBy('No_pages', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('No_pages', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus7books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
@@ -492,15 +471,15 @@ public function nostocksort(Request $request){
         $name = session('uniname');
         if(!$name == null){
             if($sortstatus8books == 'ASC'){
-                $books = DB::table('books')->select('*')->orderBy('Stock', 'ASC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Stock', 'ASC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'DESC';
                 $request->session()->put('sortstatus8books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
             if($sortstatus8books == 'DESC' || $sortstatus8books == null ){
-                $books = DB::table('books')->select('*')->orderBy('Stock', 'DESC')->paginate(6);
-                $archivebooks = DB::table('archivebook')->select('*')->get();
+                $books = DB::table('books')->select('*')->orderBy('Stock', 'DESC')->where('status','=','Active')->paginate(6);
+                $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
                 $value = 'ASC';
                 $request->session()->put('sortstatus8books', $value);
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);

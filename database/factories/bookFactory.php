@@ -85,6 +85,7 @@ class bookFactory extends Factory
             $setCategory = $categoryNonFiction[random_int(0,27)];
         }
 
+        $status=['Active','NotActive'];
 
         return [
             'Title' => $this->faker->unique()->word,
@@ -94,6 +95,7 @@ class bookFactory extends Factory
             'Copyright' => $this->faker->name,
             'No_pages' => $this->faker->numberBetween($min = 100, $max = 500),
             'Stock' => $this->faker->numberBetween($min = 1, $max = 120),
+            'status' => $status[random_int(0,1)],
         ];
     }
 }

@@ -87,6 +87,7 @@
     <th><a class="sorter" href="{{ route('categorysort') }}"> Category </a></th>
     <th><a class="sorter" href="{{ route('nopagesort') }}"> No_pages </a></th>
     <th><a class="sorter" href="{{ route('nostocksort') }}"> No_Stock </a></th>
+    <th>Status</th>
     <th>Edit</th>
     <th>Delete</th>
     <th>View</th>
@@ -103,6 +104,7 @@
     <td>{{ $data->Category }}</td>
     <td>{{ $data->No_pages }}</td>
     <td>{{ $data->Stock }}</td>
+    <td>{{ $data->status }}</td>
     <td class="editbutton">
       <form action="{{ route('bookedit',$data->Book_id)}}" method="any" class="form-hidden">
         <button>Edit</button>
@@ -164,7 +166,7 @@
   @if(!empty($archivebooks) && $archivebooks->count())
 <table>
   <tr>
-    <th>Archived Book id</th>
+    <th>Book id</th>
     <th>Title</th>
     <th>Author</th>
     <th>Copyright</th>
@@ -172,10 +174,11 @@
     <th>Category</th>
     <th>No_pages</th>
     <th>No_Stock</th>
+    <th>Status</th>
   </tr>
   @foreach($archivebooks as $key => $data2)
   <tr>
-    <td>{{ $data2->archive_book_id }}</td>
+    <td>{{ $data2->Book_id }}</td>
     <td>{{ $data2->Title }}</td>
     <td>{{ $data2->Author }}</td>
     <td>{{ $data2->Copyright }}</td>
@@ -183,6 +186,7 @@
     <td>{{ $data2->Category }}</td>
     <td>{{ $data2->No_pages }}</td>
     <td>{{ $data2->Stock }}</td>
+    <td>{{ $data2->status }}</td>
   </tr>
   @endforeach
   @else   

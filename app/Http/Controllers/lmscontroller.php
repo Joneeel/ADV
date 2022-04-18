@@ -14,8 +14,8 @@ class lmscontroller extends Controller
     public function books(){
         try{
             $name = session('uniname');
-            $books = DB::table('books')->select('*')->paginate(6);
-            $archivebooks = DB::table('archivebook')->select('*')->get();
+            $books = DB::table('books')->select('*')->where('status','=','Active')->paginate(6);
+            $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
             if(!$name == null){
                 return view('books',['message' => '','name' => $name, 'books' => $books,'archivebooks' => $archivebooks,'page' => 0]);
             }
@@ -42,10 +42,10 @@ class lmscontroller extends Controller
     
      $name = session('uniname');
 
-     $acc = DB::table('adminaccs')->select('*')->get();
-     $acccount = $acc->count();
+     $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+     $bna = $borrowernotactive->count();
 
-     $book = DB::table('books')->select('*')->get();
+     $book = DB::table('books')->select('*')->where('status','=','Active')->get();
      $bookcount = $book->count();
 
      $borrower = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
@@ -60,14 +60,18 @@ class lmscontroller extends Controller
      $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
      $notreturnedcount = $notreturned->count();
 
+     $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
+     $ab = $archivebooks->count();
+
         if(!$name == null){
             return view('dashboard',            
-            ['acccount' => $acccount,
+            ['bna' => $bna,
             'bookcount' => $bookcount,
             'borrowercount' => $borrowercount, 
             'historycount' => $historycount,
             'transactioncount' => $transactionscount,
-            'notreturnedcount' => $notreturnedcount, 
+            'notreturnedcount' => $notreturnedcount,
+            'ab'=> $ab, 
             'name' => $name]);
         }
         else {
@@ -198,29 +202,26 @@ class lmscontroller extends Controller
         $password = $request->input('password');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-     $acc = DB::table('adminaccs')->select('*')->get();
-     $acccount = $acc->count();
-     $request->session()->put('uniacccount', $acccount);
+     $borrowernotactive = DB::table('borrowers')->select('*')->where('Status', '=' , 'NotActive')->get();
+     $bna = $borrowernotactive->count();
 
-     $book = DB::table('books')->select('*')->get();
+     $book = DB::table('books')->select('*')->where('status','=','Active')->get();
      $bookcount = $book->count();
-     $request->session()->put('unibookcount', $bookcount);
 
      $borrower = DB::table('borrowers')->select('*')->where('Status', '=' , 'Active')->get();
      $borrowercount = $borrower->count();
-     $request->session()->put('uniborrowercount', $borrowercount);
 
      $history = DB::table('historys')->select('*')->get();
      $historycount = $history->count();
-     $request->session()->put('unihistorycount', $historycount);
 
      $transactions = DB::table('transactions')->select('*')->whereDate('DueDateReturned','>=', \Carbon\Carbon::now())->get(); // not due
      $transactionscount = $transactions->count();
-     $request->session()->put('unitransactionscount', $transactionscount);
 
      $notreturned = DB::table('transactions')->select('*')->whereDate('DueDateReturned','<', \Carbon\Carbon::now())->get(); // due
      $notreturnedcount = $notreturned->count();
-     $request->session()->put('uninotreturnedcount', $notreturnedcount);
+
+     $archivebooks = DB::table('books')->select('*')->where('status','=','NotActive')->get();
+     $ab = $archivebooks->count();
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
      $user = DB::table('adminaccs')->where('username', '=', $username)->where('password', '=', $password)->where('status', '=' , 'Y')->get();
@@ -231,12 +232,13 @@ class lmscontroller extends Controller
         if (!$usercount == 0) {
 
             return view('dashboard',
-            ['acccount' => $acccount,
+            ['bna' => $bna,
             'bookcount' => $bookcount,
             'borrowercount' => $borrowercount, 
             'historycount' => $historycount,
             'transactioncount' => $transactionscount,
             'notreturnedcount' => $notreturnedcount, 
+            'ab'=> $ab,
             'name' => $name]);
         }
         else {

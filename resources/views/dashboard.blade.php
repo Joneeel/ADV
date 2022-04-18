@@ -41,8 +41,8 @@
       @endif
       <div data-aos="fade-right" data-aos-duration="500" class="flex-container">
         <div class="card">
-        <h1> No. of <br> Admin Accounts </h1>
-        <h1> x{{ $acccount }} </h1>
+        <h1> No. of N.A <br> Borrower Accounts </h1>
+        <h1> x{{ $bna }} </h1>
         </div>
         <div class="card">
         <h1> No. of <br> Available Books </h1>
@@ -66,6 +66,10 @@
         <div class="card">
         <h1> No. of Over-Due <br> Returned Books </h1>
         <h1> x{{ $notreturnedcount }} </h1>
+        </div>
+        <div class="card">
+        <h1> No. of <br> Archived Books </h1>
+        <h1> x{{ $ab }} </h1>
         </div>
       </div>
 <footer>
