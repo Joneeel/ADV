@@ -34,6 +34,13 @@
             <input class="button" style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Login"/>
         </form>
         <a> Don't Have an Account? <a class="link" href="{{ route('signup')}}"> Sign Up </a></a>
+        <?php
+            $datetoday = date("Y/m/d");
+            $lastday = date("Y-m-t", strtotime($datetoday));
+        ?>
+        @if($datetoday == $lastday)
+        <div class="message" > Message: <br> Report All the Violations of Borrowers <br> accounts in the finance! </div>
+        @endif
         @if(!empty($message))
         <div class="message" > Message: <br> {{ $message }} </div>
         @endif
