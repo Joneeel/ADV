@@ -66,7 +66,7 @@
                     <div>
                     <label>Type: </label>
                         <select id="typeid" class="inputs" name="type" required>
-                                <option value=""> Select Type... </option>
+                                <option value="{{ $Type }}"> {{ $Type }} </option>
                                 <option value="Fiction">Fiction</option>
                                 <option value='NonFiction'>Non Fiction</option>
                       </select>
@@ -75,6 +75,7 @@
                     <div>
                       <label>Category: </label>
                       <select id="categoryid" class="inputs" name="category" required>
+                                <option value="{{ $Category }}"> {{ $Category }} </option>
                       </select>
                     </div>
 
