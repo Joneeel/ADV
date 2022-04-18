@@ -475,6 +475,7 @@ footer > a{
 
 .addnewbook:hover{
   background-color: white; 
+  transition: 0.3s;
   color: green;
 }
 

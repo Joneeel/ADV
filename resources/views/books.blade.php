@@ -549,8 +549,8 @@ footer > a{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  transition: 0.3s;
   border-radius: 5px;
+  transition: 0.3s;
   margin-top:85px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
@@ -558,6 +558,7 @@ footer > a{
 .addnewbook:hover{
   background-color: white; 
   color: green;
+  transition: 0.3s;
 }
 
 .deletebutton > form > button {
