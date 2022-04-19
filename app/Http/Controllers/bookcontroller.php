@@ -108,7 +108,7 @@ class bookcontroller extends Controller
 
         if ($ifextransaccount == 0) {
 
-            DB::table('books')->where('Book_id', $Book_id)->update(['status' => 'NotActive']);
+            DB::table('books')->where('Book_id', $Book_id)->update(['status' => 'NotActive','updated_at' => \Carbon\Carbon::now()]);
 
             return redirect()->route('books')->with('message','Successfully Archived.');
         }

@@ -174,6 +174,8 @@
     <th>Category</th>
     <th>No_pages</th>
     <th>No_Stock</th>
+    <th>Created_at</th>
+    <th>Archived_at</th>
     <th>Status</th>
   </tr>
   @foreach($archivebooks as $key => $data2)
@@ -186,6 +188,8 @@
     <td>{{ $data2->Category }}</td>
     <td>{{ $data2->No_pages }}</td>
     <td>{{ $data2->Stock }}</td>
+    <td>{{ $data2->created_at }}</td>
+    <td>{{ $data2->updated_at }}</td>
     <td>{{ $data2->status }}</td>
   </tr>
   @endforeach
