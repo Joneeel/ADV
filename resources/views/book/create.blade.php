@@ -35,7 +35,8 @@
 </center>
 
   <center>
-<body style='background-color: #fd9459'>  
+<body style='background-color: #88dad5'> 
+<div class="imagebg">  
 <div id="admin-content">
     <div class="container">
         <div class="row">
@@ -87,12 +88,13 @@
                         <input type="number" class="inputs" name="No_Stock" value="" required>
                     </div>
 
-                    <input class="button" type="submit" name="submit" class="btn btn-danger" value="Create" required>
+                    <input class="button" type="submit" name="submit" value="Create" required>
 
                 </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </center>
@@ -175,6 +177,18 @@ $("#typeid").change(function() {
 </script>
 
 <style>
+
+.imagebg{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-image: url("{{ asset('Image/bg2.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0.5%;
+    padding-bottom: 5%;
+    background-position:center;
+    box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+  }
 
 /* Style The Dropdown Button */
 .dropbtn {
@@ -262,11 +276,12 @@ $("#typeid").change(function() {
 label{
   font-family: 'Arial';
   font-weight: bold;
+  text-shadow: 1px 1px gray;
 }
 
 .button {
   margin: 20px;
-  background-color: #4CAF50; 
+  background-color:#4CAF50; 
   border: none;
   color: white;
   padding: 15px 32px;

@@ -8,7 +8,7 @@
     <title>SIGN UP  (LMS) </title>
 </head>
 <center>
-<body style="background-color: #fd9459">
+<body style="background-color: #88dad5">
 <div style="display: inline-flex; margin-top: 60px;">
     <svg width="100" height="100" class="eyeleft">  
         <circle cx="50" cy="50" r="50" fill="white" class="eyeball_left" />

@@ -34,7 +34,8 @@
 </nav>
 </center>
   <center>
-<body style='background-color: #fd9459; margin-bottom: 120px;' >  
+<body style='background-color: #88dad5;' >  
+<div class="imagebg">
 <div id="admin-content">
     <div class="container">
         <div class="row">
@@ -43,7 +44,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="offset-md-3 col-md-6">
+            <div class="yourform">
                 <form class="yourform" action="{{ route('bookeditprocess')}}" method="any" autocomplete="off">
                     @csrf
                     <div>
@@ -60,11 +61,11 @@
                     </div>
                     <div>
                         <label>Type: </label>
-                        <input type="text" class="inputs" name="Copyright" value="{{ $Type }}" readonly>
+                        <input type="text" class="inputs" name="Type" value="{{ $Type }}" readonly>
                     </div>
                     <div>
                         <label>Category: </label>
-                        <input type="text" class="inputs" name="Copyright" value="{{ $Category }}" readonly>
+                        <input type="text" class="inputs" name="Category" value="{{ $Category }}" readonly>
                     </div>
                     <div>
                         <label>Copyright: </label>
@@ -83,6 +84,7 @@
         </div>
     </div>
 </div>
+</div>
 </body>
 </center>
 </html>
@@ -92,6 +94,24 @@
 </script>
 <style>
 
+.imagebg{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-image: url("{{ asset('Image/bg4.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0.5%;
+    padding-bottom: 5%;
+    background-position:center;
+    box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+  }
+
+label{
+  font-family: 'Arial';
+  font-weight: bold;
+  text-shadow: 1px 1px gray;
+  font-size: 25px;
+}
 
 /* Style The Dropdown Button */
 .dropbtn {
@@ -176,11 +196,6 @@
   box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
-label{
-  font-family: 'Arial';
-  font-weight: bold;
-}
-
 .button {
   margin: 20px;
   background-color: #4CAF50; 
@@ -224,6 +239,10 @@ label{
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  text-align: center;
+  font-size:18px;
+  font-family: 'Arial';
+  font-weight: bold;
 }
 
 a.nav{

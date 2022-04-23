@@ -106,7 +106,7 @@ form{
 }
 
 .bg{
-  background-color: #fd9459;
+  background-color: #88dad5;
 }
 
 .eyeright{

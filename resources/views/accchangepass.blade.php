@@ -36,7 +36,8 @@
 </nav>
 </center>
   <center>
-<body style='background-color: #fd9459'>  
+<body style='background-color: #88dad5'> 
+<div class="imagebg"> 
 <div id="admin-content">
     <div class="container">
         <div class="row">
@@ -66,6 +67,7 @@
         </div>
     </div>
 </div>
+</div>
 </body>
 </center>
 </html>
@@ -74,6 +76,24 @@
   AOS.init();
 </script>
 <style>
+
+.imagebg{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-image: url("{{ asset('Image/bg3.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0.5%;
+    padding-bottom: 5%;
+    background-position:center;
+    box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+  }
+
+label{
+  font-family: 'Arial';
+  font-weight: bold;
+  text-shadow: 1px 1px gray;
+}
 
 /* Style The Dropdown Button */
 .dropbtn {

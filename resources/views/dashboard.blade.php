@@ -33,8 +33,9 @@
     </ul>
 </nav>
 </center>
-<body style='background-color: #fd9459' >  
+<body style='background-color: #88dad5' >  
   <center>
+    <div class="imagebg"> 
     <h1 data-aos="fade-down" data-aos-duration="500" class="mainname"> DASHBOARD </h1>
     @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
@@ -71,9 +72,10 @@
         <h1> No. of <br> Archived Books </h1>
         <h1> x{{ $ab }} </h1>
         </div>
-      </div>
+</div>
+</div>
 <footer>
-  <p>Created By: John Henly A. Montera<br>
+<p>Author: Montera, Bula, Gonzales<br>
   <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
 </footer>  
 </center>
@@ -84,6 +86,18 @@
   AOS.init();
 </script>
 <style>
+
+  .imagebg{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-image: url("{{ asset('Image/bg1.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0.5%;
+    padding-bottom: 5%;
+    background-position:center;
+    box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+  }
 
   /* Style The Dropdown Button */
 .dropbtn {
@@ -173,7 +187,7 @@
 }
 
 footer{
-  margin-top:12%;
+  margin-top:2%;
   background-color: #ceb396;
   padding: 15px 0px 15px 0px;
   border-radius: 5px;

@@ -44,7 +44,7 @@
 
 <div id="Active" class="tabcontent">
 <center>
-<body  style='background-color: #fd9459'>  
+<body  style='background-color: #88dad5'>  
   <div style="display: inline-flex;">
     <h1 data-aos="fade-down" data-aos-duration="500" class="mainname"> ACTIVE BORROWERS </h1>
       <a data-aos="fade-left" data-aos-duration="500" href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
@@ -108,7 +108,7 @@
 </table>
 {{ $borroweractive->links('vendor\pagination\default') }}
 <footer>
-  <p>Author: John Henly A. Montera<br>
+  <p>Author: Montera, Bula, Gonzales<br>
   <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
 </footer> 
 </body>
@@ -119,7 +119,7 @@
 
 <div id="NotActive" class="tabcontent">
 <center>
-<body  style='background-color: #fd9459'>  
+<body  style='background-color: #88dad5'>  
   <div style="display: inline-flex;">
     <h1 class="mainname"> ARCHIVED BORROWERS </h1>
       @if(!empty(session()->get('message2')))
@@ -174,7 +174,7 @@
   @endif
 </table>
 <footer>
-  <p>Author: John Henly A. Montera<br>
+  <p>Author: Montera, Bula, Gonzales<br>
   <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
 </footer> 
 </body>
