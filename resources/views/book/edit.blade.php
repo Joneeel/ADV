@@ -187,6 +187,7 @@ $("#typeid").change(function() {
     padding-bottom: 5%;
     background-position:center;
     box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+    padding: 110px 0px 110px 0px;
   }
 
 label{

@@ -9,6 +9,7 @@
 </head>
 <center>
 <body class="bg">
+<div class="imagebg"> 
 <div style="display: inline-flex; margin-top: 60px;">
     <svg width="100" height="100" class="eyeleft">  
         <circle cx="50" cy="50" r="50" fill="white" class="eyeball_left" />
@@ -44,6 +45,7 @@
         @if(!empty($message))
         <div class="message" > Message: <br> {{ $message }} </div>
         @endif
+        </div>
 </body>
 </center>
 </html>
@@ -90,6 +92,19 @@ document.addEventListener("mousemove", (e)=>{
 
 <style>
 
+.imagebg{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-image: url("{{ asset('Image/bg1.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 0.5%;
+    padding-bottom: 5%;
+    background-position:center;
+    box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+    padding-bottom: 300px;
+  }
+
 .link{
   text-decoration: none;
 }
@@ -122,9 +137,6 @@ form{
     position:relative;
 }
 
-body{
-  margin-bottom: 15%;
-}
 
 .title{
   font-size:40px;

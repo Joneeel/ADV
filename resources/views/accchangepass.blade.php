@@ -87,6 +87,7 @@
     padding-bottom: 5%;
     background-position:center;
     box-shadow: inset 0px 8px 16px 0px rgba(0,0,0,0.5);
+    padding: 150px 0px 150px 0px;
   }
 
 label{
