@@ -95,7 +95,7 @@
 {{ $issuebookborrow->links('vendor\pagination\default') }}
 <footer>
   <p>Author: Montera, Bula, Gonzales<br>
-  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">MonteraBulaGonzales™ 2022</a></p>
 </footer>  
 </body>
 </center>

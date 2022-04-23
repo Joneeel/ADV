@@ -38,6 +38,7 @@
 <div class="imagebg">
 <div id="admin-content">
     <div class="container">
+    <div class="inputbg">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="mainname">BOOK'S INFORMATION</h2>
@@ -82,6 +83,7 @@
                 </form>
             </div>
         </div>
+        </div>
     </div>
 </div>
 </div>
@@ -93,6 +95,13 @@
   AOS.init();
 </script>
 <style>
+
+.inputbg{
+  background-color:rgba(136, 218, 213, 0.8) ;
+  width: 80%;
+  padding: 20px 0px 45px 0px;
+  border-radius: 10px;
+}
 
 .imagebg{
     -webkit-border-radius: 15px;
@@ -111,7 +120,7 @@ label{
   font-family: 'Arial';
   font-weight: bold;
   text-shadow: 1px 1px gray;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 /* Style The Dropdown Button */

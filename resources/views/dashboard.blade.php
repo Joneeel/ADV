@@ -76,7 +76,7 @@
 </div>
 <footer>
 <p>Author: Montera, Bula, Gonzales<br>
-  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">MonteraBulaGonzales™ 2022</a></p>
 </footer>  
 </center>
 </body>
@@ -305,7 +305,7 @@ div.navbar-header{
 }
 
 .flex-container > div {
-  background-color: #d4dc64;
+  background-color: #88dad5;
   margin: 10px;
   padding: 20px;
   font-size: 12px;

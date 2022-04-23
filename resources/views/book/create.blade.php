@@ -39,6 +39,7 @@
 <div class="imagebg">  
 <div id="admin-content">
     <div class="container">
+    <div class="inputbg">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="mainname">CREATE BOOK</h2>
@@ -46,6 +47,7 @@
         </div>
         <div class="row">
             <div class="offset-md-3 col-md-6">
+              
                 <form class="yourform" action="{{ route('bookcreateprocess')}}" method="any" autocomplete="off">
                     @csrf
                     <div>
@@ -91,6 +93,7 @@
                     <input class="button" type="submit" name="submit" value="Create" required>
 
                 </form>
+              </div>
             </div>
         </div>
     </div>
@@ -177,6 +180,13 @@ $("#typeid").change(function() {
 </script>
 
 <style>
+
+.inputbg{
+  background-color:rgba(136, 218, 213, 0.8) ;
+  width: 80%;
+  padding: 20px 0px 20px 0px;
+  border-radius: 10px;
+}
 
 .imagebg{
     -webkit-border-radius: 15px;
@@ -277,7 +287,8 @@ $("#typeid").change(function() {
 label{
   font-family: 'Arial';
   font-weight: bold;
-  text-shadow: 1px 1px gray;
+  font-size: 18px;
+
 }
 
 .button {

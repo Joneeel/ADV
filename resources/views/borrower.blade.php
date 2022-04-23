@@ -109,7 +109,7 @@
 {{ $borroweractive->links('vendor\pagination\default') }}
 <footer>
   <p>Author: Montera, Bula, Gonzales<br>
-  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">MonteraBulaGonzales™ 2022</a></p>
 </footer> 
 </body>
 </center>
@@ -175,7 +175,7 @@
 </table>
 <footer>
   <p>Author: Montera, Bula, Gonzales<br>
-  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">Montera™ 2022</a></p>
+  <a href="https://henly09.github.io/MyPortfolio/" target="_blank">MonteraBulaGonzales™ 2022</a></p>
 </footer> 
 </body>
 </center>
@@ -244,7 +244,7 @@
 .tab {
   margin-top:20px;
   overflow: hidden;
-  background-color: #d4dc64;
+  background-color: #D9F5D1;
   width: 300px;
   padding-left: 30px;
   border-radius: 5px 5px 0px 0px;
@@ -253,7 +253,7 @@
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  background-color: #d4dc64;
+  background-color: #D9F5D1;
   float: left;
   border: none;
   outline: none;
@@ -271,13 +271,13 @@
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #3e8e41;
+  background-color: #A5C19E;
   color: white;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #3e8e41;
+  background-color: #7A8D75;
   color: white;
 }
 
@@ -286,7 +286,7 @@
   display: none;
   padding: 6px 12px;
   border-radius: 0px 5px 5px 5px;
-  background-color: #d4dc64;
+  background-color: #D9F5D1;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 
 

@@ -38,6 +38,7 @@
 <div class="imagebg">
 <div id="admin-content">
     <div class="container">
+    <div class="inputbg">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="mainname">EDIT BOOK'S INFORMATION</h2>
@@ -91,6 +92,7 @@
                     <input class="button" type="submit" name="submit" class="btn btn-danger" value="Update" required>
                 </form>
             </div>
+        </div>
         </div>
     </div>
 </div>
@@ -176,6 +178,13 @@ $("#typeid").change(function() {
 </script>
 
 <style>
+
+.inputbg{
+  background-color:rgba(136, 218, 213, 0.8) ;
+  width: 80%;
+  padding: 20px 0px 20px 0px;
+  border-radius: 10px;
+}
 
 .imagebg{
     -webkit-border-radius: 15px;
