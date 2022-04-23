@@ -10,7 +10,9 @@
 <center>
 <body style="background-color: #88dad5">
 <div class="imagebg"> 
-<div style="display: inline-flex; margin-top: 60px;">
+<div class="inputbg">
+
+<div style="display: inline-flex;">
     <svg width="100" height="100" class="eyeleft">  
         <circle cx="50" cy="50" r="50" fill="white" class="eyeball_left" />
         <circle cx="50" cy="50" r="20" fill="#0D0D20" class="pupil_left" />
@@ -51,6 +53,7 @@
         @if(!empty($message))
         <div class="message"> Message: <br>  {{ $message }}</div>
         @endif
+        </div>
         </div>
 </body>
 </center>
@@ -97,6 +100,15 @@ document.addEventListener("mousemove", (e)=>{
 </script>
 
 <style>
+
+.inputbg{
+  margin-top: 100px;
+  background-color:rgba(136, 218, 213, 0.8) ;
+  width: 70%;
+  padding: 45px 0px 85px 0px;
+  border-radius: 20px;
+}
+
 
 .imagebg{
     -webkit-border-radius: 15px;
