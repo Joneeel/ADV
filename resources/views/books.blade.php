@@ -95,7 +95,7 @@
   </thead>
   @foreach($books as $key => $data)
   <tbody>
-  <tr>
+  <tr class="tablerow">
     <td>{{ $data->Book_id }}</td>
     <td>{{ $data->Title }}</td>
     <td>{{ $data->Author }}</td>
@@ -179,7 +179,7 @@
     <th>Status</th>
   </tr>
   @foreach($archivebooks as $key => $data2)
-  <tr>
+  <tr class="tablerow">
     <td>{{ $data2->Book_id }}</td>
     <td>{{ $data2->Title }}</td>
     <td>{{ $data2->Author }}</td>
@@ -315,6 +315,11 @@ $("#typeid").change(function() {
 </script>
 
 <style>
+
+.tablerow:hover {
+  background-color: #B0BFAB;
+  transition: 0.3s;
+}
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {

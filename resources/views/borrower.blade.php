@@ -75,7 +75,7 @@
     <th>N.A</th>
   </tr>
   @foreach($borroweractive as $key => $data)
-  <tr>
+  <tr class="tablerow">
     <td>{{ $data->Borrower_id }}</td>
     <td>{{ $data->fullname }}</td>
     <td>{{ $data->gender }}</td>
@@ -148,7 +148,7 @@
     <th>Delete</th>
   </tr>
   @foreach($borrowernotactive as $key => $data2)
-  <tr>
+  <tr class="tablerow">
     <td>{{ $data2->Borrower_id }}</td>
     <td>{{ $data2->fullname }}</td>
     <td>{{ $data2->gender }}</td>
@@ -219,6 +219,11 @@
 </script>
 
 <style>
+
+.tablerow:hover {
+  background-color: #B0BFAB;
+  transition: 0.3s;
+}
 
 .sorter{
   text-decoration: none;

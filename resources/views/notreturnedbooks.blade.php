@@ -65,7 +65,7 @@
     <th>Returned</th>
   </tr>
   @foreach($notreturned as $key => $data)
-  <tr>
+  <tr class="tablerow">
     <td>{{ $data->Transac_id }}</td>
     <td>{{ $data->Book_id }}</td>
     <td>{{ $data->Borrower_id }}</td>
@@ -105,7 +105,10 @@
 </script>
 <style>
 
-
+.tablerow:hover {
+  background-color: #B0BFAB;
+  transition: 0.3s;
+}
 
  /* Style The Dropdown Button */
  .dropbtn {
