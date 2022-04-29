@@ -48,37 +48,37 @@
             <div class="yourform">
                 <form class="yourform" action="{{ route('bookeditprocess')}}" method="any" autocomplete="off">
                     @csrf
-                    <div>
-                        <label>Book_id: </label>
-                        <input type="text" class="inputs" name="Book_id" value="{{ $Book_id }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Book_id: </label>
+                        <h1 class="inputs"> {{ $Book_id }} </h1>
                     </div>
-                    <div>
-                        <label>Title: </label>
-                        <input type="text" class="inputs" name="Title" value="{{ $Title }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Title: </label>
+                        <h1 class="inputs"> {{ $Title }} </h1>
                     </div>
-                    <div>
-                        <label>Author: </label>
-                        <input type="text" class="inputs" name="Author" value="{{ $Author }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Author: </label>
+                        <h1 class="inputs"> {{ $Author }} </h1>
                     </div>
-                    <div>
-                        <label>Type: </label>
-                        <input type="text" class="inputs" name="Type" value="{{ $Type }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Type: </label>
+                        <h1 class="inputs"> {{ $Type }} </h1>
                     </div>
-                    <div>
-                        <label>Category: </label>
-                        <input type="text" class="inputs" name="Category" value="{{ $Category }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Category: </label>
+                        <h1 class="inputs"> {{ $Category }} </h1>
                     </div>
-                    <div>
-                        <label>Copyright: </label>
-                        <input type="text" class="inputs" name="Copyright" value="{{ $Copyright }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">Copyright: </label>
+                        <h1 class="inputs"> {{ $Copyright }} </h1>
                     </div>
-                    <div>
-                        <label>No_Pages: </label>
-                        <input type="number" class="inputs" name="No_Pages" value="{{ $No_pages }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">No_Pages: </label>
+                        <h1 class="inputs"> {{ $No_pages }} </h1>
                     </div>
-                    <div>
-                        <label>No_Stock: </label>
-                        <input type="number" class="inputs" name="No_Stock" value="{{ $Stock }}" readonly>
+                    <div style="display:flex;  justify-content: center; ">
+                        <label style="padding-top: 15px; padding-right: 10px;">No_Stock: </label>
+                        <h1 class="inputs"> {{ $Stock }} </h1>
                     </div>
                 </form>
             </div>
