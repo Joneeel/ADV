@@ -97,7 +97,7 @@ document.addEventListener("mousemove", (e)=>{
 .inputbg{
   margin-top: 100px;
   background-color:rgba(136, 218, 213, 0.8) ;
-  width: 70%;
+  width: 80%;
   padding: 45px 0px 85px 0px;
   border-radius: 20px;
 }
