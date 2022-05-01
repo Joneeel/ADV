@@ -236,6 +236,8 @@
 
 .sorter:hover{
   color:white;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
   transition: 0.3s;
 }
 
