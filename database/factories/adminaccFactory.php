@@ -13,6 +13,11 @@ class adminaccFactory extends Factory
      */
     public function definition()
     {
+/* Creating a new adminacc with the following attributes:
+- name: lastName
+- username: username
+- password: password
+- status: Y */
         return [
             'name' => $this->faker->lastName,
             'username' => $this->faker->username,

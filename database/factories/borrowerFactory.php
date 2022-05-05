@@ -17,6 +17,7 @@ class borrowerFactory extends Factory
         $status=['Active','NotActive'];
         $now = \Carbon\Carbon::now();
 
+/* Returning an array of data to be used in the factory. */
         return [
             'fullname' => $this->faker->name(),
             'gender' => $gender[random_int(0,1)],

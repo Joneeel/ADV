@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\View;
 
 class lmscontroller extends Controller
 {
+/**
+ * It fetches all the books from the database and displays them in the books page.
+ * 
+ * @return The books view is being returned.
+ */
     public function books(){
         try{
             $name = session('uniname');
@@ -29,14 +34,29 @@ class lmscontroller extends Controller
 
     }
 
+/**
+ * This function returns the login view with an empty message
+ * 
+ * @return A view called login.
+ */
     public function login(){
         return view('login',['message' => '']);
     }
 
+/**
+ * It returns the view 'signup' with an empty message
+ * 
+ * @return The signup view is being returned.
+ */
     public function signup(){
         return view('signup',['message' => '']);
     }
 
+/**
+ * It gets the number of books, borrowers, history, transactions, not returned, and archive books.
+ * 
+ * @return The dashboard is being returned.
+ */
     public function dashboard(){
         try {        
     
@@ -84,6 +104,11 @@ class lmscontroller extends Controller
 
     }
 
+/**
+ * It displays the borrower page.
+ * 
+ * @return The borrower page is being returned.
+ */
     public function borrower(){
     try {
         $name = session('uniname');
@@ -101,6 +126,11 @@ class lmscontroller extends Controller
     }
     }
 
+/**
+ * It displays the books that are not returned by the students.
+ * 
+ * @return The view of the notreturnedbooks.blade.php
+ */
     public function notreturnedbooks(){
         try {
         $name = session('uniname');
@@ -117,6 +147,11 @@ class lmscontroller extends Controller
     }
     }
 
+/**
+ * It displays the borrow page.
+ * 
+ * @return The borrow page is being returned.
+ */
     public function borrow(){
         try {
         $name = session('uniname');
@@ -133,6 +168,12 @@ class lmscontroller extends Controller
     }
     }
 
+/**
+ * It fetches the transaction history of the user from the database and displays it in the
+ * transactionhistory.blade.php file.
+ * 
+ * @return The transaction history of the user is being returned.
+ */
     public function transactionhistory(){
         try {
         $name = session('uniname');
@@ -150,6 +191,13 @@ class lmscontroller extends Controller
     }
 
 
+/**
+ * It logs out the user by flushing the session
+ * 
+ * @param Request request This is the request object that is sent to the server.
+ * 
+ * @return The logout function is returning the login page with a message.
+ */
     public function logout(Request $request){
         try {
         $request->session()->flush();
@@ -161,6 +209,15 @@ class lmscontroller extends Controller
 
 
 
+/**
+ * It validates the input of the user, then it checks if the user is an admin or not. If the user is an
+ * admin, it will redirect the user to the dashboard. If not, it will redirect the user to the login
+ * page with an error message
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the dashboard.
+ */
     public function loginvalidation(Request $request){
 
         try {
@@ -252,6 +309,15 @@ class lmscontroller extends Controller
 
     }
 
+    /**
+     * It validates the input of the user and if the input is valid, it will insert the data to the
+     * database.
+     * 
+     * @param Request request The request object.
+     * 
+     * @return The view of the login page with a message that the user has been registered
+     * successfully.
+     */
     public function signupvalidation(Request $request){
 
         try

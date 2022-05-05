@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class borrowcontroller extends Controller
 {
+/**
+ * This function is used to issue a book to a borrower
+ * 
+ * @param Request request This is the request object that contains the data that was submitted to the
+ * form.
+ * 
+ * @return the view of the borrow page.
+ */
     public function issue(Request $request) {
         try {
 
@@ -24,12 +32,14 @@ class borrowcontroller extends Controller
             $borrowdate = \Carbon\Carbon::parse($request->input('days'));
             $borrowreturn = \Carbon\Carbon::now();
 
+/* This is used to get the difference of the date that the user inputted and the current date. */
             $result = $borrowreturn->diffInDays($borrowdate, false);
             $result = $result+1;
 
             $BookTitle = DB::table('books')->select('Title')->where('Book_id', $Book_id)->pluck('Title')->first();
             $Fullname = DB::table('borrowers')->select('fullname')->where('Borrower_id', $Borrower_id)->pluck('fullname')->first();
 
+/* This is used to check if the user had already the book. */
             $transac = DB::table('transactions')->where('Borrower_id', '=', $Borrower_id)->where('Book_id', '=', $Book_id)->get();
             $transacount = $transac->count();
 
@@ -77,6 +87,13 @@ class borrowcontroller extends Controller
 
     }
 
+/**
+ * It deletes the transaction from the transactions table and inserts the data into the history table.
+ * 
+ * @param Transac_id The id of the transaction that is being returned.
+ * 
+ * @return The book is being returned.
+ */
     public function returned($Transac_id) {
         try {
     $name = session('uniname');
@@ -117,6 +134,11 @@ class borrowcontroller extends Controller
 
     }
 
+/**
+ * This function is used to display the issue page.
+ * 
+ * @return the view of the issue page.
+ */
     public function issuedisplay() {
         $name = session('uniname');
 
@@ -130,6 +152,13 @@ class borrowcontroller extends Controller
         } 
     }
 
+/**
+ * This function is used to search for a book that is not yet due
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The searchissue function is being returned.
+ */
     public function searchissue(Request $request){
         
         try {

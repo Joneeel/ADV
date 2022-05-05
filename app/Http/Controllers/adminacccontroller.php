@@ -7,6 +7,13 @@ use DB;
 
 class adminacccontroller extends Controller
 {
+/**
+ * This function is used to change the password of the admin.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the dashboard.
+ */
     public function changepassadmin(Request $request){
 
         try
@@ -45,6 +52,11 @@ class adminacccontroller extends Controller
 
     }
 
+/**
+ * It displays the change password page.
+ * 
+ * @return The view for changing the password is being returned.
+ */
     public function displaychangepass(){
     try {
         $name = session('uniname');

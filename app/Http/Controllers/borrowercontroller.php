@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class borrowercontroller extends Controller
 {
+/**
+ * This function is used to create a new borrower
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the borrower page with the message "Successfully Created!"
+ */
     public function create(Request $request) {
         try {
         $name = session('uniname');
@@ -43,6 +50,14 @@ class borrowercontroller extends Controller
         }
     }
 
+/**
+ * This function is used to edit the borrower's information
+ * 
+ * @param Request request This is the request object that contains all the information about the
+ * request.
+ * 
+ * @return the view of the borrower page.
+ */
     public function edit(Request $request) {
         try {
         $name = session('uniname');
@@ -72,6 +87,13 @@ class borrowercontroller extends Controller
     }
     }
 
+/**
+ * It deletes a borrower from the database.
+ * 
+ * @param Borrower_id The id of the borrower to be deleted.
+ * 
+ * @return the view of the borrower page with the message "Successfully Deleted."
+ */
     public function delete($Borrower_id) {
 
         try {
@@ -94,6 +116,13 @@ class borrowercontroller extends Controller
     }
 
 
+/**
+ * This function is used to archive a borrower.
+ * 
+ * @param Borrower_id The id of the borrower
+ * 
+ * @return This function is used to archive a borrower.
+ */
     public function borrowernotactive($Borrower_id) {
 
         try {
@@ -137,6 +166,11 @@ class borrowercontroller extends Controller
     }
 
 
+/**
+ * This function is used to display the create page for the borrower.
+ * 
+ * @return The view for the create page is being returned.
+ */
 
     public function createdisplay() {
         $name = session('uniname');
@@ -149,6 +183,14 @@ class borrowercontroller extends Controller
     }
 
 
+/**
+ * It gets the borrower's information from the database and displays it in the edit page.
+ * 
+ * @param Borrower_id The id of the borrower to be edited.
+ * 
+ * @return The editdisplay function is returning the view of the edit page with the borrower's
+ * information.
+ */
     public function editdisplay($Borrower_id) {
 
         $name = session('uniname');
@@ -169,6 +211,13 @@ class borrowercontroller extends Controller
         } 
     }
 
+/**
+ * This function is used to search for a borrower in the database.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The searchborroweractive function is being returned.
+ */
     public function searchborroweractive(Request $request){
         try {
 
@@ -193,6 +242,13 @@ class borrowercontroller extends Controller
 
     }
 
+/**
+ * This function is used to search for a borrower in the database
+ * 
+ * @param Request request This is the request object that contains the data sent by the user.
+ * 
+ * @return The searchborrowernotactive function is being returned.
+ */
     public function searchborrowernotactive(Request $request){
         try {
 
@@ -217,6 +273,13 @@ class borrowercontroller extends Controller
     }
 
 
+/**
+ * It sorts the borrower table by borrower id.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by borrower id in ascending order.
+ */
     public function borroweridsort(Request $request){
         try{
             $sortstatus1borrower = session('sortstatus1borrower');
@@ -246,6 +309,13 @@ class borrowercontroller extends Controller
         }
     }
 
+/**
+ * It sorts the borrower's fullname in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return It returns the borrower page with the borrower table sorted by fullname in ascending order.
+ */
     public function fullnamesort(Request $request){
         try{
             $sortstatus2borrower = session('sortstatus2borrower');
@@ -274,6 +344,14 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * It sorts the gender of the borrower in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by gender.
+ */
     public function gendersort(Request $request){
         try{
             $sortstatus3borrower = session('sortstatus3borrower');
@@ -302,6 +380,14 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * This function is used to sort the status of the borrower in ascending or descending order
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by status.
+ */
     public function statussort(Request $request){
         try{
             $sortstatus4borrower = session('sortstatus4borrower');
@@ -330,6 +416,14 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * It sorts the borrower's address in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by address.
+ */
     public function addresssort(Request $request){
         try{
             $sortstatus5borrower = session('sortstatus5borrower');
@@ -358,6 +452,15 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * It sorts the borrower table by vio_count in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by the vio_count in ascending or descending
+ * order.
+ */
     public function viocountsort(Request $request){
         try{
             $sortstatus6borrower = session('sortstatus6borrower');
@@ -386,6 +489,14 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * It sorts the borrower table by created_at column.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the borrower table sorted by created_at in ascending order.
+ */
     public function createdatsort(Request $request){
         try{
             $sortstatus7borrower = session('sortstatus7borrower');
@@ -414,6 +525,14 @@ class borrowercontroller extends Controller
             return redirect()->route('borrower')->with('message2','Error Occured in Accessing Book Page! Please Try Again Later...');
         }
     }
+
+/**
+ * It updates the sort status of the borrower page.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the borrower page with the updated sort status.
+ */
     public function updatesort(Request $request){
         try{
             $sortstatus8borrower = session('sortstatus8borrower');

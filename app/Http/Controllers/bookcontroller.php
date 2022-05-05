@@ -8,6 +8,14 @@ use DB;
 class bookcontroller extends Controller
 {
 
+/**
+ * The above function is used to create a new book.
+ * 
+ * @param Request request This is the request object that contains the data that was submitted to the
+ * route.
+ * 
+ * @return the view of the login page with a message.
+ */
     public function create(Request $request) {
         try {
             
@@ -58,6 +66,13 @@ class bookcontroller extends Controller
         }
     }
 
+/**
+ * It takes the data from the edit form and updates the database with the new data.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the login page with the message 'Error!'
+ */
     public function edit(Request $request) {
         try {
 
@@ -97,6 +112,13 @@ class bookcontroller extends Controller
 
 
 
+/**
+ * It checks if the book is borrowed or not, if not, it will be archived.
+ * 
+ * @param Book_id The id of the book to be deleted.
+ * 
+ * @return the view of the books page.
+ */
     public function delete($Book_id) {
         try{
         $name = session('uniname');
@@ -124,6 +146,11 @@ class bookcontroller extends Controller
 }
     }
 
+/**
+ * It returns the view for creating a book.
+ * 
+ * @return The create book page is being returned.
+ */
     public function createdisplay() {
         try {
         $name = session('uniname');
@@ -141,6 +168,13 @@ class bookcontroller extends Controller
     }
 }
 
+/**
+ * It displays the edit page for the book with the given Book_id.
+ * 
+ * @param Book_id The id of the book that is being edited.
+ * 
+ * @return the view of the edit page with the book details.
+ */
     public function editdisplay($Book_id) {
 
         $name = session('uniname');
@@ -166,6 +200,13 @@ class bookcontroller extends Controller
    }
 
 
+/**
+ * It takes the Book_id as a parameter and returns the book details in a view.
+ * 
+ * @param Book_id The id of the book
+ * 
+ * @return The view of the book.
+ */
    public function bookview($Book_id) {
 
     $name = session('uniname');
@@ -190,6 +231,13 @@ class bookcontroller extends Controller
 
 }
 
+/**
+ * It searches for a book in the database and returns the result to the user.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The searchbook function is being returned.
+ */
    public function searchbook(Request $request){
 
     try {
@@ -215,6 +263,13 @@ class bookcontroller extends Controller
 
    }
 
+/**
+ * It searches for a book in the archive and displays it.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The searcharchivebook function is returning the books page with the search results.
+ */
    public function searcharchivebook(Request $request){
     try {
         $this->validate($request, [
@@ -235,6 +290,13 @@ class bookcontroller extends Controller
     }
    }
 
+/**
+ * It searches for books based on the type and category of the book.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the books page with the books that are searched by the user.
+ */
    public function searchbookcategory(Request $request){
     try {
 
@@ -261,6 +323,13 @@ class bookcontroller extends Controller
     }
    }
 
+/**
+ * It sorts the books by book id in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the books page with the books sorted by book id in ascending order.
+ */
 public function bookidsort(Request $request){
     try{
         $sortstatus1books = session('sortstatus1books');
@@ -290,6 +359,13 @@ public function bookidsort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by title in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the books page with the books sorted by title in ascending order.
+ */
 public function titlesort(Request $request){
     try{
         $sortstatus2books = session('sortstatus2books');
@@ -319,6 +395,14 @@ public function titlesort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by author in ascending or descending order depending on the value of the session
+ * variable 'sortstatus3books'.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The books are being returned in a descending order of the author.
+ */
 public function authorsort(Request $request){
     try{
         $sortstatus3books = session('sortstatus3books');
@@ -348,6 +432,13 @@ public function authorsort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by copyright in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return This function is used to sort the books by copyright in ascending or descending order.
+ */
 public function copyrightsort(Request $request){
     try{
         $sortstatus4books = session('sortstatus4books');
@@ -377,6 +468,13 @@ public function copyrightsort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by type in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the books page with the books sorted by type in ascending order.
+ */
 public function typesort(Request $request){
     try{
         $sortstatus5books = session('sortstatus5books');
@@ -406,6 +504,13 @@ public function typesort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by category in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the books page with the books sorted by category in ascending order.
+ */
 public function categorysort(Request $request){
     try{
         $sortstatus6books = session('sortstatus6books');
@@ -435,6 +540,14 @@ public function categorysort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by number of pages in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the books page with the books sorted by the number of pages in ascending or descending
+ * order.
+ */
 public function nopagesort(Request $request){
     try{
         $sortstatus7books = session('sortstatus7books');
@@ -464,6 +577,13 @@ public function nopagesort(Request $request){
     }
 }
 
+/**
+ * It sorts the books by stock in ascending or descending order.
+ * 
+ * @param Request request The request object.
+ * 
+ * @return the view of the books page with the books sorted by the stock in ascending order.
+ */
 public function nostocksort(Request $request){
     try{
         $sortstatus8books = session('sortstatus8books');

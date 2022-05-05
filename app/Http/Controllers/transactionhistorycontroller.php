@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 class transactionhistorycontroller extends Controller
 {
 
+/**
+ * This function is used to search the transaction history of a particular book
+ * 
+ * @param Request request The request object.
+ * 
+ * @return The searchhistory function is returning the transactionhistory view with the message
+ * 'Searched Successfully!' and the name of the user.
+ */
     public function searchhistory(Request $request){
         try {
 

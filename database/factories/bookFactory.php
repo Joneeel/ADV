@@ -87,6 +87,7 @@ class bookFactory extends Factory
 
         $status=['Active','NotActive'];
 
+/* Returning an array of data that will be used to create a new book. */
         return [
             'Title' => $this->faker->unique()->word,
             'Author' => $this->faker->name,

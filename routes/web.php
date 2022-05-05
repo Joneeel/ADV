@@ -21,6 +21,7 @@ use App\Http\Controllers\adminacccontroller;
 |
 */
 
+/* A route that will display the index of the page. */
 // Index Displays
 Route::any('/', [lmscontroller::class, 'login'])->name('login'); // login
 Route::any('/signup', [lmscontroller::class, 'signup'])->name('signup'); // signup
@@ -31,11 +32,13 @@ Route::any('/notreturnedbooks', [lmscontroller::class, 'notreturnedbooks'])->nam
 Route::any('/borrow', [lmscontroller::class, 'borrow'])->name('borrow'); // borrow
 Route::any('/transactionhistory', [lmscontroller::class, 'transactionhistory'])->name('transactionhistory'); // transactionhistory
 
+/* A route that will display the login, signup, and logout of the page. */
 // Admin Acc Login-Logout-Signup
 Route::any('/loginvalidation', [lmscontroller::class, 'loginvalidation'])->name('loginvalidation'); // loginvalidation
 Route::any('/signupvalidation', [lmscontroller::class, 'signupvalidation'])->name('signupvalidation'); // signupvalidation
 Route::any('/logout', [lmscontroller::class, 'logout'])->name('logout'); // logout
 
+/* A route that will display the books CRUD. */
 // Books CRUD
 Route::any('/book/create', [bookcontroller::class, 'createdisplay'])->name('bookcreate'); // bookcreate
 Route::any('/book/edit/{Book_id}', [bookcontroller::class, 'editdisplay'])->name('bookedit'); // bookedit
@@ -57,6 +60,7 @@ Route::any('/sortcategorybook', [bookcontroller::class, 'categorysort'])->name('
 Route::any('/sortnopagebook', [bookcontroller::class, 'nopagesort'])->name('nopagesort'); // nopagesort
 Route::any('/sortnostockbook', [bookcontroller::class, 'nostocksort'])->name('nostocksort'); // nostocksort
 
+/* A route that will display the borrower CRUD. */
 // Borrower CRUD
 Route::any('/borrower/create', [borrowercontroller::class, 'createdisplay'])->name('borrowercreate'); // borrowercreate
 Route::any('/borrower/edit/{Borrower_id}', [borrowercontroller::class, 'editdisplay'])->name('borroweredit'); // borroweredit
@@ -77,19 +81,23 @@ Route::any('/borrowerDueBooksSort', [borrowercontroller::class, 'viocountsort'])
 Route::any('/borrowerCreateSort', [borrowercontroller::class, 'createdatsort'])->name('createdatsort'); // createdatsort
 Route::any('/borrowerUpdateSort', [borrowercontroller::class, 'updatesort'])->name('updatesort'); // updatesort
 
+/* This is the route for the borrow controller. */
 // ISSUE CRUD
 Route::any('/borrow/issue/', [borrowcontroller::class, 'issue'])->name('issue'); // issue
 Route::any('/borrow/{Transac_id}', [borrowcontroller::class, 'returned'])->name('returned'); // returned
 Route::any('/borrowissueprocess', [borrowcontroller::class, 'issuedisplay'])->name('issuedisplay'); // issuedisplay
 Route::any('/searchissue', [borrowcontroller::class, 'searchissue'])->name('searchissue'); // searchissue
 
+/* A route that will display the not returned books CRUD. */
 // NOT RETURNED DELETE AND SEARCH
 Route::any('/notreturnedbook/{Transac_id}', [notreturnedbookscontroller::class, 'notreturnedbook'])->name('notreturnedbook'); // returned
 Route::any('/searchnotreturned', [notreturnedbookscontroller::class, 'searchnotreturned'])->name('searchnotreturned'); // searchnotreturned
 
+/* This is a route that will display the transaction history CRUD. */
 // TRANSACTION SEARCH
 Route::any('/searchhistory', [transactionhistorycontroller::class, 'searchhistory'])->name('searchhistory'); // searchhistory
 
+/* This is a route that will display the change password of the admin. */
 //ADMIN ACC CHANGE PASSWORD
 Route::any('/changepassadmin', [adminacccontroller::class, 'changepassadmin'])->name('changepassadmin'); // changepassadmin
 Route::any('/displaychangepass', [adminacccontroller::class, 'displaychangepass'])->name('displaychangepass'); // displaychangepass

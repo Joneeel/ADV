@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 class notreturnedbookscontroller extends Controller
 {
 
+/**
+ * It gets the book id, borrower id, and date borrowed of the transaction id passed to it, then it
+ * increments the borrower's violation count by 1, adds 1 to the book's stock, inserts the data to the
+ * history table, deletes the transaction, and redirects to the not returned books page with a success
+ * message.
+ * 
+ * @param Transac_id The id of the transaction that is being returned.
+ * 
+ * @return The book is being returned.
+ */
     public function notreturnedbook($Transac_id) {
 
             $name = session('uniname');
@@ -17,10 +27,13 @@ class notreturnedbookscontroller extends Controller
              $Borrower_id = DB::table('transactions')->select('Borrower_id')->where('Transac_id', $Transac_id)->pluck('Borrower_id')->first();
              $DateBorrowed = DB::table('transactions')->select('DateBorrowed')->where('Transac_id', $Transac_id)->pluck('DateBorrowed')->first();
              
+/* It gets the violation count of the borrower, increments it by 1, and updates the violation count of
+the borrower. */
              $viocount = DB::table('borrowers')->where('Borrower_id', $Borrower_id)->value('vio_count');
              $newviocount = $viocount + 1;
              DB::table('borrowers')->where('Borrower_id', $Borrower_id)->update(['vio_count' => $newviocount ,'updated_at' => \Carbon\Carbon::now()]);
              
+/* It gets the stock of the book, increments it by 1, and updates the stock of the book. */
              $Stock = DB::table('books')->where('Book_id', $Book_id)->value('Stock');
              $newstock = $Stock + 1;
              DB::table('books')->where('Book_id', $Book_id)->update(['Stock' => $newstock]);
@@ -47,6 +60,14 @@ class notreturnedbookscontroller extends Controller
         
     }
 
+/**
+ * It searches for the not returned books.
+ * 
+ * @param Request request This is the request object that contains the data that was sent to the
+ * controller.
+ * 
+ * @return The searchnotreturned function is being returned.
+ */
     public function searchnotreturned(Request $request){
         try {
 
