@@ -51,6 +51,7 @@
        </div>
   </form>
   @if(!empty($notreturned) && $notreturned->count())
+  <div class="bgtable">
 <table>
   <tr>
     <th>Transac_id</th>
@@ -82,6 +83,7 @@
       </form>
     </td>
   </tr>
+  </div>
   @endforeach
   @else   
         <div style="margin-top: 150px; font-family: Arial; font-weight: bold;">
@@ -105,10 +107,17 @@
 </script>
 <style>
 
-.tablerow:hover {
-  background-color: #B0BFAB;
-  transition: 0.3s;
+.bgtable{
+  background-color: #D9F5D1; 
+  padding: 10px; 
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
+
+.tablerow:hover {
+  background-color: #C0D9AC;
+  transition: 0.3s;
+} 
 
  /* Style The Dropdown Button */
  .dropbtn {
@@ -297,14 +306,28 @@ footer > a{
   text-shadow: 2px 2px #f9eebd;
   box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
-    table, th, td {
-  border: 1px solid black;
-  text-align:center;
-  padding:5px;
-  font-size:15px;
-  font-family: 'Arial';
-  font-weight: bold;
+
+table{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: Verdana, Sans-Serif;
+  border-collapse: collapse;
+  width: 100%;
+  color: #373836;
 }
+
+th{
+  background-color: #C7E3AF;
+}
+
+td,th{
+  border: 1px solid #373836;
+  text-align: left;
+  padding: 5px;
+  font-size: 13px;
+  text-align:center;
+}
+
 .header{
   display: flex; 
   justify-content: center; 

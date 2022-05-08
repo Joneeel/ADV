@@ -317,7 +317,7 @@ $("#typeid").change(function() {
 <style>
 
 .tablerow:hover {
-  background-color: #B0BFAB;
+  background-color: #C7E3AF;
   transition: 0.3s;
 }
 
@@ -642,13 +642,25 @@ footer > a{
   box-shadow: 0px 4px 2px -2px rgba(0,0,0,0.5);
 }
 
-  table, th, td {
-  border: 1px solid black;
+table{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: Verdana, Sans-Serif;
+  border-collapse: collapse;
+  width: 100%;
+  color: #373836;
+}
+
+th{
+  background-color: #C7E3AF;
+}
+
+td,th{
+  border: 1px solid #373836;
+  text-align: left;
+  padding: 5px;
+  font-size: 13px;
   text-align:center;
-  padding:5px;
-  font-size:15px;
-  font-family: 'Arial';
-  font-weight: bold;
 }
 
 .sorter{
@@ -662,8 +674,6 @@ footer > a{
 
 .sorter:hover{
   color:white;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: black;
   transition: 0.3s;
 }
 
