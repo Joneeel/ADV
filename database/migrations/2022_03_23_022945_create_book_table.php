@@ -13,6 +13,8 @@ class CreateBookTable extends Migration
      */
     public function up()
     {
+/* Creating a table called books with the following columns:
+Book_id, Title, Author, Copyright, Type, Category, No_pages, Stock, status, timestamps */
         Schema::create('books', function (Blueprint $table) {
             $table->increments('Book_id');
             $table->string('Title');
@@ -34,6 +36,7 @@ class CreateBookTable extends Migration
      */
     public function down()
     {
+       /* Dropping the table if it exists. */
         Schema::dropIfExists('books');
     }
 }

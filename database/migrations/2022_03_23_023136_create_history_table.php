@@ -13,6 +13,13 @@ class CreateHistoryTable extends Migration
      */
     public function up()
     {
+/* Creating a table called historys with the following columns:
+- History_id
+- Book_id
+- Borrower_id
+- Date_Returned
+- Date_Borrowed
+- timestamps */
         Schema::create('historys', function (Blueprint $table) {
             $table->increments('History_id');
             $table->unsignedInteger('Book_id');
@@ -32,6 +39,7 @@ class CreateHistoryTable extends Migration
      */
     public function down()
     {
+/* This is a function that drops the table if it exists. */
         Schema::dropIfExists('history');
     }
 }

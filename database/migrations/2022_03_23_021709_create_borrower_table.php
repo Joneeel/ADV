@@ -13,6 +13,8 @@ class CreateBorrowerTable extends Migration
      */
     public function up()
     {
+/* Creating a table called borrowers with the following columns:
+Borrower_id, fullname, gender, status, address, vio_count, timestamps, resetmonth */
         Schema::create('borrowers', function (Blueprint $table) {
             $table->increments('Borrower_id');
             $table->string('fullname')->unique();
@@ -32,6 +34,7 @@ class CreateBorrowerTable extends Migration
      */
     public function down()
     {
+        /* It drops the table if it exists. */
         Schema::dropIfExists('borrowers');
     }
 }

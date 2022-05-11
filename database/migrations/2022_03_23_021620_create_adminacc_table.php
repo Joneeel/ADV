@@ -13,6 +13,8 @@ class CreateAdminaccTable extends Migration
      */
     public function up()
     {
+/* Creating a table called adminaccs with the following columns: Acc_id, name, username, password,
+status, and timestamps. */
         Schema::create('adminaccs', function (Blueprint $table) {
             $table->increments('Acc_id');
             $table->string('name')->unique();
@@ -30,6 +32,7 @@ class CreateAdminaccTable extends Migration
      */
     public function down()
     {
+       /* Dropping the table if it exists. */
         Schema::dropIfExists('adminaccs');
     }
 }

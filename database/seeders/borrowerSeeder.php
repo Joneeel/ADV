@@ -15,6 +15,7 @@ class borrowerSeeder extends Seeder
     public function run()
     {
 
+/* Checking if the borrower table is empty, if it is empty it will create 20 records. */
         if (borrower::count() == 0) {
             borrower::factory(20)->create();
         }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class history extends Model
 {
     use HasFactory;
+/* A list of the columns in the table. */
     protected $fillable = [
         'Borrower_id',
         'Book_id',

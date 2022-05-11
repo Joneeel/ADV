@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class borrower extends Model
 {
     use HasFactory;
+/* A list of attributes that can be mass assigned. */
     protected $fillable = [
         'fullname',
         'gender',

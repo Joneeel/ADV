@@ -16,10 +16,12 @@ class adminaccSeeder extends Seeder
     public function run()
     {
 
+/* Checking if the table is empty, if it is empty it will create 10 rows of data. */
         if (adminacc::count() == 0) {
             adminacc::factory(10)->create();
         }
 
+/* Inserting a row of data into the database. */
         DB::table('adminaccs')->insert([
             'name' => 'henz',
             'username' => 'awtsgege',

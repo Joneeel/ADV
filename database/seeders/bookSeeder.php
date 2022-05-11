@@ -17,6 +17,7 @@ class bookSeeder extends Seeder
     {
 
 
+/* Checking if the table is empty, if it is empty it will create 20 rows of data. */
         if (book::count() == 0) {
             book::factory(20)->create();
         }

@@ -13,6 +13,16 @@ class CreateTransactionTable extends Migration
      */
     public function up()
     {
+/* Creating a table named transactions with the following columns:
+- Transac_id
+- Book_id
+- Borrower_id
+- DateBorrowed
+- DueDateReturned
+- Fullname
+- BookTitle
+- created_at
+- updated_at */
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('Transac_id');
             $table->unsignedInteger('Book_id');
@@ -34,6 +44,7 @@ class CreateTransactionTable extends Migration
      */
     public function down()
     {
+        /* It drops the table if it exists. */
         Schema::dropIfExists('transaction');
     }
 }

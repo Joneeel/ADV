@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class book extends Model
 {
     use HasFactory;
+/* Telling the model what fields are allowed to be filled in. */
     protected $fillable = [
         'Title',
         'Author',
