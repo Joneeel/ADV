@@ -86,13 +86,13 @@
     <td>{{ $data->updated_at }}</td>
     <td class="editbutton">
       <form action="{{ route('borroweredit', $data->Borrower_id) }}" method="any" class="form-hidden">
-        <button>Edit</button>
+        <button>Edit ✏️</button>
         @csrf
       </form>
     </td>
     <td class="deletebutton">
       <form action="{{ route('borrowernotactive', $data->Borrower_id) }}" method="any" class="form-hidden">
-        <button >N.Active</button>
+        <button >N.Active 📴</button>
         @csrf
       </form>
     </td>
@@ -159,7 +159,7 @@
     <td>{{ $data2->updated_at }}</td>
     <td class="deletebutton">
       <form action="{{ route('borrowerdelete', $data2->Borrower_id) }}" method="any" class="form-hidden">
-        <button >Delete</button>
+        <button >Delete ❌</button>
         @csrf
       </form>
     </td>
@@ -498,6 +498,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   margin-top:3px;
+  width: 100px;
 }
 
 .deletebutton > form > button:hover {
@@ -519,6 +520,7 @@ footer > a{
   font-family: 'Arial';
   font-weight: bold;
   margin-top:3px;
+  width: 80px;
 }
 
 .editbutton > form > button:hover {
@@ -550,7 +552,6 @@ th{
 
 td,th{
   border: 1px solid #373836;
-  text-align: left;
   padding: 5px;
   font-size: 13px;
   text-align:center;

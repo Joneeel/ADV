@@ -78,7 +78,7 @@
     <td>{{ $data->updated_at }}</td>
     <td class="deletebutton">
       <form action="{{ route('notreturnedbook', $data->Transac_id) }}" method="post" class="form-hidden">
-        <button >Returned</button>
+        <button >Returned 🔙</button>
         @csrf
       </form>
     </td>

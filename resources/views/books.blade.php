@@ -107,19 +107,19 @@
     <td>{{ $data->status }}</td>
     <td class="editbutton">
       <form action="{{ route('bookedit',$data->Book_id)}}" method="any" class="form-hidden">
-        <button>Edit</button>
+        <button>Edit ✏️</button>
         @csrf
       </form>
     </td>
     <td class="deletebutton">
       <form action="{{ route('bookdelete', $data->Book_id) }}" method="any" class="form-hidden">
-        <button >Delete</button>
+        <button>Delete ❌</button>
         @csrf
       </form>
     </td>
     <td class="viewbutton">
       <form action="{{ route('bookview',$data->Book_id)}}" method="any" class="form-hidden">
-        <button>View</button>
+        <button>View 📖</button>
         @csrf
       </form>
     </td>
