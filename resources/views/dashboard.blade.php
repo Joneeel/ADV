@@ -310,7 +310,15 @@ div.navbar-header{
   font-size: 12px;
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-  
+  transition: 0.3s;
+}
+
+.flex-container > div:hover {
+  margin: 15px;
+  padding: 20px;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 div.card {
