@@ -360,11 +360,13 @@ $("#typeid").change(function() {
 .tab button:hover {
   background-color: #A5C19E;
   color: white;
+  transition: 0.3s;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #7A8D75;
+  transition: 0.3s;
   color: white;
 }
 

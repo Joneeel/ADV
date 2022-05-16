@@ -277,12 +277,14 @@
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #A5C19E;
+  transition: 0.3s;
   color: white;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #7A8D75;
+  transition: 0.3s;
   color: white;
 }
 
