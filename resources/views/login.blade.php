@@ -38,7 +38,7 @@
         <a> Don't Have an Account? <a class="link" href="{{ route('signup')}}"> Sign Up </a></a>
         <?php
             $datetoday = date("Y/m/d");
-            $lastday = date("Y-m-t", strtotime($datetoday));
+            $lastday = date("Y-m-d", strtotime($datetoday));
         ?>
         @if($datetoday == $lastday)
         <div class="message" > Message: <br> Report All the Violations of Borrowers <br> accounts in the finance! </div>
