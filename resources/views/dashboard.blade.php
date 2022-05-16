@@ -319,7 +319,7 @@ div.navbar-header{
   padding: 20px;
   font-size: 14px;
   transition: 0.3s;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 8px 16px 0px rgba(255,255,255,0.5);
 }
 
 div.card {
