@@ -244,12 +244,13 @@ a.nav{
 
 a.nav:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
   background-color:#343434;
   transition: 0.3s;
+
 }
 
 a.navlogout{
@@ -265,7 +266,7 @@ a.navlogout{
 
 a.navlogout:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
@@ -314,9 +315,9 @@ div.navbar-header{
 }
 
 .flex-container > div:hover {
-  margin: 15px;
+  margin: 13px;
   padding: 20px;
-  font-size: 16px;
+  font-size: 14px;
   transition: 0.3s;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }

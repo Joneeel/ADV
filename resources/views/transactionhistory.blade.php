@@ -324,7 +324,7 @@ td,th{
 
 .navi:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
@@ -345,21 +345,11 @@ td,th{
 
 .navilogout:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
   background-color:red;
-  transition: 0.3s;
-}
-
-a.nav:hover{
-  padding:10px;
-  font-size:18px;
-  font-family: 'Arial';
-  font-weight: bold;
-  color: white;
-  background-color:black;
   transition: 0.3s;
 }
 

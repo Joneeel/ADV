@@ -242,7 +242,7 @@ a.nav{
 
 a.nav:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
@@ -264,7 +264,7 @@ a.navlogout{
 
 a.navlogout:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;

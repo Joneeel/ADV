@@ -398,7 +398,7 @@ td,th{
 
 .navi:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
@@ -419,7 +419,7 @@ td,th{
 
 .navilogout:hover{
   padding:10px;
-  font-size:18px;
+  font-size:20px;
   font-family: 'Arial';
   font-weight: bold;
   color: white;
