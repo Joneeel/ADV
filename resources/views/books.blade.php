@@ -45,7 +45,7 @@
   <center>
   <div style="display: inline-flex;">
     <h1 data-aos="fade-down" data-aos-duration="500" class="mainname"> AVAILABLE BOOKS </h1>
-      <a data-aos="fade-down" data-aos-duration="500" href="{{ route('bookcreate') }}" class="addnewbook"> CREATE NEW BOOK </a>
+      <a data-aos="fade-down" data-aos-duration="500" href="{{ route('bookcreate') }}" class="addnewbook"> ➕ CREATE NEW BOOK </a>
       @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif

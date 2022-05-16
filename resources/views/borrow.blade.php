@@ -37,7 +37,7 @@
 <body style='background-color: #88dad5'>  
   <div style="display: inline-flex;">
     <h1 data-aos="fade-right" data-aos-duration="500" class="mainname"> ISSUE BOOK BORROW </h1>
-      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('issuedisplay') }}" class="issuenewbook"> ISSUE NEW BOOK </a>
+      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('issuedisplay') }}" class="issuenewbook"> ➕ ISSUE NEW BOOK </a>
       @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif

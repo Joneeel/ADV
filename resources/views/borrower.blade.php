@@ -47,7 +47,7 @@
 <body  style='background-color: #88dad5'>  
   <div style="display: inline-flex;">
     <h1 data-aos="fade-down" data-aos-duration="500" class="mainname"> ACTIVE BORROWERS </h1>
-      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('borrowercreate') }}" class="addnewbook"> CREATE NEW BORROWER </a>
+      <a data-aos="fade-left" data-aos-duration="500" href="{{ route('borrowercreate') }}" class="addnewbook"> ➕ CREATE NEW BORROWER </a>
       @if(!empty(session()->get('message')))
       <h2 class='logged2'> Message: <br> {{ session()->get('message') }} </h2> 
       @endif
@@ -461,7 +461,7 @@ footer > a{
   font-weight: bold;
   color: black;
   position: absolute;
-  margin-left: 35%;
+  margin-left: 40%;
   background-color: green; 
   border: none;
   color: white;
