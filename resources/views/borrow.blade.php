@@ -301,6 +301,7 @@ footer > a{
 }
 
 .issuenewbook:hover{
+  transition: 0.3s;
   background-color: white; 
   color: green;
 }
