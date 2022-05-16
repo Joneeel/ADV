@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITS BOOK'S INFORMATION (LMS) </title>
+    <title> Edit Book's Information (LMS) </title>
 </head>
 <center>
 <nav class="navbar navbar-inverse">
